@@ -1,0 +1,122 @@
+{
+    "mode": "train",
+
+
+    "dataset_name": "mppde_E1",
+    "x_res": 100,
+
+    "experiment": "training_with_test_distribution1",
+    "dataset_train_path": "dataset/data/CE_train_E1.h5",
+    "dataset_valid_path": "dataset/data/CE_valid_E1.h5",
+    "dataset_test_path": "dataset/data/CE_test_E1.h5",
+
+
+    "n_train": 2048,
+    "n_test": 128,
+    "batch_size_train": 16,
+    "batch_size_test": 16,
+
+
+    "root_dir": null,
+    "seed": 250,
+
+
+    "model_type": "FNO1d_t",
+    "fno_hidden_dim": 64,
+    "fno_hidden_layers": 4,
+    "fno_modes": 16,
+    "input_time_stamps": 25,
+
+
+    "model_mode": "variable_dt",
+    "model_input_operation": "concat",
+    "output_time_stamps": 25,
+    "next_input_time_stamps": 25,
+    "output_tspace_low": 50,
+    "output_tsteps_sampler_type": 1,
+    "output_tstamps_sampler_type": 1,
+
+
+    "training_protocol_type": "training_loop_by_batch_first",
+    
+    "horizon": 2,
+    "horizon_grad": 1,
+    "horizon_type": "constant",
+
+    "time_sampling_prediction":"random",
+
+    
+    "dynamic_loss_weight_per_fpass_type": "global",
+
+
+    "training_protocols": [
+        {
+            "epochs": 10,
+            "no_input_tspace": 1,
+            "dynamic_loss_weight_per_fpass": false,
+            "dynamic_loss_weight_per_fpass_constant_parameter": 0.5,
+            "dynamic_loss_weight_per_tstamp": false,
+            "dynamic_loss_weight_per_tstamp_constant_parameter": 0.8,
+            "dynamic_loss_weight_per_fpass_reversed": false,
+            "initialise_optimiser": true,
+            "optimiser_type": "adam",
+            "sheduler_type": "steplr",
+            "learning_rate": 1e-03,
+            "sheduler_step": 2,
+            "sheduler_gamma": 0.75,
+            "weight_decay": 1e-08,
+            "input_sampler_type": [
+                1
+            ],
+            "input_sampler_type_dt": [
+                1
+            ],
+            "output_sampler_type": [
+                1
+            ]
+        }
+    ],
+
+
+    "initialise_optimiser": [],
+    "optimizer_type": [],
+    "no_input_tspace": [],
+    "learning_rate": [],
+    "sheduler_type": [],
+    "sheduler_step": [],
+    "sheduler_gamma": [],
+    "weight_decay": [],
+    "number_of_training_protocol": 0,
+    "epochs": [],
+    
+    "loss_train_type": "mse",
+    "loss_test_type": "mse",
+    "dynamic_loss_weight_per_fpass": [],
+    "dynamic_loss_weight_per_fpass_constant_parameter": [],
+    "dynamic_loss_weight_per_fpass_reversed": [],
+    "dynamic_loss_weight_per_tstamp": [],
+    "dynamic_loss_weight_per_tstamp_constant_parameter": [],
+    "input_sampler_type": [],
+    "input_sampler_type_dt": [],
+    "output_sampler_type": [],
+    "epoch_save_interval": 1,
+    "new_training": true,
+    "pretrained_model": "",
+    "current_dir_path": "",
+    "result_save_path": "",
+    "current_result_save_path": "",
+    "current_date_save_path": "",
+    "load_experiment": "",
+
+
+
+    "test_only_path": "",
+    "test_only_epoch_index": -1,
+    "test_only_protocol_no": 1
+}
+
+
+
+
+
+

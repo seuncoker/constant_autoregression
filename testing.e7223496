@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/nobackup/scoc/variable_autoregression/main.py", line 216, in <module>
+    train_var_ro_250 = variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100     )
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/test.py", line 479, in variable_rollout_test
+    data_batch = test_batch_time_sampling(choice=time_sampling_choice, total_range = len(t_sample_space),  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/util.py", line 509, in __init__
+    self.indicies = self.input_indicies_2(total_range, no_of_samp, t_pred_steps)
+TypeError: input_indicies_2() takes 2 positional arguments but 3 were given

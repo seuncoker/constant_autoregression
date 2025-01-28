@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/nobackup/scoc/variable_autoregression/main.py", line 225, in <module>
+    train_var_ro_250 = variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105    )
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/test.py", line 579, in variable_rollout_test
+    out = model( x, x_t, y_t ).to(device)
+  File "/home/home02/scoc/.conda/envs/le_pde/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/model/FNO_1d.py", line 2294, in forward
+    y_t = self.t_embed_high_out( torch.cat((y_t, grid), dim=-1)).permute(0,2,1)
+  File "/home/home02/scoc/.conda/envs/le_pde/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/home02/scoc/.conda/envs/le_pde/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+  File "/home/home02/scoc/.conda/envs/le_pde/lib/python3.9/site-packages/torch/nn/functional.py", line 1848, in linear
+    return torch._C._nn.linear(input, weight, bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (8192x51 and 11x32)

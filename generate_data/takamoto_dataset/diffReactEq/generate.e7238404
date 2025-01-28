@@ -1,0 +1,10 @@
+/nobackup/scoc/variable_autoregression/generate_data/takamoto_dataset/diffReactEq/reaction_diffusion_multi_solution_Hydra.py:171: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_path="config")
+Error parsing override '+Rho1e0_Nu5e-1.yaml'
+missing EQUAL at '<EOF>'
+See https://hydra.cc/docs/1.2/advanced/override_grammar/basic for details
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

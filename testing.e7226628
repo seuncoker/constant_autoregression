@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/nobackup/scoc/variable_autoregression/main.py", line 225, in <module>
+    train_var_ro_250 = variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/test.py", line 637, in variable_rollout_test
+    test_l2_full = normalized_rmse(train_prediction[...,:train_actual.shape[-1]], train_actual)
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/util.py", line 851, in normalized_rmse
+    rmse = torch.sqrt(torch.mean((predictions - true_values) ** 2, dim = 1 ) )
+RuntimeError: The size of tensor a (90) must match the size of tensor b (95) at non-singleton dimension 2

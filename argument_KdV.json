@@ -1,0 +1,155 @@
+{
+    "1": "RANDOMNESS",
+    "seed": 256,
+
+
+    "2": "TASK",
+    "mode": "train",
+    "analysis_type": "FNO",
+    "subanalysis_type": "train_time_140_dwg",
+    "experiment": "run_4",
+
+
+    "3": "TEST MODE SPECIFCIATION",
+    "test_only_path":  "",
+    "test_only_protocol_no": 1,
+    "test_only_epoch_index": -1,
+
+
+    "4": "DATASET",
+    "dataset_name": "KdV",
+    "dataset_train_path": "/nobackup/scoc/variable_autoregression/dataset/data/KdV/KdV_train_2048.h5",
+    "dataset_valid_path": "/nobackup/scoc/variable_autoregression/dataset/data/KdV/KdV_valid.h5",
+    "dataset_test_path": "/nobackup/scoc/variable_autoregression/dataset/data/KdV/KdV_test.h5",
+    "t_resolution": null,
+    "x_resolution": null,
+
+    "no_parameters": 2,
+    "normalise_parameters": true,
+
+    "5": "TRAIN_DATA",
+    "n_train": 2048,
+    "n_test": 128,
+    "batch_size_train": 128,
+    "batch_size_test": 128,
+
+    
+    "6": "FILE LOCATION",
+    "root_dir": null,
+
+
+    "7": "MODEL SPECIFICATION",
+    "model_type": "FNO_standard_1D",
+    "fno_hidden_dim": 256,
+    "fno_hidden_layers": 4,
+    "fno_modes": 32,
+    "model_initialise_type": "random",
+    "pretrained_model": "",
+
+
+    "8": "TIME INFORMATION",
+    "time_prediction": "constant",
+    "time_conditioning": "concatenate",
+    "time_sampling_choice": 1,
+    "predict_difference": true,
+
+
+    "9": "VARIABLE_TIME_STEP_PREDICTION",
+    "n_tsamples": [0],
+
+
+    "9_1": "CONSTANT_TIME_STEP_PREDICTION",
+    "dt_step": 4,
+
+
+    "10": "MULITSTEP",
+    "input_time_stamps": 1,
+    "output_time_stamps": 1,
+
+
+
+    "11": "TRAINING PROTOCOLS",
+    "new_training": true,
+    "training_protocol_type": "training_loop_by_batch_first",
+    "number_of_training_protocol": 1,
+    "training_loop": "random_time_sampling",
+
+
+    "12":  "LOSS",
+    "loss_train_type": "mse",
+    "loss_test_type": "mse",
+    
+
+
+    "13": "SAVE",
+    "epoch_save_interval": 50,
+
+    
+
+    "14": "AUTOREGRESSION [1,2,1,4,1,2,1]",
+    "horizon": [1],
+    
+
+    "15": "DYNAMIC WEIGHTING",
+    "dynamic_loss_weight_per_fpass_type": "global",
+
+
+    "16": "NOISE",
+
+    "noise": false, 
+    "noise_std": 0.01,
+    "norm": false,
+    
+
+    "t_resolution_train": 140,
+    "t_resolution_valid": 140,
+    "t_resolution_test": 640,
+
+
+    "training_protocols": [
+        {
+            "epochs": 100,
+            "no_input_tspace": 1,
+
+            "random_horizon": false,
+            
+            "push_forward": false,
+            "push_forward_parameter_random": false,
+            "push_forward_parameter": 1,
+
+            "dynamic_loss_weight_per_fpass": false,
+            "dynamic_loss_weight_per_fpass_constant_parameter": 0.5,
+
+            "dynamic_loss_weight_per_tstamp": false,
+            "dynamic_loss_weight_per_tstamp_constant_parameter": 0.8,
+
+            "dynamic_loss_weight_per_fpass_reversed": false,
+
+            "initialise_optimiser": true,
+            "optimiser_type": "adamw",
+            "sheduler_type": "steplr",
+            "learning_rate": 1e-03,
+            "min_learning_rate": 1e-06,
+            "sheduler_step": 2,
+            "sheduler_gamma": 0.93,
+            "weight_decay": 1e-05,
+            "input_sampler_type": [
+                1
+            ],
+            "input_sampler_type_dt": [
+                1
+            ],
+            "output_sampler_type": [
+                1
+            ]
+        }
+    ]
+
+
+}
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+[2024-06-03 14:36:36] Folder 'result' already exists!
+[2024-06-03 14:36:36] Folder 'debugging' already exists!
+[2024-06-03 14:36:36] Folder '2024-06-03' already exists!
+[2024-06-03 14:36:36] Folder 'test_1' already exists!
+[2024-06-03 14:36:38] Minibatches for train: 1
+[2024-06-03 14:36:38] Minibatches for val: 1
+[2024-06-03 14:36:38] Minibatches for test: 1
+[2024-06-03 14:36:38] New Training
+Traceback (most recent call last):
+  File "/nobackup/scoc/variable_autoregression/main.py", line 120, in <module>
+    model = get_model(args, device)
+  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/model/load_model.py", line 109, in get_model
+    assert args.time_prediction.startswith("variable")
+AssertionError

@@ -1,0 +1,10 @@
+## Hosts assigned to job 7238809.1:
+##
+## db04gpu5.arc4.leeds.ac.uk 10 slots
+##
+## Resources granted:
+##
+## h_vmem = 5153960755 (per slot)
+## h_rt   = 03:00:00
+## disk   = 1G (per slot)
+

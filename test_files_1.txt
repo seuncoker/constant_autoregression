@@ -1,0 +1,2 @@
+/nobackup/scoc/variable_autoregression/result/KdV/FNO/dwg/run_8
+/nobackup/scoc/variable_autoregression/result/KdV/FNO/dwg/run_9
