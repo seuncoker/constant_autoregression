@@ -1,8 +1,8 @@
 *.npy
 *.h5
 *.pt
-*.e
-*.o
+*.e*
+*.o*
 *.png
 *.eps
 result/
