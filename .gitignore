@@ -1,0 +1,8 @@
+*.npy
+*.h5
+*.pt
+*.e
+*.o
+*.png
+*.eps
+result/
