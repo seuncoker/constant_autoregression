@@ -10,7 +10,7 @@
     "mode": "train",
     "analysis_type": "constant_time",
     "subanalysis_type": "dt_1_ms_1_horizon_1",
-    "experiment": "run_1",
+    "experiment": "run_1_dim_64",
 
 
     "3": "TEST MODE SPECIFCIATION",
@@ -44,7 +44,7 @@
 
     "7": "MODEL SPECIFICATION",
     "model_type": "FNO_standard_1D",
-    "fno_hidden_dim": 32,
+    "fno_hidden_dim": 64,
     "fno_hidden_layers": 2,
     "fno_modes": 16,
     "model_initialise_type": "random",

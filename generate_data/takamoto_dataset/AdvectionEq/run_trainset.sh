@@ -3,7 +3,7 @@
 #$ -cwd
 
 # Request runtime
-#$ -l h_rt=00:20:00
+#$ -l h_rt=00:30:00
 
 # Run on feps-cpu ARC4
 # $ -P feps-gpu
@@ -24,4 +24,4 @@ source activate benchmark_dataset
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/benchmark_dataset/lib/
 
-python3 advection_multi_solution_Hydra.py +multi=beta1e-1.yaml
+python3 advection_multi_solution_Hydra.py +multi=beta1.yaml

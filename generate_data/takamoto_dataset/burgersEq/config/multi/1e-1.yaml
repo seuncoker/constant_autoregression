@@ -8,7 +8,9 @@ xR: 1.
 epsilon: 1.e-1
 CFL: 2.5e-1
 if_second_order: 1.
-numbers: 10000
+numbers: 8500
 show_steps: 100
 init_key: 2022
 if_rand_param: False
+k_max: 1
+N: 2

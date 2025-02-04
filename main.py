@@ -73,8 +73,8 @@ p.print(f"args mode: {args.mode}")
 
 
 
-arg_name =  "arguments"
-#arg_name =  "arguments_test"
+#arg_name =  "arguments"
+arg_name =  "arguments_test"
 
 
 
@@ -244,7 +244,7 @@ if mode.startswith("test"):
               }
 
     p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
-    torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt2.pt"))
+    torch.save(result, os.path.join(test_only_path, experiment + "_result.pt"))
 
 
 
