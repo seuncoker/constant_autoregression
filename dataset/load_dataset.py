@@ -344,7 +344,7 @@ def load_dataset_A1(args):
         x_valid = valid_data[:args.n_test,...].permute(0,2,1)
         
         #import pdb; pdb.set_trace()
-        args.t_resolution =  x_train.shape[2]
+        #args.t_resolution =  x_train.shape[2]
         args.x_resolution =  x_train.shape[1]
 
         if args.t_resolution_train == None:
@@ -360,7 +360,7 @@ def load_dataset_A1(args):
         #args.timestamps = [i for i in range(args.t_resolution)]
         args.timestamps_valid = [i*0.01 for i in range(args.t_resolution_valid)]
         args.timestamps_test = [i*0.01 for i in range(args.t_resolution_test)]
-        args.timestamps = [i*0.01 for i in range(args.t_resolution)]
+        args.timestamps_train = [i*0.01 for i in range(args.t_resolution_train)]
 
 
         res = x_train.shape[1]
@@ -412,7 +412,7 @@ def load_dataset_B1(args):
         x_valid = valid_data[:args.n_test,...].permute(0,2,1)
         
         #import pdb; pdb.set_trace()
-        args.t_resolution =  x_train.shape[2]
+        #args.t_resolution =  x_train.shape[2]
         args.x_resolution =  x_train.shape[1]
 
         if args.t_resolution_train == None:
@@ -428,7 +428,7 @@ def load_dataset_B1(args):
         #args.timestamps = [i for i in range(args.t_resolution)]
         args.timestamps_valid = [i*0.01 for i in range(args.t_resolution_valid)]
         args.timestamps_test = [i*0.01 for i in range(args.t_resolution_test)]
-        args.timestamps = [i*0.01 for i in range(args.t_resolution)]
+        args.timestamps_train = [i*0.01 for i in range(args.t_resolution_train)]
 
 
         res = x_train.shape[1]

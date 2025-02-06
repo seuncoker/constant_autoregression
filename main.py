@@ -204,11 +204,11 @@ if mode.startswith("test"):
     # cons_oto_250 = constant_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test  )
     # train_cons_oto_250 = constant_one_to_one_test( args, model, train_loader, timestamps, dt_step = args.dt_step, t_resolution=args.t_resolution_train   )
 
-    args.timestamps_valid = args.timestamps
-    args.timestamps_test = args.timestamps
-    timestamps_train = torch.tensor(args.timestamps).to(device)
-    timestamps_test = torch.tensor(args.timestamps).to(device)
-    timestamps_valid = torch.tensor(args.timestamps).to(device)
+    # args.timestamps_valid = args.timestamps_valid
+    # args.timestamps_test = args.timestamps_test
+    timestamps_train = torch.tensor(args.timestamps_train).to(device)
+    timestamps_test = torch.tensor(args.timestamps_test).to(device)
+    timestamps_valid = torch.tensor(args.timestamps_valid).to(device)
 
     #train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train   )
     p.print(f"timestamps_train: {timestamps_train[:10]}" )
@@ -230,13 +230,13 @@ if mode.startswith("test"):
     test_cons_oto_250 = constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
 
 
-    train_var_ro_250 = 0# variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=130    )
+    train_var_ro_250 = 0 # variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
     train_var_oto_250 = 0 #variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105 )
 
-    valid_var_ro_250 = 0#variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=130 )
+    valid_var_ro_250 = variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=70 )
     valid_var_oto_250 = 0 #variable_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=105)
 
-    test_var_ro_250 = 0#variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=130 )
+    test_var_ro_250 = variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=70 )
     test_var_oto_250 =  0 #variable_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=105 )
     
     result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "test_cons_oto_250":test_cons_oto_250, "test_cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250,
@@ -244,7 +244,7 @@ if mode.startswith("test"):
               }
 
     p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
-    torch.save(result, os.path.join(test_only_path, experiment + "_result.pt"))
+    torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt1_5.pt"))
 
 
 
@@ -309,7 +309,7 @@ if mode.startswith("train"):
     count_t_iter = 0
 
 
-    timestamps = torch.tensor(args.timestamps).to(device)
+    timestamps = torch.tensor(args.timestamps_train).to(device)
     #t_iteration = args.iter_per_epochs
 
     #import pdb; pdb.set_trace()
@@ -348,9 +348,9 @@ if mode.startswith("train"):
         
 
         #import pdb; pdb.set_trace()
-        assert( [ i <= (args.t_resolution - args.output_time_stamps)//args.output_time_stamps for i in args.horizon[proto] ] )
+        assert( [ i <= (args.t_resolution_train - args.output_time_stamps)//args.output_time_stamps for i in args.horizon[proto] ] )
         
-        max_horizon = round(( args.t_resolution - args.input_time_stamps)//args.output_time_stamps)
+        max_horizon = round(( args.t_resolution_train - args.input_time_stamps)//args.output_time_stamps)
         
         p.print(f"dynamic_loss_weight_per_fpass: {args.dynamic_loss_weight_per_fpass[proto]}")
 
@@ -396,7 +396,7 @@ if mode.startswith("train"):
             dt_step = args.dt_step,
             input_time_stamps = args.input_time_stamps,
             output_time_stamps = args.output_time_stamps,
-            t_resolution = args.t_resolution,
+            t_resolution = args.t_resolution_train,
 
 
             max_horizon = max_horizon,

@@ -8,9 +8,9 @@
 
     "2": "TASK",
     "mode": "train",
-    "analysis_type": "constant_time",
-    "subanalysis_type": "dt_1_ms_1_horizon_1",
-    "experiment": "run_1_dim_64",
+    "analysis_type": "variable_time",
+    "subanalysis_type": "B1_1_FNO_attention",
+    "experiment": "run_6_train_time_100",
 
 
     "3": "TEST MODE SPECIFCIATION",
@@ -20,10 +20,10 @@
 
 
     "4": "DATASET",
-    "dataset_name": "A1",
+    "dataset_name": "B1",
     "t_resolution": null,
     "x_resolution": null,
-    "t_resolution_train": null,
+    "t_resolution_train": 100,
     "t_resolution_test": null,
     "t_resolution_valid": null,
 
@@ -32,7 +32,7 @@
 
 
     "5": "TRAIN_DATA",
-    "n_train": 2048,
+    "n_train": 1024,
     "n_test": 128,
     "batch_size_train": 32,
     "batch_size_test": 32,
@@ -43,8 +43,8 @@
 
 
     "7": "MODEL SPECIFICATION",
-    "model_type": "FNO_standard_1D",
-    "fno_hidden_dim": 64,
+    "model_type": "FNO1d_t_attention",
+    "fno_hidden_dim": 32,
     "fno_hidden_layers": 2,
     "fno_modes": 16,
     "model_initialise_type": "random",
@@ -52,9 +52,9 @@
 
 
     "8": "TIME INFORMATION",
-    "time_prediction": "constant",
-    "time_conditioning": "",
-    "time_sampling_choice": 1,
+    "time_prediction": "variable",
+    "time_conditioning": "attention",
+    "time_sampling_choice": 2,
     "predict_difference": false,
 
 
@@ -66,8 +66,8 @@
 
 
     "10": "MULITSTEP",
-    "input_time_stamps": 1,
-    "output_time_stamps": 1,
+    "input_time_stamps": 10,
+    "output_time_stamps": 10,
 
 
     "11": "TRAINING PROTOCOLS",
@@ -82,8 +82,9 @@
     "loss_test_type": "l2",
     
 
+
     "13": "SAVE",
-    "epoch_save_interval": 10,
+    "epoch_save_interval": 25,
     "epoch_print_interval": 5,
 
 
@@ -94,18 +95,21 @@
 
 
 
+
     "16": "NOISE",
+
+
 
 
 
     "training_protocols": [
         {
-            "epochs": 20,
-            "iter_per_epochs": 200,
+            "epochs": 50,
+            "iter_per_epochs": 100,
 
             "no_input_tspace": 1,
 
-            "horizon": [1],
+            "horizon": [3],
 
             "random_horizon": false,
 
@@ -134,7 +138,7 @@
             "learning_rate": 1e-03, 
             "min_learning_rate": 1e-05,
             "sheduler_step": 1,
-            "sheduler_gamma": 0.75,
+            "sheduler_gamma": 0.95,
             "weight_decay": 1e-05,
 
 

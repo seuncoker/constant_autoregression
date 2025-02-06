@@ -256,6 +256,8 @@ def training_protocol(
     
     p.print(f"Input multistep: {args.input_time_stamps}")
     p.print(f"Output multistep: {args.output_time_stamps}")
+    p.print(f"t_resolution_train: {t_resolution}")
+    p.print(f"timestamps:{len(timestamps)}")
     p.print(f"horizon: {horizon}")
     p.print(f"Number of tsamples : {n_tsamples}")
     p.print(f"Number of iteration per tsamples: {t_iteration}")
@@ -490,7 +492,7 @@ def training_protocol(
             scheduler.step()
 
 
-        timestamps_train = torch.tensor(args.timestamps).to(device)
+        timestamps_train = torch.tensor(args.timestamps_train).to(device)
         timestamps_test = torch.tensor(args.timestamps_test).to(device)
         timestamps_valid = torch.tensor(args.timestamps_valid).to(device)
 
@@ -518,16 +520,16 @@ def training_protocol(
             train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]  )
             train_cons_oto_250 = constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]   )
 
-            #train_var_ro_250 = variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]  )
-            #train_var_oto_250 = variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]   )
+            train_var_ro_250 = variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]  )
+            train_var_oto_250 = variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]   )
 
 
 
             test_cons_ro_250 = constant_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]  )
             test_cons_oto_250 = constant_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
 
-            # test_var_ro_250 = variable_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]  )
-            # test_var_oto_250 = variable_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
+            test_var_ro_250 = variable_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]  )
+            test_var_oto_250 = variable_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
 
 
             # valid_cons_ro_250 = constant_rollout_test( args, model, valid_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid   )

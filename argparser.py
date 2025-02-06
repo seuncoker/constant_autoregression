@@ -57,7 +57,7 @@ def arg_parse():
     
     parser.add_argument('--x_resolution', type=int,
                         help='spatial resolution')
-    parser.add_argument('--timestamps', type=int,
+    parser.add_argument('--timestamps_train', type=int,
                         help='time resolution values')
     parser.add_argument('--timestamps_test', type=int,
                         help='time resolution values for test data')  
@@ -273,7 +273,8 @@ def arg_parse():
         t_resolution_test = None,
         t_resolution_valid = None,
         x_resolution = None,
-        timestamps = None,
+        timestamps_train = None,
+        timestamps_valid = None,
         timestamps_test = None,
         no_parameters = None,
         

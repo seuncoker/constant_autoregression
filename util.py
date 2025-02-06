@@ -545,6 +545,7 @@ class test_batch_time_sampling():
         """
         split input and output sampling
         """
+        ############ B1
         #indicies = torch.cat(( torch.sort(torch.randint(t_pred_steps,(no_of_samp[0],t_pred_steps)))[0], torch.arange(t_pred_steps,total_range)[torch.sort(torch.randint(total_range-t_pred_steps,(no_of_samp[0],no_of_samp[1]-t_pred_steps)))[0]]), dim=-1)
         #indicies = torch.cat((torch.arange(0,66,1), torch.arange(67,201,4)), )
         #indicies = torch.cat((torch.arange(0,65,2), torch.arange(68,201,2)), )
@@ -552,13 +553,14 @@ class test_batch_time_sampling():
         #indicies = torch.cat((torch.arange(0,65,3), torch.arange(66,70,1), torch.arange(71,201,3)), )
         #indicies = torch.cat(( torch.arange(10), torch.arange(10,160,3), torch.arange(161,201,1)))
         #indicies = torch.cat((torch.arange(10), torch.arange(10,50,1), torch.arange(53,201,3)))
+        indicies = torch.cat((torch.arange(10,50,1), torch.arange(54,201,5)))
         #indicies = torch.cat((torch.arange(0,170,4),          torch.arange(174,201,1)))
 
 
         ######## E1
         #indicies = torch.cat(( torch.arange(10), torch.arange(10,190,3), torch.arange(190,250,1)))
         #indicies = torch.cat(( torch.arange(10), torch.arange(10,69,1), torch.arange(69,250,3)))
-        indicies =  torch.cat(( torch.arange(10), torch.arange(11,250,2)))
+        #indicies =  torch.cat(( torch.arange(10), torch.arange(11,250,2)))
         
         indicies = indicies.unsqueeze(0).repeat(no_of_samp[0],1)
         return indicies.long()

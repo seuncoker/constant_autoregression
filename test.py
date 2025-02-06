@@ -439,9 +439,12 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
     data_batchsize = args.batch_size_train
     input_time_stamps = args.input_time_stamps
     output_time_stamps = args.output_time_stamps
-    time_sampling_choice = int(2)
+    time_sampling_choice = int(3)
+    #time_sampling_choice = int(2)
 
     #t_sample_space = torch.arange(t_resolution).to(device)
+    p.print(f"t_resolution: {t_resolution}")
+    p.print(f"timestamps: {timestamps.shape}")
     t_sample_space = torch.arange(t_resolution)[::int(dt_step)].to(device)
 
     #timestamps = torch.tensor(timestamps).to(device)
@@ -464,7 +467,7 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
         horizon = int((tsamples-input_time_stamps)/output_time_stamps) + 1
 
     #import pdb; pdb.set_trace()
-    #p.print(f"horizon_test: {horizon}")
+    p.print(f"horizon_test: {horizon}")
 
 
     with torch.no_grad():
@@ -514,7 +517,7 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
             #print("xy -->", xy.shape)
             #import pdb; pdb.set_trace()
             for t in range(horizon):
-                #p.print(f"t: {t}")
+                p.print(f"t: {t}")
                 #import pdb; pdb.set_trace()
                 #import pdb; pdb.set_trace()
 
@@ -570,15 +573,17 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
                     elif args.time_conditioning == "attention":
                         if args.dataset_name == "E1" or "B1" or "A1":
 
-                            #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+                            p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
                             if y_t.shape[-1] != output_time_stamps:
                                 #y_t = y_t.repeat(1,1,output_time_stamps)
-                                remain_step = output_time_stamps-y_t.shape[-1]
-                                y_t = torch.cat((y_t, y_t[..., :remain_step]), dim=-1)
-                                #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+                                remain_step = int(output_time_stamps/y_t.shape[-1]) + 1
+                                y_t = y_t.repeat(1,1,remain_step*y_t.shape[-1])[...,:output_time_stamps]
+                                #y_t = torch.cat((y_t, y_t[..., :remain_step]), dim=-1)
+                                p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
 
                             # p.print(f"x_t: {x_t[:5,0,]}")
                             # p.print(f"y_t: {y_t[:5,0,]}")
+                            p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
                             out = model( x, x_t, y_t ).to(device)
                             #import pdb; pdb.set_trace()
                             #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
@@ -655,7 +660,8 @@ def variable_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
     data_batchsize = args.batch_size_train
     input_time_stamps = args.input_time_stamps
     output_time_stamps = args.output_time_stamps
-    time_sampling_choice = int(2)
+    time_sampling_choice = int(3)
+    #time_sampling_choice = int(2)
 
     #t_sample_space = torch.arange(t_resolution).to(device)
     t_sample_space = torch.arange(t_resolution)[::int(dt_step)].to(device)
@@ -758,12 +764,21 @@ def variable_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
                         if args.dataset_name == "E1" or "B1" or "A1":
                             #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
 
+                            # #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+                            # if y_t.shape[-1] != output_time_stamps:
+                            #     #y_t = y_t.repeat(1,1,output_time_stamps)
+                            #     remain_step = output_time_stamps-y_t.shape[-1]
+                            #     y_t = torch.cat((y_t, y_t[..., :remain_step]))
+                            #     #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+
                             #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
                             if y_t.shape[-1] != output_time_stamps:
                                 #y_t = y_t.repeat(1,1,output_time_stamps)
-                                remain_step = output_time_stamps-y_t.shape[-1]
-                                y_t = torch.cat((y_t, y_t[..., :remain_step]))
+                                remain_step = int(output_time_stamps/y_t.shape[-1]) + 1
+                                y_t = y_t.repeat(1,1,remain_step*y_t.shape[-1])[...,:output_time_stamps]
+                                #y_t = torch.cat((y_t, y_t[..., :remain_step]), dim=-1)
                                 #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+
 
                             out = model( x, x_t, y_t ).to(device)
                             # x_mask = torch.ones((1, 1, 1, input_time_stamps) ).to(device)
