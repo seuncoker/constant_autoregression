@@ -552,8 +552,9 @@ class test_batch_time_sampling():
         #indicies = torch.cat(( torch.arange(10), torch.arange(11,201,2)))
         #indicies = torch.cat((torch.arange(0,65,3), torch.arange(66,70,1), torch.arange(71,201,3)), )
         #indicies = torch.cat(( torch.arange(10), torch.arange(10,160,3), torch.arange(161,201,1)))
-        #indicies = torch.cat((torch.arange(10), torch.arange(10,50,1), torch.arange(53,201,3)))
-        indicies = torch.cat((torch.arange(10,50,1), torch.arange(54,201,5)))
+        indicies = torch.cat((torch.arange(10), torch.arange(10,50,1), torch.arange(53,201,3)))
+        #indicies = torch.cat((torch.arange(10), torch.arange(10,50,1), torch.arange(54,201,5)))
+        #indicies = torch.cat((torch.arange(10), torch.arange(10,50,1), torch.arange(65,201,15)))
         #indicies = torch.cat((torch.arange(0,170,4),          torch.arange(174,201,1)))
 
 

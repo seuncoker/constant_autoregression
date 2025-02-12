@@ -1,1 +1,1 @@
-/nobackup/scoc/variable_autoregression/result/B1/variable_time/B1_1_FNO_attention/run_6_train_time_100
+/nobackup/scoc/variable_autoregression/result/B1/constant_time/dt_1_ms_10_horizon_3/run_2_iteration_100_dim_64_time_range_100

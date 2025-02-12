@@ -8,9 +8,9 @@
 
     "2": "TASK",
     "mode": "train",
-    "analysis_type": "variable_time",
-    "subanalysis_type": "B1_1_FNO_attention",
-    "experiment": "run_6_train_time_100",
+    "analysis_type": "constant_time",
+    "subanalysis_type": "dt_1_ms_10_horizon_3",
+    "experiment": "run_2_iteration_100_dim_64_time_range_100",
 
 
     "3": "TEST MODE SPECIFCIATION",
@@ -43,8 +43,8 @@
 
 
     "7": "MODEL SPECIFICATION",
-    "model_type": "FNO1d_t_attention",
-    "fno_hidden_dim": 32,
+    "model_type": "FNO_standard_1D",
+    "fno_hidden_dim": 64, 
     "fno_hidden_layers": 2,
     "fno_modes": 16,
     "model_initialise_type": "random",
@@ -52,9 +52,9 @@
 
 
     "8": "TIME INFORMATION",
-    "time_prediction": "variable",
-    "time_conditioning": "attention",
-    "time_sampling_choice": 2,
+    "time_prediction": "constant",
+    "time_conditioning": "",
+    "time_sampling_choice": 1,
     "predict_difference": false,
 
 
@@ -99,49 +99,37 @@
     "16": "NOISE",
 
 
-
-
-
     "training_protocols": [
         {
             "epochs": 50,
             "iter_per_epochs": 100,
-
             "no_input_tspace": 1,
-
-            "horizon": [3],
-
+            "horizon": [
+                3
+            ],
             "random_horizon": false,
-
             "push_forward": false,
             "push_forward_parameter_random": false,
             "push_forward_parameter": 1,
-
             "dynamic_loss_weight_per_fpass": false,
             "dynamic_loss_weight_per_fpass_type": "global",
             "dynamic_loss_weight_per_fpass_constant_parameter": 0.5,
-
             "dynamic_loss_weight_per_tstamp": false,
             "dynamic_loss_weight_per_tstamp_constant_parameter": 0.8,
-
             "dynamic_loss_weight_per_fpass_reversed": false,
-
-            "noise": false, 
+            "noise": false,
             "noise_std": 0.01,
             "norm": false,
-
             "initialise_optimiser": true,
             "optimiser_type": "adam",
             "sheduler_type": "steplr",
             "sheduler_change": "epoch",
             "cos_anneal_T_max": 5000,
-            "learning_rate": 1e-03, 
+            "learning_rate": 0.001,
             "min_learning_rate": 1e-05,
-            "sheduler_step": 1,
-            "sheduler_gamma": 0.95,
+            "sheduler_step": 2,
+            "sheduler_gamma": 0.8,
             "weight_decay": 1e-05,
-
-
             "input_sampler_type": [
                 1
             ],

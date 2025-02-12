@@ -3,10 +3,10 @@
 #$ -cwd
 
 # Request runtime
-#$ -l h_rt=03:00:00
+#$ -l h_rt=05:00:00
 
 # Run on feps-cpu ARC4
-# $ -P feps-gpu
+#$ -P feps-gpu
 # $ -P feps-cpu
 
 #$ -N fourier_transformer

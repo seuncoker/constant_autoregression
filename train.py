@@ -224,6 +224,14 @@ def training_protocol(
     #max_horizon = round(( args.t_resolution - args.input_time_stamps)//args.output_time_stamps)
     n_tsamples = [input_time_stamps+(i*output_time_stamps) for i in horizon]
 
+    if args.time_prediction == "constant":
+        assert args.time_sampling_choice == 1  # use the right type of random time generator
+        assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+
+    elif args.time_prediction == "variable":
+        assert args.time_sampling_choice > 1
+
+
     print("max horizon ->", max_horizon)
 
     f_pass_weights = torch.ones( max_horizon).to(device)

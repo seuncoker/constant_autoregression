@@ -3,10 +3,10 @@
 #$ -cwd
 
 # Request runtime
-#$ -l h_rt=00:15:00
+#$ -l h_rt=00:120:00
 
 # Run on feps-cpu ARC4
-# $ -P feps-gpu
+#$ -P feps-gpu
 
 #$ -N testing
 

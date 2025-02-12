@@ -73,8 +73,8 @@ p.print(f"args mode: {args.mode}")
 
 
 
-#arg_name =  "arguments"
-arg_name =  "arguments_test"
+arg_name =  "arguments"
+#arg_name =  "arguments_test"
 
 
 
@@ -167,6 +167,8 @@ if mode.startswith("test"):
 
     p.print(f"args: {args}")
 
+    args.mode = mode
+
 
     current_result_save_path = args.current_result_save_path
     experiment = args.experiment
@@ -221,22 +223,22 @@ if mode.startswith("test"):
     p.print(f"norm: {norm}")
     
     train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm     )
-    train_cons_oto_250 = constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm   )
+    train_cons_oto_250 = 0 #constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm   )
 
-    valid_cons_ro_250 = constant_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
-    valid_cons_oto_250 = constant_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
+    valid_cons_ro_250 = 0 #constant_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
+    valid_cons_oto_250 = 0 #constant_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
 
     test_cons_ro_250 = constant_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
-    test_cons_oto_250 = constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
+    test_cons_oto_250 = 0 #constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
 
 
     train_var_ro_250 = 0 # variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
     train_var_oto_250 = 0 #variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105 )
 
-    valid_var_ro_250 = variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=70 )
+    valid_var_ro_250 = 0 #variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=100 )
     valid_var_oto_250 = 0 #variable_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=105)
 
-    test_var_ro_250 = variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=70 )
+    test_var_ro_250 = variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=100 )
     test_var_oto_250 =  0 #variable_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=105 )
     
     result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "test_cons_oto_250":test_cons_oto_250, "test_cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250,
@@ -244,7 +246,7 @@ if mode.startswith("test"):
               }
 
     p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
-    torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt1_5.pt"))
+    torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt1_3_1.pt"))
 
 
 

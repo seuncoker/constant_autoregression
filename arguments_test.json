@@ -6,7 +6,7 @@
   "mode": "test",
 
   "3": "TEST MODE SPECIFCIATION",
-  "test_only_path": "/nobackup/scoc/variable_autoregression/result/B1/variable_time/B1_1_FNO_attention/run_6",
+  "test_only_path": "/nobackup/scoc/variable_autoregression/result/B1/constant_time/dt_1_ms_10_horizon_3/run_2_dim_64",
   "test_only_protocol_no": 1,
   "test_only_epoch_index": -1,
 
@@ -14,7 +14,7 @@
   "dataset_name": "B1",
 
   "5": "TRAIN_DATA",
-  "n_train": 32,
+  "n_train": 2048,
   "n_test": 128,
   "batch_size_train": 32,
   "batch_size_test": 32,

@@ -781,12 +781,13 @@ def random_time_sampling_new(
     total_iter = epochs*t_iteration
     t_sample_space = torch.arange(t_resolution)
 
-    if time_prediction == "constant":
-        assert args.time_sampling_choice == 1  # use the right type of random time generator
-        assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+    # if args.time_prediction == "constant":
+    #     assert args.time_sampling_choice == 1  # use the right type of random time generator
+    #     assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
 
-    # elif time_prediction == "variable":
+    # elif args.time_prediction == "variable":
     #     assert args.time_sampling_choice > 1
+
 
     for out_samp in range(len(n_tsamples)):
         assert len(torch.tensor([t for t in range(0, (t_resolution -  (out_samp + ((out_samp -1)*(dt_step-1)) ) + 1 ))]) ) > 0 ## check that the length of the initial sample range is positvie 
@@ -844,6 +845,15 @@ def random_time_sampling_new(
                 xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
                 xy_t = torch.ones_like(xy)[:,0,:].to(device)
                 xy_t = xy_t*timestamps[time_indicies]
+
+
+                # p.print(f"xy_t: {xy_t.shape}")
+                # p.print(f"xy_t: {xy_t[:3,:10]}")
+                xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+                # p.print(f"xy_t: {xy_t.shape}")
+                # p.print(f"xy_t: {xy_t[:3,:10]}")
+                
+
                 xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
                 xy_tindicies = time_indicies.long()
 
