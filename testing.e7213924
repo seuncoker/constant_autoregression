@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/nobackup/scoc/variable_autoregression/main.py", line 172, in <module>
-    model = load_model(args, last_model_dict, device)
-  File "/nobackup/scoc/variable_autoregression/../variable_autoregression/model/load_model.py", line 255, in load_model
-    model.load_state_dict(model_dict)
-UnboundLocalError: local variable 'model' referenced before assignment
