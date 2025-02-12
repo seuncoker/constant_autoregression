@@ -3,7 +3,7 @@
 #$ -cwd
 
 # Request runtime
-#$ -l h_rt=00:120:00
+#$ -l h_rt=00:15:00
 
 # Run on feps-cpu ARC4
 #$ -P feps-gpu
@@ -23,4 +23,4 @@ source activate le_pde
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/le_pde/lib/
 
 
-python /nobackup/scoc/variable_autoregression/main.py
+python /nobackup/scoc/variable_autoregression/main.py --argument_file=arguments_test

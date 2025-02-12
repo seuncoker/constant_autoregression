@@ -65,35 +65,27 @@ from variable_autoregression.test import constant_rollout_test, constant_one_to_
 ################################################################
 # load arguments
 ################################################################
+
 p = Printer(n_digits=6)
 args = arg_parse()
 
 
 p.print(f"args mode: {args.mode}")
 
-
-
-arg_name =  "arguments"
+#arg_name =  "arguments"
 #arg_name =  "arguments_test"
 
-
-
+arg_name = args.argument_file
 p.print(f"arg_name: {arg_name}")
-
 args = load_auguments(args, arg_name)
-#args = load_auguments(args, "arguments")
 
 p.print(args)
-
 
 ################################################################
 # load seed
 ################################################################
 
-
 set_seed(args.seed)
-
-
 
 
 ################################################################
@@ -155,7 +147,6 @@ mode = args.mode
 
 
 if mode.startswith("test"):
-    ##import pdb; pdb.set_trace()
 
     test_only_path = args.test_only_path 
     test_only_protocol_no = args.test_only_protocol_no
@@ -173,9 +164,6 @@ if mode.startswith("test"):
     current_result_save_path = args.current_result_save_path
     experiment = args.experiment
     
-    # timestamps = torch.tensor(args.timestamps).to(device)
-    # timestamps_test = torch.tensor(args.timestamps_test).to(device)
-
 
     file_saved = "protocol_" + str(test_only_protocol_no) +".pt"
     p.print(f"path --> {os.path.join(test_only_path, file_saved)}" )
@@ -183,70 +171,54 @@ if mode.startswith("test"):
     
     epoch = saved_result["saved_epoch"][test_only_epoch_index]["epoch"]
     last_model_dict = saved_result["saved_epoch"][test_only_epoch_index]["model"]
-    
-    #last_model_dict = saved_result
-    
-    #import pdb; pdb.set_trace()
+
     model = load_model(args, last_model_dict, device)
 
 
-    # print("t_resolution_test:", args.t_resolution_test)
-    # print("t_resolution:", args.t_resolution_train)
-    # print("dt_step:", args.dt_step)
 
-    # print("timestamps_test:",timestamps.shape)
-    # print(timestamps)
-    # print("timestamps_test:",timestamps_test.shape)
-    # print(timestamps_test)
-
-    # cons_ro_250 = constant_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test )
-    # train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps, dt_step = args.dt_step, t_resolution=args.t_resolution_train  )
-
-    # #import pdb; pdb.set_trace()
-    # cons_oto_250 = constant_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test  )
-    # train_cons_oto_250 = constant_one_to_one_test( args, model, train_loader, timestamps, dt_step = args.dt_step, t_resolution=args.t_resolution_train   )
-
-    # args.timestamps_valid = args.timestamps_valid
-    # args.timestamps_test = args.timestamps_test
     timestamps_train = torch.tensor(args.timestamps_train).to(device)
     timestamps_test = torch.tensor(args.timestamps_test).to(device)
     timestamps_valid = torch.tensor(args.timestamps_valid).to(device)
 
-    #train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train   )
+
     p.print(f"timestamps_train: {timestamps_train[:10]}" )
     p.print(f"timestamps_test: {timestamps_test[:10]}" )
     p.print(f"args.t_resolution_train: {args.t_resolution_train}")
     p.print(f"args.t_resolution_test: {args.t_resolution_test}")
-    # p.print("batch_train:", args.batch_size_train)
 
     norm = args.norm[0]
     p.print(f"norm: {norm}")
+
+    p.print("Done..............")
     
-    train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm     )
-    train_cons_oto_250 = 0 #constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm   )
+    # train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm     )
+    # train_cons_oto_250 = 0 #constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm   )
 
-    valid_cons_ro_250 = 0 #constant_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
-    valid_cons_oto_250 = 0 #constant_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
+    # valid_cons_ro_250 = 0 #constant_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
+    # valid_cons_oto_250 = 0 #constant_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
 
-    test_cons_ro_250 = constant_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
-    test_cons_oto_250 = 0 #constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
+    # test_cons_ro_250 = constant_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
+    # test_cons_oto_250 = 0 #constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
 
 
-    train_var_ro_250 = 0 # variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
-    train_var_oto_250 = 0 #variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105 )
+    # train_var_ro_250 = 0 # variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
+    # train_var_oto_250 = 0 #variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105 )
 
-    valid_var_ro_250 = 0 #variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=100 )
-    valid_var_oto_250 = 0 #variable_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=105)
+    # valid_var_ro_250 = 0 #variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=100 )
+    # valid_var_oto_250 = 0 #variable_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=105)
 
-    test_var_ro_250 = variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=100 )
-    test_var_oto_250 =  0 #variable_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=105 )
+    # test_var_ro_250 = variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=100 )
+    # test_var_oto_250 =  0 #variable_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=105 )
     
-    result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "test_cons_oto_250":test_cons_oto_250, "test_cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250,
-              "train_var_oto_250":train_var_oto_250, "train_var_ro_250":train_var_ro_250, "test_var_oto_250":test_var_oto_250, "test_var_ro_250": test_var_ro_250, "valid_var_oto_250":valid_var_oto_250, "valid_var_ro_250": valid_var_ro_250
-              }
+    # result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "test_cons_oto_250":test_cons_oto_250, "test_cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250,
+    #           "train_var_oto_250":train_var_oto_250, "train_var_ro_250":train_var_ro_250, "test_var_oto_250":test_var_oto_250, "test_var_ro_250": test_var_ro_250, "valid_var_oto_250":valid_var_oto_250, "valid_var_ro_250": valid_var_ro_250
+    #           }
 
-    p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
-    torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt1_3_1.pt"))
+    # p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
+    # torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt1_3_1.pt"))
+
+
+
 
 
 

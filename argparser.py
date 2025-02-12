@@ -11,7 +11,11 @@ def arg_parse():
 
     ### RANDOMNESS
     parser.add_argument('--seed', type=int,
-                        help='number for seeed')
+                        help='number for seed')
+
+
+    parser.add_argument('--argument_file', type=str,
+                        help='name of arugment file')
     
 
     #### TASK
@@ -247,8 +251,10 @@ def arg_parse():
     parser.set_defaults(
         
         ### RANDOMNESS
+    
         seed = 42,
 
+        argument_file = "arguments",
 
         #### TASK
         mode = "train",

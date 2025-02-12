@@ -26,4 +26,4 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/le_pde/lib
 python /nobackup/scoc/variable_autoregression/create_dir.py > dir_path.txt
 dir_path=$(cat dir_path.txt)
 last_element=$(basename "$dir_path")
-python /nobackup/scoc/variable_autoregression/main.py >& "$dir_path/$last_element.txt"
+python /nobackup/scoc/variable_autoregression/main.py --argument_file=arguments >& "$dir_path/$last_element.txt"
