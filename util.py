@@ -399,13 +399,15 @@ class batch_time_sampling():
         random constant timestep sampling
         """
         #init_time_stamp_range = torch.tensor([t for t in range(0, total_range -  no_of_samp[1]*dt)])
-        init_time_stamp_range = torch.tensor([t for t in range(0, (total_range -  (no_of_samp[1] + ((no_of_samp[1] -1)*(dt-1)) ) + 1 ))])
-        random_steps = init_time_stamp_range[torch.randint(len(init_time_stamp_range), (no_of_samp[0],))]
+        
+        
+        # init_time_stamp_range = torch.tensor([t for t in range(0, (total_range -  (no_of_samp[1] + ((no_of_samp[1] -1)*(dt-1)) ) + 1 ))])
+        # random_steps = init_time_stamp_range[torch.randint(len(init_time_stamp_range), (no_of_samp[0],))]
 
-        indicies = torch.ones((no_of_samp) )
-        for i in range(no_of_samp[0]):
-            start = random_steps[i]
-            indicies[i] = torch.arange(start,total_range,dt)[:no_of_samp[1]]
+        # indicies = torch.ones((no_of_samp) )
+        # for i in range(no_of_samp[0]):
+        #     start = random_steps[i]
+        #     indicies[i] = torch.arange(start,total_range,dt)[:no_of_samp[1]]
         
 
 
@@ -413,8 +415,8 @@ class batch_time_sampling():
         sequential constant timestep sampling
         """
 
-        # indicies = torch.arange(0, total_range, dt)[:no_of_samp[1]].unsqueeze(0)
-        # indicies = indicies.repeat(no_of_samp[0],1)
+        indicies = torch.arange(0, total_range, dt)[:no_of_samp[1]].unsqueeze(0)
+        indicies = indicies.repeat(no_of_samp[0],1)
 
         return indicies.long()
     

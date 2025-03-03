@@ -1,1 +1,1 @@
-/nobackup/scoc/variable_autoregression/result/B1/constant_time/dt_1_ms_10_horizon_3/run_2_iteration_100_dim_64_time_range_100
+/nobackup/scoc/variable_autoregression/result/B1/constant_time/ar_curriculum/run_1

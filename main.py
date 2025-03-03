@@ -189,33 +189,33 @@ if mode.startswith("test"):
     norm = args.norm[0]
     p.print(f"norm: {norm}")
 
-    p.print("Done..............")
+    #p.print("Done..............")
     
-    # train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm     )
-    # train_cons_oto_250 = 0 #constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm   )
+    train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm     )
+    train_cons_oto_250 = 0 #constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm   )
 
-    # valid_cons_ro_250 = 0 #constant_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
-    # valid_cons_oto_250 = 0 #constant_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
+    valid_cons_ro_250 = 0 #constant_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
+    valid_cons_oto_250 = 0 #constant_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm   )
 
-    # test_cons_ro_250 = constant_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
-    # test_cons_oto_250 = 0 #constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
+    test_cons_ro_250 = constant_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
+    test_cons_oto_250 = 0 #constant_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm    )
 
 
-    # train_var_ro_250 = 0 # variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
-    # train_var_oto_250 = 0 #variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105 )
+    train_var_ro_250 = 0 # variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=100    )
+    train_var_oto_250 = 0 #variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm=norm, no_of_steps=105 )
 
-    # valid_var_ro_250 = 0 #variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=100 )
-    # valid_var_oto_250 = 0 #variable_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=105)
+    valid_var_ro_250 = 0 #variable_rollout_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=100 )
+    valid_var_oto_250 = 0 #variable_one_to_one_test( args, model, val_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm=norm, no_of_steps=105)
 
-    # test_var_ro_250 = variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=100 )
-    # test_var_oto_250 =  0 #variable_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=105 )
+    test_var_ro_250 = 0 #variable_rollout_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=100 )
+    test_var_oto_250 =  0 #variable_one_to_one_test(  args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm=norm, no_of_steps=105 )
     
-    # result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "test_cons_oto_250":test_cons_oto_250, "test_cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250,
-    #           "train_var_oto_250":train_var_oto_250, "train_var_ro_250":train_var_ro_250, "test_var_oto_250":test_var_oto_250, "test_var_ro_250": test_var_ro_250, "valid_var_oto_250":valid_var_oto_250, "valid_var_ro_250": valid_var_ro_250
-    #           }
+    result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "test_cons_oto_250":test_cons_oto_250, "test_cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250,
+              "train_var_oto_250":train_var_oto_250, "train_var_ro_250":train_var_ro_250, "test_var_oto_250":test_var_oto_250, "test_var_ro_250": test_var_ro_250, "valid_var_oto_250":valid_var_oto_250, "valid_var_ro_250": valid_var_ro_250
+              }
 
-    # p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
-    # torch.save(result, os.path.join(test_only_path, experiment + "_result_prior_dt1_3_1.pt"))
+    p.print(f"save_location: {os.path.join(test_only_path, experiment)}" )
+    torch.save(result, os.path.join(test_only_path, experiment + "_result_.pt"))
 
 
 
@@ -325,6 +325,7 @@ if mode.startswith("train"):
         assert( [ i <= (args.t_resolution_train - args.output_time_stamps)//args.output_time_stamps for i in args.horizon[proto] ] )
         
         max_horizon = round(( args.t_resolution_train - args.input_time_stamps)//args.output_time_stamps)
+        p.print(f"max_horizon: {max_horizon}")
         
         p.print(f"dynamic_loss_weight_per_fpass: {args.dynamic_loss_weight_per_fpass[proto]}")
 
@@ -333,6 +334,10 @@ if mode.startswith("train"):
                 args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.95 
             elif max_horizon == 24 or max_horizon == 25 or max_horizon == 23:   #for output stamps = 10
                 args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.5
+            elif max_horizon == 19 or max_horizon == 20 or max_horizon == 21:   #for output stamps = 10
+                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.47
+            elif max_horizon == 39 or max_horizon == 40 or max_horizon == 41:   #for output stamps = 10
+                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.39
             elif max_horizon == 49 or max_horizon == 50 or max_horizon == 48:   #for output stamps = 10
                 args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.3125
             elif max_horizon == 249 or max_horizon == 250 or max_horizon == 248:   #for output stamps = 1

@@ -1,6 +1,4 @@
 
-
-
 {
     "1": "RANDOMNESS",
     "seed": 2048,
@@ -9,8 +7,8 @@
     "2": "TASK",
     "mode": "train",
     "analysis_type": "constant_time",
-    "subanalysis_type": "dt_1_ms_10_horizon_3",
-    "experiment": "run_2_iteration_100_dim_64_time_range_100",
+    "subanalysis_type": "tf_ar_curriculum",
+    "experiment": "run_1",
 
 
     "3": "TEST MODE SPECIFCIATION",
@@ -23,7 +21,7 @@
     "dataset_name": "B1",
     "t_resolution": null,
     "x_resolution": null,
-    "t_resolution_train": 100,
+    "t_resolution_train": null,
     "t_resolution_test": null,
     "t_resolution_valid": null,
 
@@ -32,8 +30,8 @@
 
 
     "5": "TRAIN_DATA",
-    "n_train": 1024,
-    "n_test": 128,
+    "n_train": 32,
+    "n_test": 32,
     "batch_size_train": 32,
     "batch_size_test": 32,
 
@@ -44,7 +42,7 @@
 
     "7": "MODEL SPECIFICATION",
     "model_type": "FNO_standard_1D",
-    "fno_hidden_dim": 64, 
+    "fno_hidden_dim": 32, 
     "fno_hidden_layers": 2,
     "fno_modes": 16,
     "model_initialise_type": "random",
@@ -74,7 +72,7 @@
     "new_training": true,
     "training_protocol_type": "training_loop_by_batch_first",
     "number_of_training_protocol": 1,
-    "training_loop": "random_time_sampling",
+    "training_loop": "sequential_time_sampling",
 
 
     "12":  "LOSS",
@@ -102,7 +100,7 @@
     "training_protocols": [
         {
             "epochs": 50,
-            "iter_per_epochs": 100,
+            "iter_per_epochs": 1,
             "no_input_tspace": 1,
             "horizon": [
                 3
@@ -118,7 +116,7 @@
             "dynamic_loss_weight_per_tstamp_constant_parameter": 0.8,
             "dynamic_loss_weight_per_fpass_reversed": false,
             "noise": false,
-            "noise_std": 0.01,
+            "noise_std": 0.001,
             "norm": false,
             "initialise_optimiser": true,
             "optimiser_type": "adam",
@@ -127,8 +125,8 @@
             "cos_anneal_T_max": 5000,
             "learning_rate": 0.001,
             "min_learning_rate": 1e-05,
-            "sheduler_step": 2,
-            "sheduler_gamma": 0.8,
+            "sheduler_step": 6,
+            "sheduler_gamma": 0.95,
             "weight_decay": 1e-05,
             "input_sampler_type": [
                 1
@@ -141,7 +139,4 @@
             ]
         }
     ]
-
-
 }
-

@@ -489,7 +489,25 @@ def load_dataset_E1(args):
         #args.timestamps = [i for i in range(args.t_resolution)]
         args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
         args.timestamps_test = [i for i in range(args.t_resolution_test)]
-        args.timestamps = [i*0.004 for i in range(args.t_resolution)]
+        args.timestamps_train = [i*0.004 for i in range(args.t_resolution)]
+
+
+        # args.x_resolution =  x_train.shape[1]
+
+        # if args.t_resolution_train == None:
+        #         args.t_resolution_train = x_train.shape[2]
+
+        # if args.t_resolution_test == None:
+        #         args.t_resolution_test =  x_test.shape[2]
+
+        # if args.t_resolution_valid == None:
+        #         args.t_resolution_valid = x_valid.shape[2]
+                
+
+        # #args.timestamps = [i for i in range(args.t_resolution)]
+        # args.timestamps_valid = [i*0.01 for i in range(args.t_resolution_valid)]
+        # args.timestamps_test = [i*0.01 for i in range(args.t_resolution_test)]
+        # args.timestamps_train = [i*0.01 for i in range(args.t_resolution_train)] args.timestamps_train
 
 
         res = x_train.shape[1]

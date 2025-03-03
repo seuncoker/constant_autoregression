@@ -1,0 +1,9 @@
+name: le_pde
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - yaml
+  - notebook
+  - jupyter
+prefix: /home/home02/scoc/.conda/envs/le_pde

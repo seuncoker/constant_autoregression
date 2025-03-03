@@ -351,17 +351,20 @@ def training_protocol(
 
         elif args.training_loop == "sequential_time_sampling":
 
-            x1,y1 = 1,1
-            x2,y2 = epochs, max_horizon
-            m = (y2 - y1) / (x2 - x1)
-            b = y1 - m*x1
-            horizon = [ int(m*ep + b) ]
+            # x1,y1 = 1,1
+            # x2,y2 = epochs, max_horizon
+            # m = (y2 - y1) / (x2 - x1)
+            # b = y1 - m*x1
+            # horizon = [ int(m*ep + b) ]
 
-            #horizon = [max_horizon]
+            horizon = [max_horizon]
+
+            n_tsamples = [input_time_stamps+(i*output_time_stamps) for i in horizon]
 
 
             p.print(f"{ep} ...............................................")
             p.print(f"horizon: {horizon}")
+            p.print(f"n_tsamples: {n_tsamples}")
             n_tsamples = [input_time_stamps+(i*output_time_stamps) for i in horizon]
             p.print(f"Number of tsamples : {n_tsamples}")
 
