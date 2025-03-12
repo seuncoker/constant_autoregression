@@ -2,24 +2,28 @@
   "1": "RANDOMNESS",
   "seed": 2048,
 
+
   "2": "TASK",
   "mode": "test",
 
+
   "3": "TEST MODE SPECIFCIATION",
-  "test_only_path": "/nobackup/scoc/variable_autoregression/result/B1/constant_time/sequential_curriculum/run_4",
+  "test_only_path": "/mnt/scratch/scoc/constant_autoregression/result/KdV/UNO/random_dwl_curriculum_reverse/run_2",
   "test_only_protocol_no": 1,
   "test_only_epoch_index": -1,
 
+
   "4": "DATASET",
-  "dataset_name": "B1",
+  "dataset_name": "KdV",
+
 
   "5": "TRAIN_DATA",
   "n_train": 1024,
   "n_test": 128,
   "batch_size_train": 32,
   "batch_size_test": 32,
-  "normalise_parameters": false,
-  "t_resolution_train": 201,
-  "t_resolution_valid": 201,
-  "t_resolution_test": 201
+  "normalise_parameters": true,
+  "t_resolution_train": 640,
+  "t_resolution_valid": 640,
+  "t_resolution_test": 640
 }

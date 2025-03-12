@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-#SBATCH --job-name=test_job   # Job name
-#SBATCH --time=04:00:00         # Request runtime (hh:mm:ss)
+#SBATCH --job-name=const_auto   # Job name
+#SBATCH --time=01:00:00         # Request runtime (hh:mm:ss)
 #SBATCH --partition=gpu     # Request the GPU partition
 #SBATCH --gres=gpu:1        # Request a single GPU
 #SBATCH --cpus-per-task=8          # Request 4 CPU cores

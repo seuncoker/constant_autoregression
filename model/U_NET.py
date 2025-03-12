@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from functools import partial
 from einops import rearrange
-from variable_autoregression.util import Printer, initialize_weights_xavier_uniform
+from constant_autoregression.util import Printer, initialize_weights_xavier_uniform
 import math
 
 

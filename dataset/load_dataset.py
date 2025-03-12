@@ -1,14 +1,14 @@
 import pdb
 import pickle
-import scipy
+#import scipy
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 import time
 import h5py
 import numpy as np
-from variable_autoregression.util import Printer, create_data, Normalizer_1D
-from variable_autoregression.dataset.mppde1d import CE, HDF5Dataset
+from constant_autoregression.util import Printer, create_data, Normalizer_1D
+from constant_autoregression.dataset.mppde1d import CE, HDF5Dataset
 
 
 
@@ -383,22 +383,28 @@ def load_dataset_B1(args):
         hdf5_test_file = np.load(args.dataset_test_path)
         hdf5_valid_file = np.load(args.dataset_valid_path)
 
+        ## reverse_b1
+        hdf5_train_file = np.flip(hdf5_train_file.copy(), axis=-1)
+        hdf5_test_file = np.flip(hdf5_test_file.copy(), axis=-1)
+        hdf5_valid_file = np.flip(hdf5_valid_file.copy(), axis=-1)
+
+
         train_loaded_data = hdf5_train_file[0, :2100]
         test_loaded_data =  hdf5_test_file[0, -128:]
         valid_loaded_data = hdf5_valid_file[0, -256:-128]
 
         train_tensor =  train_loaded_data.squeeze()
-        train_data = torch.from_numpy(train_tensor).float()
+        train_data = torch.from_numpy(train_tensor.copy()).float()
         #train_data = train_data - train_data.mean(-1).unsqueeze(-1)
         train_data = train_data[...,::4]
 
         test_tensor =  test_loaded_data.squeeze()
-        test_data = torch.from_numpy(test_tensor).float()
+        test_data = torch.from_numpy(test_tensor.copy()).float()
         #test_data = test_data - test_data.mean(-1).unsqueeze(-1)
         test_data = test_data[...,::4]
 
         valid_tensor =  valid_loaded_data.squeeze()
-        valid_data = torch.from_numpy(valid_tensor).float()
+        valid_data = torch.from_numpy(valid_tensor.copy()).float()
         #valid_data = valid_data - valid_data.mean(-1).unsqueeze(-1)
         valid_data = valid_data[...,::4]
         
@@ -454,14 +460,20 @@ def load_dataset_E1(args):
         test_loaded_data = hdf5_test_file['test']['pde_250-200'][:]
         valid_loaded_data = hdf5_valid_file['valid']['pde_250-200'][:]
 
+
+        # train_loaded_data = np.flip(train_loaded_data.copy(), axis=-1)
+        # test_loaded_data = np.flip(test_loaded_data.copy(), axis=-1)
+        # valid_loaded_data = np.flip(valid_loaded_data.copy(), axis=-1)
+
+
         train_tensor =  train_loaded_data.squeeze()
-        train_data = torch.from_numpy(train_tensor).float()
+        train_data = torch.from_numpy(train_tensor.copy()).float()
 
         test_tensor =  test_loaded_data.squeeze()
-        test_data = torch.from_numpy(test_tensor).float()
+        test_data = torch.from_numpy(test_tensor.copy()).float()
 
         valid_tensor =  valid_loaded_data.squeeze()
-        valid_data = torch.from_numpy(valid_tensor).float()
+        valid_data = torch.from_numpy(valid_tensor.copy()).float()
 
         
         if args.subanalysis_type == "one_sample":
@@ -487,10 +499,13 @@ def load_dataset_E1(args):
                 args.t_resolution_valid = x_valid.shape[2]
 
         #args.timestamps = [i for i in range(args.t_resolution)]
-        args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
-        args.timestamps_test = [i for i in range(args.t_resolution_test)]
-        args.timestamps_train = [i*0.004 for i in range(args.t_resolution)]
+        # args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
+        # args.timestamps_test = [i for i in range(args.t_resolution_test)]
+        # args.timestamps_train = [i*0.004 for i in range(args.t_resolution)]
 
+        args.timestamps_valid = [i*0.01 for i in range(args.t_resolution_valid)]
+        args.timestamps_test = [i*0.01 for i in range(args.t_resolution_test)]
+        args.timestamps_train = [i*0.01 for i in range(args.t_resolution_train)]
 
         # args.x_resolution =  x_train.shape[1]
 
@@ -728,6 +743,17 @@ def load_dataset_KS1(args):
         args.t_resolution =  x_train.shape[2]
         args.x_resolution =  x_train.shape[1]
 
+        
+        if args.t_resolution_train == None:
+                args.t_resolution_train = x_train.shape[2]
+
+        if args.t_resolution_test == None:
+                args.t_resolution_test =  x_test.shape[2]
+
+        if args.t_resolution_valid == None:
+                args.t_resolution_valid = x_valid.shape[2]
+
+
         args.timestamps = [i for i in range(args.t_resolution)]
         args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
         args.timestamps_test = [i for i in range(args.t_resolution_test)]
@@ -834,11 +860,9 @@ def load_dataset_KdV(args):
         parameters_train_tensor[...,:parameter_train.shape[-1]] = parameter_train.unsqueeze(dim=1).repeat(1, x_train.shape[1], 1)
 
 
-
         parameters_test_tensor = torch.zeros_like(x_test)
         parameter_test = torch.cat((L_test, dt_test), dim=-1)
         parameters_test_tensor[...,:parameter_test.shape[-1]] = parameter_test.unsqueeze(dim=1).repeat(1, x_test.shape[1], 1)
-
 
 
         parameters_valid_tensor = torch.zeros_like(x_valid)
@@ -846,18 +870,39 @@ def load_dataset_KdV(args):
         parameters_valid_tensor[...,:parameter_valid.shape[-1]] = parameter_valid.unsqueeze(dim=1).repeat(1, x_valid.shape[1], 1)
 
 
-
         #import pdb; pdb.set_trace()
+
         args.t_resolution =  x_train.shape[2]
         args.x_resolution =  x_train.shape[1]
+        
 
-        args.timestamps = [i for i in range(args.t_resolution)]
-        args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
-        args.timestamps_test = [i for i in range(args.t_resolution_test)]
+        if args.t_resolution_train == None:
+                args.t_resolution_train = x_train.shape[2]
+
+        if args.t_resolution_test == None:
+                args.t_resolution_test =  x_test.shape[2]
+
+        if args.t_resolution_valid == None:
+                args.t_resolution_valid = x_valid.shape[2]
+
+        if args.no_parameters == None:
+                args.no_parameters = 2
+
+        # args.timestamps_train = [i for i in range(args.t_resolution_train)]
+        # args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
+        # args.timestamps_test = [i for i in range(args.t_resolution_test)]
+
+
+        args.timestamps_valid = [i*0.01 for i in range(args.t_resolution_valid)]
+        args.timestamps_test = [i*0.01 for i in range(args.t_resolution_test)]
+        args.timestamps_train = [i*0.01 for i in range(args.t_resolution_train)]
+
 
         res = x_train.shape[1]
 
         print("train, test, valid -->", x_train.shape, x_test.shape, x_valid.shape)
+        print("parameter train, test, valid -->", parameters_train_tensor.shape, parameters_test_tensor.shape, parameters_valid_tensor.shape)
+        
         print("parameters:  MAX(train), MIN(test), MAX(valid) -->", torch.max(parameters_train_tensor), torch.min(parameters_test_tensor), torch.max(parameters_valid_tensor))
 
         train_loader = torch.utils.data.DataLoader(torch.utils.data.TensorDataset(x_train,x_train, x_train, parameters_train_tensor), batch_size=args.batch_size_train, shuffle=False)

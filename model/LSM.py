@@ -184,6 +184,9 @@ class NeuralSpectralBlock1d(nn.Module):
         return torch.einsum("bilm,im->bil", input, weights)
 
     def forward(self, x):
+        #print("x ->",x.shape)
+        #x = x.permute(0,2,1)
+        #print("x ->",x.shape)
         B, C, H = x.shape
         #print("processing ..")
 
@@ -275,13 +278,13 @@ class LSM_1D(nn.Module):
         x = torch.cat((x, grid), dim=-1)
         #print("x ->", x.shape)
         x = self.fc0(x)
-        #print("x ->", x.shape)
+        #print("x_higher ->", x.shape)
 
         x = x.permute(0, 2, 1)
         #print("x ->", x.shape)
 
         if not all(item == 0 for item in self.padding):
-            #print(self.padding)
+            print(self.padding)
             x = F.pad(x, [self.padding[0], self.padding[0] ])
 
         #print("x_pad ->", x.shape )
@@ -301,11 +304,13 @@ class LSM_1D(nn.Module):
         x5 = self.down4(x4)
         #print("x5 ->", x5.shape)
 
-        # print("processing x4")
-        # x4_p = self.process4(x4)
+        #print("processing x4")
+        #x4_p = self.process4(x4)
+        #print("self.process4(x4) -->", x4_p.shape)
 
-        # print("processing x5")
-        # x5_p = self.process5(x5)
+        #print("processing x5")
+        #x5_p = self.process5(x5)
+        #print("self.process5(x5) -->", x5_p.shape)
 
         # x = self.up1(x5_p, x4_p)
         

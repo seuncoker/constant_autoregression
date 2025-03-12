@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from functools import partial
 from einops import rearrange
-from variable_autoregression.util import Printer, initialize_weights_xavier_uniform
+from constant_autoregression.util import Printer, initialize_weights_xavier_uniform
 import math
 
 
@@ -21,6 +21,7 @@ from typing import List, Optional, Tuple, Union
 # MIT License
 # Copyright (c) 2020 Varuna Jayasiri
 
+p = Printer(n_digits=6)
 
 
 class AttentionBlock(nn.Module):
@@ -400,14 +401,14 @@ class modern_UNET_1D(nn.Module):
         # assert x.dim() == 5
         # orig_shape = x.shape
         # x = x.reshape(x.size(0), -1, *x.shape[3:])  # collapse T,C
-        #print(x.shape)
-        #print(self.padding)
+        # p.print(f"x.shape --> {x.shape}")
+        # p.print(f"self.padding -->{self.padding}")
 
         orig_shape = x.shape
         
         x = F.pad(x.permute(0,2,1), [self.padding[0], self.padding[0] ]).permute(0,2,1)
 
-        #print("x_pad ->", x.shape)
+        #p.print(f"x_pad -> {x.shape}")
         
 
         
@@ -415,13 +416,15 @@ class modern_UNET_1D(nn.Module):
 
 
         x = self.image_proj(x)
-        #print("x -->", x.shape)
+        #p.print(f"x_image_proj --> {x.shape}")
         h = [x]
         for m in self.down:
             x = m(x)
+            #p.print(f"x_down --> {x.shape}")
             h.append(x)
 
         x = self.middle(x)
+        #p.print(f"x_middle --> {x.shape}")
 
         for m in self.up:
             if isinstance(m, Upsample):
@@ -429,6 +432,8 @@ class modern_UNET_1D(nn.Module):
             else:
                 # Get the skip connection from first half of U-Net and concatenate
                 s = h.pop()
+                # p.print(f"x: {x.shape}")
+                # p.print(f"s: {s.shape}")
                 x = torch.cat((x, s), dim=1)
                 x = m(x)
 
@@ -438,9 +443,9 @@ class modern_UNET_1D(nn.Module):
 
 
         x = x[...,self.padding[0]: -self.padding[0]]
-
-        x = x.reshape(
-            orig_shape[0], -1, (self.n_output_scalar_components + self.n_output_vector_components * 2), *orig_shape[3:]
-        )
+        x = x.permute(0,2,1)
+        # x = x.reshape(
+        #     orig_shape[0], -1, (self.n_output_scalar_components + self.n_output_vector_components * 2), *orig_shape[3:]
+        # )
         
         return x

@@ -3,10 +3,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
-from termcolor import colored
+#from termcolor import colored
 import sys, os
 from datetime import datetime
 
@@ -15,18 +15,18 @@ from functools import reduce
 from functools import partial
 from timeit import default_timer
 
-import csv
+#import csv
 import h5py
 
 # sys.path.append(os.path.join(os.path.dirname("__file__"), '..'))
 # sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..'))
 # sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..', '..'))
 
-from variable_autoregression.argparser import arg_parse
-from variable_autoregression.training_loop.random_sampling import random_time_sampling, random_time_sampling_new, random_time_sampling_new_new, random_time_sampling_splits, random_time_sampling_one_sample, sequential_time_sampling
-from variable_autoregression.training_loop.transformer_loop import run_epoch
-from variable_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data
-from variable_autoregression.test import constant_rollout_test, constant_one_to_one_test, variable_rollout_test, variable_one_to_one_test, constant_one_to_one_test_splits
+from constant_autoregression.argparser import arg_parse
+from constant_autoregression.training_loop.random_sampling import random_time_sampling, random_time_sampling_new, random_time_sampling_new_new, random_time_sampling_splits, random_time_sampling_one_sample, sequential_time_sampling
+from constant_autoregression.training_loop.transformer_loop import run_epoch
+from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data
+from constant_autoregression.test import constant_rollout_test, constant_one_to_one_test, variable_rollout_test, variable_one_to_one_test, constant_one_to_one_test_splits
 
 
 
@@ -360,6 +360,8 @@ def training_protocol(
             horizon = [max_horizon]
 
             n_tsamples = [input_time_stamps+(i*output_time_stamps) for i in horizon]
+
+            args.time_sampling_choice = 5
 
 
             p.print(f"{ep} ...............................................")

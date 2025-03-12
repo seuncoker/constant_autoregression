@@ -7,8 +7,8 @@ sys.path.append(os.path.join(os.path.dirname("__file__"), '..'))
 sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..'))
 
 
-from variable_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, create_current_results_folder, load_auguments, save_config_file
-from variable_autoregression.argparser import arg_parse 
+from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, create_current_results_folder, load_auguments, save_config_file
+from constant_autoregression.argparser import arg_parse 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 p = Printer(n_digits=6)

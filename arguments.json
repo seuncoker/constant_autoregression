@@ -1,14 +1,12 @@
-
 {
     "1": "RANDOMNESS",
     "seed": 2048,
 
-
     "2": "TASK",
     "mode": "train",
     "analysis_type": "constant_time",
-    "subanalysis_type": "tf_ar_curriculum",
-    "experiment": "run_1",
+    "subanalysis_type": "training_epoch_b1_reverse_l",
+    "experiment": "seq_curriculum2_",
 
 
     "3": "TEST MODE SPECIFCIATION",
@@ -42,8 +40,8 @@
 
     "7": "MODEL SPECIFICATION",
     "model_type": "FNO_standard_1D",
-    "fno_hidden_dim": 32, 
-    "fno_hidden_layers": 2,
+    "fno_hidden_dim": 16, 
+    "fno_hidden_layers": 4,
     "fno_modes": 16,
     "model_initialise_type": "random",
     "pretrained_model": "",
@@ -78,12 +76,11 @@
     "12":  "LOSS",
     "loss_train_type": "l2",
     "loss_test_type": "l2",
-    
 
 
     "13": "SAVE",
-    "epoch_save_interval": 25,
-    "epoch_print_interval": 5,
+    "epoch_save_interval": 500,
+    "epoch_print_interval": 1,
 
 
     "14": "AUTOREGRESSION [1,2,1,4,1,2,1]",
@@ -92,18 +89,16 @@
     "15": "DYNAMIC WEIGHTING",
 
 
-
-
     "16": "NOISE",
 
 
     "training_protocols": [
         {
-            "epochs": 50,
+            "epochs": 1000,
             "iter_per_epochs": 1,
             "no_input_tspace": 1,
             "horizon": [
-                3
+                2
             ],
             "random_horizon": false,
             "push_forward": false,
@@ -116,7 +111,7 @@
             "dynamic_loss_weight_per_tstamp_constant_parameter": 0.8,
             "dynamic_loss_weight_per_fpass_reversed": false,
             "noise": false,
-            "noise_std": 0.001,
+            "noise_std": 0.01,
             "norm": false,
             "initialise_optimiser": true,
             "optimiser_type": "adam",
@@ -125,8 +120,8 @@
             "cos_anneal_T_max": 5000,
             "learning_rate": 0.001,
             "min_learning_rate": 1e-05,
-            "sheduler_step": 6,
-            "sheduler_gamma": 0.95,
+            "sheduler_step": 10,
+            "sheduler_gamma": 0.99,
             "weight_decay": 1e-05,
             "input_sampler_type": [
                 1

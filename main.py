@@ -3,10 +3,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
-from termcolor import colored
+#from termcolor import colored
 import sys, os
 from datetime import datetime
 
@@ -16,7 +16,7 @@ from functools import partial
 from timeit import default_timer
 from typing import List
 
-import csv
+#import csv
 import h5py
 import argparse
 
@@ -29,12 +29,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 #import pdb; pdb.set_trace()
 
-from variable_autoregression.argparser import arg_parse 
-from variable_autoregression.dataset.load_dataset import load_data, load_dataset_A1, load_dataset_B1, load_dataset_E1, load_dataset_E2, load_dataset_KS1, load_dataset_KdV
-from variable_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, create_current_results_folder, load_auguments, save_config_file
-from variable_autoregression.model.load_model import  load_model, get_model
-from variable_autoregression.train import training_protocol
-from variable_autoregression.test import constant_rollout_test, constant_one_to_one_test, variable_rollout_test, variable_one_to_one_test
+from constant_autoregression.argparser import arg_parse 
+from constant_autoregression.dataset.load_dataset import load_data, load_dataset_A1, load_dataset_B1, load_dataset_E1, load_dataset_E2, load_dataset_KS1, load_dataset_KdV
+from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, create_current_results_folder, load_auguments, save_config_file
+from constant_autoregression.model.load_model import  load_model, get_model
+from constant_autoregression.train import training_protocol
+from constant_autoregression.test import constant_rollout_test, constant_one_to_one_test, variable_rollout_test, variable_one_to_one_test
 
 
 
@@ -93,40 +93,40 @@ set_seed(args.seed)
 ################################################################
 
 if args.dataset_name.endswith("B1"):
-    args.dataset_train_path = "/nobackup/scoc/variable_autoregression/dataset/data/B1/1D_Burgers_Sols_Nu0.01_K1_N2_Sa2500.npy"
-    args.dataset_valid_path = "/nobackup/scoc/variable_autoregression/dataset/data/B1/1D_Burgers_Sols_Nu0.01_K1_N2_Sa2500.npy"
-    args.dataset_test_path = "/nobackup/scoc/variable_autoregression/dataset/data/B1/1D_Burgers_Sols_Nu0.01_K1_N2_Sa2500.npy"
+    args.dataset_train_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/B1/1D_Burgers_Sols_Nu0.01_K1_N2_Sa2500.npy"
+    args.dataset_valid_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/B1/1D_Burgers_Sols_Nu0.01_K1_N2_Sa2500.npy"
+    args.dataset_test_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/B1/1D_Burgers_Sols_Nu0.01_K1_N2_Sa2500.npy"
     train_loader, val_loader, test_loader = load_dataset_B1(args)
 
 
 elif args.dataset_name.endswith("A1"):
-    args.dataset_train_path = "/nobackup/scoc/variable_autoregression/dataset/data/A1/1D_Advection_Sols_beta0.5_K1_N2_Sa2500.npy"
-    args.dataset_valid_path = "/nobackup/scoc/variable_autoregression/dataset/data/A1/1D_Advection_Sols_beta0.5_K1_N2_Sa2500.npy"
-    args.dataset_test_path = "/nobackup/scoc/variable_autoregression/dataset/data/A1/1D_Advection_Sols_beta0.5_K1_N2_Sa2500.npy"
+    args.dataset_train_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/A1/1D_Advection_Sols_beta0.5_K1_N2_Sa2500.npy"
+    args.dataset_valid_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/A1/1D_Advection_Sols_beta0.5_K1_N2_Sa2500.npy"
+    args.dataset_test_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/A1/1D_Advection_Sols_beta0.5_K1_N2_Sa2500.npy"
     train_loader, val_loader, test_loader = load_dataset_A1(args)
 
 elif args.dataset_name.endswith("E1"):
-    args.dataset_train_path = "/nobackup/scoc/variable_autoregression/dataset/data/E1/CE_train_E1.h5"
-    args.dataset_valid_path = "/nobackup/scoc/variable_autoregression/dataset/data/E1/CE_valid_E1.h5"
-    args.dataset_test_path = "/nobackup/scoc/variable_autoregression/dataset/data/E1/CE_test_E1.h5"
+    args.dataset_train_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/E1/CE_train_E1.h5"
+    args.dataset_valid_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/E1/CE_valid_E1.h5"
+    args.dataset_test_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/E1/CE_test_E1.h5"
     train_loader, val_loader, test_loader = load_dataset_E1(args)
 
 elif args.dataset_name.endswith("E2"):
-    args.dataset_train_path = "/nobackup/scoc/variable_autoregression/dataset/data/E1/CE_train_E2.h5"
-    args.dataset_valid_path = "/nobackup/scoc/variable_autoregression/dataset/data/E1/CE_valid_E2.h5"
-    args.dataset_test_path = "/nobackup/scoc/variable_autoregression/dataset/data/E1/CE_test_E2.h5"
+    args.dataset_train_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/E1/CE_train_E2.h5"
+    args.dataset_valid_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/E1/CE_valid_E2.h5"
+    args.dataset_test_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/E1/CE_test_E2.h5"
     train_loader, val_loader, test_loader = load_dataset_E2(args)
 
 elif args.dataset_name.endswith("KS1"):
-    args.dataset_train_path = "/nobackup/scoc/variable_autoregression/dataset/data/KS1/KS1_train.h5"
-    args.dataset_valid_path = "/nobackup/scoc/variable_autoregression/dataset/data/KS1/KS1_test.h5"
-    args.dataset_test_path = "/nobackup/scoc/variable_autoregression/dataset/data/KS1/KS1_test.h5"
+    args.dataset_train_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/KS1/KS1_train.h5"
+    args.dataset_valid_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/KS1/KS1_test.h5"
+    args.dataset_test_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/KS1/KS1_test.h5"
     train_loader, val_loader, test_loader = load_dataset_KS1(args)
 
 elif args.dataset_name.endswith("KdV"):
-    args.dataset_train_path = "/nobackup/scoc/variable_autoregression/dataset/data/KdV/KdV_train_2048.h5"
-    args.dataset_valid_path = "/nobackup/scoc/variable_autoregression/dataset/data/KdV/KdV_valid.h5"
-    args.dataset_test_path = "/nobackup/scoc/variable_autoregression/dataset/data/KdV/KdV_test.h5"
+    args.dataset_train_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/KdV/KdV_train_2048.h5"
+    args.dataset_valid_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/KdV/KdV_valid.h5"
+    args.dataset_test_path = "/mnt/scratch/scoc/constant_autoregression/dataset/data/KdV/KdV_test.h5"
     train_loader, val_loader, test_loader = load_dataset_KdV(args)
 else:
     raise TypeError("Specify correct dataset")
@@ -330,27 +330,36 @@ if mode.startswith("train"):
         p.print(f"dynamic_loss_weight_per_fpass: {args.dynamic_loss_weight_per_fpass[proto]}")
 
         if args.dynamic_loss_weight_per_fpass[proto]:
-            if max_horizon == 9 or max_horizon == 10 or max_horizon == 8:   #for output stamps = 25
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.95 
-            elif max_horizon == 24 or max_horizon == 25 or max_horizon == 23:   #for output stamps = 10
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.5
-            elif max_horizon == 19 or max_horizon == 20 or max_horizon == 21:   #for output stamps = 10
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.47
-            elif max_horizon == 39 or max_horizon == 40 or max_horizon == 41:   #for output stamps = 10
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.39
-            elif max_horizon == 49 or max_horizon == 50 or max_horizon == 48:   #for output stamps = 10
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.3125
-            elif max_horizon == 249 or max_horizon == 250 or max_horizon == 248:   #for output stamps = 1
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.125 #0.05 #0.1 #0.075 #0.1
-            
-            #### KS
-            elif max_horizon == 139 or max_horizon == 140 or max_horizon == 138:   #for output stamps = 1
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.13
-            elif max_horizon == 639:
-                args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.038
-            else:
-                raise TypeError("the selected output_timestamps to determines the maximum horizon is not among the dynamic weight constant specified")
+            ## E1 B1
 
+            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 5.0056*(max_horizon**(-0.723))
+
+            # if max_horizon == 9 or max_horizon == 10 or max_horizon == 8:   #for output stamps = 25
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.95 
+            # elif max_horizon == 24 or max_horizon == 25 or max_horizon == 23:   #for output stamps = 10
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.5
+            # elif max_horizon == 19 or max_horizon == 20 or max_horizon == 21:   #for output stamps = 10
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.47
+            # elif max_horizon == 39 or max_horizon == 40 or max_horizon == 41:   #for output stamps = 10
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.39
+            # elif max_horizon == 49 or max_horizon == 50 or max_horizon == 48:   #for output stamps = 10
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.3125
+            # elif max_horizon == 249 or max_horizon == 250 or max_horizon == 248:   #for output stamps = 1
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.125 #0.05 #0.1 #0.075 #0.1
+            
+            # #### KS
+            # elif max_horizon == 139 or max_horizon == 140 or max_horizon == 138:   #for output stamps = 1
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.13
+            # elif max_horizon == 639:
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.038
+
+            # #### KdV
+            # elif max_horizon == 62 or max_horizon == 63 or max_horizon == 64:   #for output stamps = 1
+            #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.13
+            # else:
+            #     raise TypeError("the selected output_timestamps to determines the maximum horizon is not among the dynamic weight constant specified")
+
+            #p.print(f" maximum horizon: {args.dynamic_loss_weight_per_fpass_constant_parameter[proto]}")
             p.print(f" dynamic weighting parameter: {args.dynamic_loss_weight_per_fpass_constant_parameter[proto]}")
         
         

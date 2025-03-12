@@ -4,7 +4,7 @@ import torch.nn as nn
 import csv
 import h5py
 from torch.utils.data import Dataset
-from termcolor import colored
+#from termcolor import colored
 import sys, os
 from datetime import datetime
 from typing import Tuple
@@ -15,7 +15,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 sys.path.append(os.path.join(os.path.dirname("__file__"), '..'))
 sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..'))
 
-from variable_autoregression.argparser import arg_parse 
+from constant_autoregression.argparser import arg_parse 
 from util import set_seed
 
 args = arg_parse()

@@ -1,10 +1,10 @@
 from datetime import datetime
 import torch
-from termcolor import colored
+#from termcolor import colored
 import sys, os
 
 import numpy as np
-import scipy.io
+#import scipy.io
 import h5py
 import torch.nn as nn
 import random
@@ -389,6 +389,10 @@ class batch_time_sampling():
             self.indicies = self.input_indicies_2(total_range, no_of_samp)
         elif choice == 3:
             self.indicies = self.input_indicies_3(total_range, no_of_samp)
+        elif choice == 4:
+            self.indicies = self.input_indicies_4(total_range, no_of_samp)
+        elif choice == 5:
+            self.indicies = self.input_indicies_5(total_range, no_of_samp, dt)
         else:
             raise TypeError("Specify input_sample_type: 1 (non_independent sampes ) OR 2 (Independent samples )")
 
@@ -401,22 +405,14 @@ class batch_time_sampling():
         #init_time_stamp_range = torch.tensor([t for t in range(0, total_range -  no_of_samp[1]*dt)])
         
         
-        # init_time_stamp_range = torch.tensor([t for t in range(0, (total_range -  (no_of_samp[1] + ((no_of_samp[1] -1)*(dt-1)) ) + 1 ))])
-        # random_steps = init_time_stamp_range[torch.randint(len(init_time_stamp_range), (no_of_samp[0],))]
+        init_time_stamp_range = torch.tensor([t for t in range(0, (total_range -  (no_of_samp[1] + ((no_of_samp[1] -1)*(dt-1)) ) + 1 ))])
+        random_steps = init_time_stamp_range[torch.randint(len(init_time_stamp_range), (no_of_samp[0],))]
 
-        # indicies = torch.ones((no_of_samp) )
-        # for i in range(no_of_samp[0]):
-        #     start = random_steps[i]
-        #     indicies[i] = torch.arange(start,total_range,dt)[:no_of_samp[1]]
+        indicies = torch.ones((no_of_samp) )
+        for i in range(no_of_samp[0]):
+            start = random_steps[i]
+            indicies[i] = torch.arange(start,total_range,dt)[:no_of_samp[1]]
         
-
-
-        """
-        sequential constant timestep sampling
-        """
-
-        indicies = torch.arange(0, total_range, dt)[:no_of_samp[1]].unsqueeze(0)
-        indicies = indicies.repeat(no_of_samp[0],1)
 
         return indicies.long()
     
@@ -454,31 +450,29 @@ class batch_time_sampling():
     
 
     @staticmethod
-    def input_indicies_4(total_range, no_of_samp, t_pred_steps):
+    def input_indicies_4(total_range, no_of_samp):
         """
         generate n random input samples from the range (250 )
         for testing......
         """
-        indicies = torch.cat(( torch.sort(torch.randint(t_pred_steps,(no_of_samp[0],t_pred_steps)))[0], torch.arange(t_pred_steps,total_range)[torch.sort(torch.randint(total_range-t_pred_steps,(no_of_samp[0],no_of_samp[1]-t_pred_steps)))[0]]), dim=-1)
+        indicies = torch.cat(( torch.sort(torch.randint(no_of_samp[1],(no_of_samp[0],no_of_samp[1])))[0], torch.arange(no_of_samp[1],total_range)[torch.sort(torch.randint(total_range-no_of_samp[1],(no_of_samp[0],no_of_samp[1]-no_of_samp[1])))[0]]), dim=-1)
         return indicies.long()
 
 
+    @staticmethod
     def input_indicies_5(total_range, no_of_samp, dt):
         """
         sequential constant timestep sampling
         """
-        #init_time_stamp_range = torch.tensor([t for t in range(0, total_range -  no_of_samp[1]*dt)])
-        # init_time_stamp_range = torch.tensor([t for t in range(0, (total_range -  (no_of_samp[1] + ((no_of_samp[1] -1)*(dt-1)) ) + 1 ))])
-        # random_steps = init_time_stamp_range[torch.randint(len(init_time_stamp_range), (no_of_samp[0],))]
-        
+
         indicies = torch.arange(0, total_range, dt)[:no_of_samp[1]].unsqueeze(0)
         indicies = indicies.repeat(no_of_samp[0],1)
 
-        # indicies = torch.ones((no_of_samp) )
-        # for i in range(no_of_samp[0]):
-        #     start = random_steps[i]
-        #     indicies[i] = torch.arange(start,total_range,dt)[:no_of_samp[1]]
         return indicies.long()
+
+
+
+
 
 
 

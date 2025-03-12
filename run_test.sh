@@ -1,26 +1,24 @@
 #!/bin/bash
-# use current working directory
-#$ -cwd
 
-# Request runtime
-#$ -l h_rt=00:15:00
 
-# Run on feps-cpu ARC4
-#$ -P feps-gpu
+#SBATCH --job-name=test_job   # Job name
+#SBATCH --time=00:05:00         # Request runtime (hh:mm:ss)
+#SBATCH --partition=gpu     # Request the GPU partition
+#SBATCH --gres=gpu:1        # Request a single GPU
+#SBATCH --cpus-per-task=8          # Request 4 CPU cores
+#SBATCH --mem-per-cpu=8G           # Request 8GB memory per CPU core
 
-#$ -N testing
-
-# Request resource v 100
-#$ -l coproc_v100=1
 
 # define license and load module
-module load anaconda/2023.03
-module load cuda/11.1.1
+module load miniforge/24.7.1
+module load cuda/12.6.2
 
 # Launch the executable
-source activate le_pde
+source activate env_phd
+
+
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/env_phd/lib/
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/le_pde/lib/
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/le_pde/lib/
 
 
-python /nobackup/scoc/variable_autoregression/main.py --argument_file=arguments_test
+python /mnt/scratch/scoc/constant_autoregression/main.py --argument_file=arguments_test

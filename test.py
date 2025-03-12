@@ -3,10 +3,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
-from termcolor import colored
+#from termcolor import colored
 import sys, os
 from datetime import datetime
 
@@ -15,7 +15,7 @@ from functools import reduce
 from functools import partial
 from timeit import default_timer
 
-import csv
+#import csv
 import h5py
 
 # sys.path.append(os.path.join(os.path.dirname("__file__"), '..'))
@@ -23,9 +23,9 @@ import h5py
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-from variable_autoregression.argparser import arg_parse 
+from constant_autoregression.argparser import arg_parse 
 #from variable_autoregression.dataset.load_dataset import Input_Batch, Output_Batch, no_of_output_space, data_random_batch
-from variable_autoregression.util import LpLoss, Printer, load_auguments, test_batch_time_sampling, test_print_time, Normalizer_1D, subsequent_mask, normalized_rmse
+from constant_autoregression.util import LpLoss, Printer, load_auguments, test_batch_time_sampling, test_print_time, Normalizer_1D, subsequent_mask, normalized_rmse
 
 
 normalizer = Normalizer_1D()
@@ -137,7 +137,7 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
 
 
                 if args.time_prediction == "constant":
-                    if args.dataset_name == "E1" or "B1" or "A1":
+                    if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                         out = model(x).to(device)
                     elif args.dataset_name == "E2":
                         out = model(torch.cat((x, parameters), dim=-1)).to(device)
@@ -149,13 +149,13 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
 
                     if args.time_conditioning == "addition":
                         x_x_t = x + x_t
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                             out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
                         elif args.dataset_name == "E2":
                             out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
 
                     elif args.time_conditioning == "concatenate":
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
 
                             # if y_t.shape[-1] != output_time_stamps:
                             #     y_t = y_t.repeat(1,1,output_time_stamps)
@@ -338,7 +338,7 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
 
 
                 if args.time_prediction == "constant":
-                    if args.dataset_name == "E1" or "B1" or "A1":
+                    if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                         out = model(x).to(device)
                     elif args.dataset_name == "E2":
                         out = model(torch.cat((x, parameters), dim=-1)).to(device)
@@ -350,7 +350,7 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
 
                     if args.time_conditioning == "addition":
                         x_x_t = x + x_t
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                             out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
 
                         elif args.dataset_name == "E2":
@@ -370,7 +370,7 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
                     
                     
                     elif args.time_conditioning == "attention":
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                             #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
                             #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
                             if y_t.shape[-1] != output_time_stamps:
@@ -588,7 +588,7 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
 
 
                 if args.time_prediction == "constant":
-                    if args.dataset_name == "E1" or "B1" or "A1":
+                    if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                         out = model(x).to(device)
                     elif args.dataset_name == "E2":
                         out = model(torch.cat((x, parameters), dim=-1)).to(device)
@@ -600,7 +600,7 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
 
                     if args.time_conditioning == "addition":
                         x_x_t = x + x_t
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                             out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
                         elif args.dataset_name == "E2":
                             out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
@@ -618,7 +618,7 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
                     
                     
                     elif args.time_conditioning == "attention":
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
 
                             #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
                             if y_t.shape[-1] != output_time_stamps:
@@ -789,7 +789,7 @@ def variable_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
 
 
                 if args.time_prediction == "constant":
-                    if args.dataset_name == "E1" or "B1" or "A1":
+                    if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                         out = model(x).to(device)
                     elif args.dataset_name == "E2":
                         out = model(torch.cat((x, parameters), dim=-1)).to(device)
@@ -801,13 +801,13 @@ def variable_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
 
                     if args.time_conditioning == "addition":
                         x_x_t = x + x_t
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                             out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
                         elif args.dataset_name == "E2":
                             out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
 
                     elif args.time_conditioning == "concatenate":
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
 
                             if y_t.shape[-1] != output_time_stamps:
                                 y_t = y_t.repeat(1,1,output_time_stamps)
@@ -819,7 +819,7 @@ def variable_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
                     
                     
                     elif args.time_conditioning == "attention":
-                        if args.dataset_name == "E1" or "B1" or "A1":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
                             #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
 
                             # #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")

@@ -3,10 +3,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
-from termcolor import colored
+#from termcolor import colored
 import sys, os
 from datetime import datetime
 
@@ -15,11 +15,11 @@ from functools import reduce
 from functools import partial
 from timeit import default_timer
 
-import csv
+#import csv
 import h5py
 import time
 
-from variable_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data, batch_time_sampling, train_print_time, Normalizer_1D, k_transition, subsequent_mask
+from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data, batch_time_sampling, train_print_time, Normalizer_1D, k_transition, subsequent_mask
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 p = Printer(n_digits=6)

@@ -6,7 +6,7 @@ from torch.nn.utils.weight_norm import WeightNorm
 import math
 import copy
 
-from variable_autoregression.util import Printer
+from constant_autoregression.util import Printer
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
