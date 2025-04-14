@@ -69,8 +69,10 @@ from constant_autoregression.test import constant_rollout_test, constant_one_to_
 p = Printer(n_digits=6)
 args = arg_parse()
 
+p.print("STARTING............................................")
 
 p.print(f"args mode: {args.mode}")
+
 
 #arg_name =  "arguments"
 #arg_name =  "arguments_test"
@@ -329,10 +331,15 @@ if mode.startswith("train"):
         
         p.print(f"dynamic_loss_weight_per_fpass: {args.dynamic_loss_weight_per_fpass[proto]}")
 
+        if args.training_loop == "scheduled_weighted_loss_curriculum":
+            args.dynamic_loss_weight_per_fpass[proto] = True
+
+        p.print(f"dynamic_loss_weight_per_fpass: {args.dynamic_loss_weight_per_fpass[proto]}")
+
         if args.dynamic_loss_weight_per_fpass[proto]:
             ## E1 B1
 
-            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 5.0056*(max_horizon**(-0.723))
+            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.45 #5.0056*(max_horizon**(-0.723))
 
             # if max_horizon == 9 or max_horizon == 10 or max_horizon == 8:   #for output stamps = 25
             #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.95 

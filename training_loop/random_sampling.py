@@ -19,7 +19,7 @@ from timeit import default_timer
 import h5py
 
 
-from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data, batch_time_sampling, train_print_time, Normalizer_1D, k_transition
+from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data, batch_time_sampling, train_print_time, Normalizer_1D, k_transition, bernoulli_sampling
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 p = Printer(n_digits=6)
@@ -696,6 +696,493 @@ def random_time_sampling(
 
 
 
+def autoregressive_rollout(
+    args,
+    count_t_iter,
+    proto,
+
+    ep,
+    epochs,
+    last_epoch_no,
+
+    t_iteration,
+    n_tsamples,
+    data_batchsize,
+
+    model,
+    optimizer,
+    train_loader,
+    criterion,
+
+
+    input_time_stamps,
+    output_time_stamps,
+    t_resolution, 
+
+    timestamps,
+
+    f_pass_weights,
+    t_step_weights,
+
+    time_prediction,
+    time_conditioning,
+
+    max_horizon,
+    horizons,
+    random_horizon,
+    
+
+    dt_step,
+
+    noise,
+    noise_std,
+    norm,
+
+    scheduler,
+    sheduler_change,
+
+
+    dynamic_loss_weight_per_fpass,
+    dynamic_loss_weight_per_fpass_type,
+    dynamic_loss_weight_per_fpass_reversed,
+    dynamic_loss_weight_per_fpass_constant_parameter,
+
+    dynamic_loss_weight_per_tstamp,
+    dynamic_loss_weight_per_tstamp_constant_parameter,
+
+    push_forward,
+    push_forward_parameter_random,
+    push_forward_parameter,
+
+    ):
+
+
+    train_l2_full = 0
+    
+
+    #import pdb; pdb.set_trace()
+
+    total_iter = epochs*t_iteration
+    t_sample_space = torch.arange(t_resolution)
+
+    # if args.time_prediction == "constant":
+    #     assert args.time_sampling_choice == 1  # use the right type of random time generator
+    #     assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+
+    # elif args.time_prediction == "variable":
+    #     assert args.time_sampling_choice > 1
+
+
+    for out_samp in range(len(n_tsamples)):
+        assert len(torch.tensor([t for t in range(0, (t_resolution -  (out_samp + ((out_samp -1)*(dt_step-1)) ) + 1 ))]) ) > 0 ## check that the length of the initial sample range is positvie 
+
+    
+    for s in range(t_iteration):
+        #import pdb; pdb.set_trace()
+        count_t_iter += 1
+
+        for out_samp in range(len(n_tsamples)):
+            #import pdb; pdb.set_trace()
+
+            tsamples = n_tsamples[out_samp]
+            horizon = horizons[out_samp] #(tsamples-output_time_stamps)//output_time_stamps
+
+
+            for bb, (data, u_super, x, parameters) in enumerate(train_loader):
+                #import pdb; pdb.set_trace()
+
+                #import pdb; pdb.set_trace()
+                data = data.to(device)
+                parameters = parameters[...,:args.no_parameters].to(device)
+
+                time_sampling_choice = args.time_sampling_choice
+                data_batch = batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+                
+                time_indicies = t_sample_space[data_batch.indicies]
+
+
+                xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
+                xy_t = torch.ones_like(xy)[:,0,:].to(device)
+                xy_t = xy_t*timestamps[time_indicies]
+
+                xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+  
+                xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
+                xy_tindicies = time_indicies.long()
+
+                #time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+                time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+        
+                x = xy[..., :input_time_stamps ]
+                x_t = xy_t[..., :input_time_stamps ]
+                x_tindicies = xy_tindicies[..., :input_time_stamps ]
+
+                
+                loss = 0
+                a_l = 0
+
+                #p.print(f"horizon: {horizon}")
+
+                for t in range(horizon):
+
+                    #p.print(f"t: {t}")
+
+                    y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+
+
+
+                    if norm:
+                        x = normalizer(x)
+
+                    if noise:
+                        x = x  + torch.randn(x.shape, device=x.device) * torch.std(x)*noise_std
+
+                    if time_prediction == "constant":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                            out = model(x).to(device)
+                        elif args.dataset_name == "E2":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                        elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+                    #import pdb; pdb.set_trace()
+                    if time_prediction == "variable":
+
+                        if time_conditioning == "addition":
+                            x_x_t = x + x_t
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                        elif time_conditioning == "concatenate":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model( x, x_t, y_t ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model( torch.cat((x, x_t, y_t, parameters), dim=-1 ) ).to(device)
+
+                        elif time_conditioning == "attention":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                #x.permute(0,2,1).to(device), y.permute(0,2,1).to(device),x_mask, y_mask, x_t[:, 0, :].to(device), y_t[:, 0, :].to(device)
+                                #print("x, x_t, y_t -->", x.shape, x_t.shape, y_t.shape)
+                                out = model( x, x_t, y_t ).to(device)
+                                #print("y, out", y.shape, out.shape)
+
+                                #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(  x, x_tindicies, y_tindicies, parameters).to(device)
+                    
+                                
+                    if norm:
+                        out = normalizer.inverse(out)
+
+
+                    #args.predict_difference = True
+                    if args.predict_difference:
+                        if args.dataset_name == "KS1":
+                            out = x + 0.3*out
+                        else:
+                            out = x + out
+
+                    
+                    loss_t = criterion(out, y).to(device)                #### FOR L2
+
+
+                    loss_t = torch.sqrt(loss_t).to(device)
+
+
+                    loss += loss_t.sum()
+
+
+                    if output_time_stamps > input_time_stamps:
+                        x = out[...,-input_time_stamps:]
+                        x_t = y_t[...,-input_time_stamps:]
+                        x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+                    elif output_time_stamps == input_time_stamps:
+                        x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+                        x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                    
+                    elif output_time_stamps < input_time_stamps:
+                        x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
+                        x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                    
+                    a_l += 1
+
+
+                train_l2_full += loss.item()
+
+                # Backward pass
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+
+        if sheduler_change == "iteration":
+            #p.print(f"learning_rate: { optimizer.param_groups[0]['lr']}" )
+            scheduler.step()
+
+
+        #import pdb; pdb.set_trace()
+        if (count_t_iter) % 500 == 0:
+            p.print(f"t_iter: {count_t_iter}/{total_iter}")
+            p.print(f"f_pass_weights: {f_pass_weights}")
+            #p.print(f"f_pass_weights_random: {f_pass_weights_random[:3]}")
+            p.print("\n")
+            
+        
+    return train_l2_full/(t_iteration*(bb+1)), model, count_t_iter
+
+
+
+
+
+
+def teacher_forcing(
+    args,
+    count_t_iter,
+    proto,
+
+    ep,
+    epochs,
+    last_epoch_no,
+
+    t_iteration,
+    n_tsamples,
+    data_batchsize,
+
+    model,
+    optimizer,
+    train_loader,
+    criterion,
+
+
+    input_time_stamps,
+    output_time_stamps,
+    t_resolution, 
+
+    timestamps,
+
+    f_pass_weights,
+    t_step_weights,
+
+    time_prediction,
+    time_conditioning,
+
+    max_horizon,
+    horizons,
+    random_horizon,
+    
+
+    dt_step,
+
+    noise,
+    noise_std,
+    norm,
+
+    scheduler,
+    sheduler_change,
+
+
+    dynamic_loss_weight_per_fpass,
+    dynamic_loss_weight_per_fpass_type,
+    dynamic_loss_weight_per_fpass_reversed,
+    dynamic_loss_weight_per_fpass_constant_parameter,
+
+    dynamic_loss_weight_per_tstamp,
+    dynamic_loss_weight_per_tstamp_constant_parameter,
+
+    push_forward,
+    push_forward_parameter_random,
+    push_forward_parameter,
+
+    ):
+
+
+    train_l2_full = 0
+    
+
+    #import pdb; pdb.set_trace()
+
+    total_iter = epochs*t_iteration
+    t_sample_space = torch.arange(t_resolution)
+
+    # if args.time_prediction == "constant":
+    #     assert args.time_sampling_choice == 1  # use the right type of random time generator
+    #     assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+
+    # elif args.time_prediction == "variable":
+    #     assert args.time_sampling_choice > 1
+
+
+    for out_samp in range(len(n_tsamples)):
+        assert len(torch.tensor([t for t in range(0, (t_resolution -  (out_samp + ((out_samp -1)*(dt_step-1)) ) + 1 ))]) ) > 0 ## check that the length of the initial sample range is positvie 
+
+    
+    for s in range(t_iteration):
+        #import pdb; pdb.set_trace()
+        count_t_iter += 1
+
+        for out_samp in range(len(n_tsamples)):
+            #import pdb; pdb.set_trace()
+
+            tsamples = n_tsamples[out_samp]
+            horizon = horizons[out_samp] #(tsamples-output_time_stamps)//output_time_stamps
+
+
+            for bb, (data, u_super, x, parameters) in enumerate(train_loader):
+                #import pdb; pdb.set_trace()
+
+                #import pdb; pdb.set_trace()
+                data = data.to(device)
+                parameters = parameters[...,:args.no_parameters].to(device)
+
+                time_sampling_choice = args.time_sampling_choice
+                data_batch = batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+                
+                time_indicies = t_sample_space[data_batch.indicies]
+
+
+                xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
+                xy_t = torch.ones_like(xy)[:,0,:].to(device)
+                xy_t = xy_t*timestamps[time_indicies]
+
+                xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+  
+                xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
+                xy_tindicies = time_indicies.long()
+
+                #time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+                time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+        
+                x = xy[..., :input_time_stamps ]
+                x_t = xy_t[..., :input_time_stamps ]
+                x_tindicies = xy_tindicies[..., :input_time_stamps ]
+
+                
+                loss = 0
+                a_l = 0
+
+                #p.print(f"horizon: {horizon}")
+
+                for t in range(horizon):
+
+                    #p.print(f"t: {t}")
+
+                    y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+
+
+                    if norm:
+                        x = normalizer(x)
+
+                    if noise:
+                        x = x  + torch.randn(x.shape, device=x.device) * torch.std(x)*noise_std
+
+                    if time_prediction == "constant":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                            out = model(x).to(device)
+                        elif args.dataset_name == "E2":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                        elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+                    #import pdb; pdb.set_trace()
+                    if time_prediction == "variable":
+
+                        if time_conditioning == "addition":
+                            x_x_t = x + x_t
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                        elif time_conditioning == "concatenate":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model( x, x_t, y_t ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model( torch.cat((x, x_t, y_t, parameters), dim=-1 ) ).to(device)
+
+                        elif time_conditioning == "attention":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                #x.permute(0,2,1).to(device), y.permute(0,2,1).to(device),x_mask, y_mask, x_t[:, 0, :].to(device), y_t[:, 0, :].to(device)
+                                #print("x, x_t, y_t -->", x.shape, x_t.shape, y_t.shape)
+                                out = model( x, x_t, y_t ).to(device)
+                                #print("y, out", y.shape, out.shape)
+
+                                #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(  x, x_tindicies, y_tindicies, parameters).to(device)
+                    
+                                
+                    if norm:
+                        out = normalizer.inverse(out)
+
+
+                    #args.predict_difference = True
+                    if args.predict_difference:
+                        if args.dataset_name == "KS1":
+                            out = x + 0.3*out
+                        else:
+                            out = x + out
+
+                    
+                    loss_t = criterion(out, y).to(device)                #### FOR L2
+
+
+                    loss_t = torch.sqrt(loss_t).to(device)
+
+
+                    loss += loss_t.sum()
+
+
+                    if output_time_stamps > input_time_stamps:
+                        x = y[...,-input_time_stamps:]
+                        x_t = y_t[...,-input_time_stamps:]
+                        x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+                    elif output_time_stamps == input_time_stamps:
+                        x = torch.cat((x[..., input_time_stamps:], y[...,:input_time_stamps]), dim=-1)
+                        x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                    
+                    elif output_time_stamps < input_time_stamps:
+                        x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], y), dim=-1)
+                        x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                    
+                    a_l += 1
+
+
+                train_l2_full += loss.item()
+
+                # Backward pass
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+
+        if sheduler_change == "iteration":
+            #p.print(f"learning_rate: { optimizer.param_groups[0]['lr']}" )
+            scheduler.step()
+
+
+        #import pdb; pdb.set_trace()
+        if (count_t_iter) % 500 == 0:
+            p.print(f"t_iter: {count_t_iter}/{total_iter}")
+            p.print(f"f_pass_weights: {f_pass_weights}")
+            #p.print(f"f_pass_weights_random: {f_pass_weights_random[:3]}")
+            p.print("\n")
+            
+        
+    return train_l2_full/(t_iteration*(bb+1)), model, count_t_iter
 
 
 
@@ -704,15 +1191,531 @@ def random_time_sampling(
 
 
 
+def autoregressive_rollout_to_teacher_forcing(
+    args,
+    count_t_iter,
+    proto,
+
+    ep,
+    epochs,
+    last_epoch_no,
+
+    t_iteration,
+    n_tsamples,
+    data_batchsize,
+
+    model,
+    optimizer,
+    train_loader,
+    criterion,
+
+
+    input_time_stamps,
+    output_time_stamps,
+    t_resolution, 
+
+    timestamps,
+
+    f_pass_weights,
+    t_step_weights,
+
+    time_prediction,
+    time_conditioning,
+
+    max_horizon,
+    horizons,
+    random_horizon,
+    
+
+    dt_step,
+
+    noise,
+    noise_std,
+    norm,
+
+    scheduler,
+    sheduler_change,
+
+
+    dynamic_loss_weight_per_fpass,
+    dynamic_loss_weight_per_fpass_type,
+    dynamic_loss_weight_per_fpass_reversed,
+    dynamic_loss_weight_per_fpass_constant_parameter,
+
+    dynamic_loss_weight_per_tstamp,
+    dynamic_loss_weight_per_tstamp_constant_parameter,
+
+    push_forward,
+    push_forward_parameter_random,
+    push_forward_parameter,
+
+    ):
+
+
+    train_l2_full = 0
+    
+
+    #import pdb; pdb.set_trace()
+
+    total_iter = epochs*t_iteration
+    t_sample_space = torch.arange(t_resolution)
+
+    # if args.time_prediction == "constant":
+    #     assert args.time_sampling_choice == 1  # use the right type of random time generator
+    #     assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+
+    # elif args.time_prediction == "variable":
+    #     assert args.time_sampling_choice > 1
+
+
+    for out_samp in range(len(n_tsamples)):
+        assert len(torch.tensor([t for t in range(0, (t_resolution -  (out_samp + ((out_samp -1)*(dt_step-1)) ) + 1 ))]) ) > 0 ## check that the length of the initial sample range is positvie 
+
+    
+    for s in range(t_iteration):
+        #import pdb; pdb.set_trace()
+        count_t_iter += 1
+
+        for out_samp in range(len(n_tsamples)):
+            #import pdb; pdb.set_trace()
+
+            tsamples = n_tsamples[out_samp]
+            horizon = horizons[out_samp] #(tsamples-output_time_stamps)//output_time_stamps
+
+
+            for bb, (data, u_super, x, parameters) in enumerate(train_loader):
+                #import pdb; pdb.set_trace()
+
+                #import pdb; pdb.set_trace()
+                data = data.to(device)
+                parameters = parameters[...,:args.no_parameters].to(device)
+
+                time_sampling_choice = args.time_sampling_choice
+                data_batch = batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+                
+                time_indicies = t_sample_space[data_batch.indicies]
+
+
+                xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
+                xy_t = torch.ones_like(xy)[:,0,:].to(device)
+                xy_t = xy_t*timestamps[time_indicies]
+
+                xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+  
+                xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
+                xy_tindicies = time_indicies.long()
+
+                #time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+                time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+        
+                x = xy[..., :input_time_stamps ]
+                x_t = xy_t[..., :input_time_stamps ]
+                x_tindicies = xy_tindicies[..., :input_time_stamps ]
+
+                
+                loss = 0
+                a_l = 0
+
+                #p.print(f"horizon: {horizon}")
+
+                teacher_forcing_count = 0
+
+                for t in range(horizon):
+                    #p.print("\n")
+                    #p.print(f"t: {t}")
+
+                    y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+
+
+
+                    if norm:
+                        x = normalizer(x)
+
+                    if noise and teacher_forcing_count > 0:
+                        #p.print("Adding noise to input")
+                        x = x  + torch.randn(x.shape, device=x.device) * torch.std(x)*noise_std
+
+                    if time_prediction == "constant":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                            out = model(x).to(device)
+                        elif args.dataset_name == "E2":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                        elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+                    #import pdb; pdb.set_trace()
+                    if time_prediction == "variable":
+
+                        if time_conditioning == "addition":
+                            x_x_t = x + x_t
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                        elif time_conditioning == "concatenate":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model( x, x_t, y_t ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model( torch.cat((x, x_t, y_t, parameters), dim=-1 ) ).to(device)
+
+                        elif time_conditioning == "attention":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                #x.permute(0,2,1).to(device), y.permute(0,2,1).to(device),x_mask, y_mask, x_t[:, 0, :].to(device), y_t[:, 0, :].to(device)
+                                #print("x, x_t, y_t -->", x.shape, x_t.shape, y_t.shape)
+                                out = model( x, x_t, y_t ).to(device)
+                                #print("y, out", y.shape, out.shape)
+
+                                #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(  x, x_tindicies, y_tindicies, parameters).to(device)
+                    
+                                
+                    # if norm:
+                    #     out = normalizer.inverse(out)
+
+
+                    #args.predict_difference = True
+                    # if args.predict_difference:
+                    #     if args.dataset_name == "KS1":
+                    #         out = x + 0.3*out
+                    #     else:
+                    #         out = x + out
+
+                    
+                    loss_t = criterion(out, y).to(device)                #### FOR L2
+
+
+                    loss_t = torch.sqrt(loss_t).to(device)
+
+
+                    loss += loss_t.sum()
+
+
+
+                    if t >= k_transition(ep, horizon, epochs):
+                    
+                        #p.print("Transition zone (changing to teacher-forcing....)")
+                        #p.print(f"t: {t}")
+                        #p.print(f"t_trans: {k_transition(ep, horizon, args.epochs[proto])}" ) 
+                        
+                        out = y
+
+                        teacher_forcing_count = teacher_forcing_count + 1
+                        
+
+                    if output_time_stamps > input_time_stamps:
+                        x = out[...,-input_time_stamps:]
+                        x_t = y_t[...,-input_time_stamps:]
+                        x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+                    elif output_time_stamps == input_time_stamps:
+                        x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+                        x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                    
+                    elif output_time_stamps < input_time_stamps:
+                        x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
+                        x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                    
+                    a_l += 1
+
+
+                train_l2_full += loss.item()
+
+                # Backward pass
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+
+        if sheduler_change == "iteration":
+            #p.print(f"learning_rate: { optimizer.param_groups[0]['lr']}" )
+            scheduler.step()
+
+
+        #import pdb; pdb.set_trace()
+        if (count_t_iter) % 500 == 0:
+            p.print(f"t_iter: {count_t_iter}/{total_iter}")
+            p.print(f"f_pass_weights: {f_pass_weights}")
+            #p.print(f"f_pass_weights_random: {f_pass_weights_random[:3]}")
+            p.print("\n")
+            
+        
+    return train_l2_full/(t_iteration*(bb+1)), model, count_t_iter
 
 
 
 
 
 
+def probabilistic_autoregressive_rollout_and_teacher_forcing(
+    args,
+    count_t_iter,
+    proto,
+
+    ep,
+    epochs,
+    last_epoch_no,
+
+    t_iteration,
+    n_tsamples,
+    data_batchsize,
+
+    model,
+    optimizer,
+    train_loader,
+    criterion,
 
 
-def random_time_sampling_new(
+    input_time_stamps,
+    output_time_stamps,
+    t_resolution, 
+
+    timestamps,
+
+    f_pass_weights,
+    t_step_weights,
+
+    time_prediction,
+    time_conditioning,
+
+    max_horizon,
+    horizons,
+    random_horizon,
+    
+
+    dt_step,
+
+    noise,
+    noise_std,
+    norm,
+
+    scheduler,
+    sheduler_change,
+
+
+    dynamic_loss_weight_per_fpass,
+    dynamic_loss_weight_per_fpass_type,
+    dynamic_loss_weight_per_fpass_reversed,
+    dynamic_loss_weight_per_fpass_constant_parameter,
+
+    dynamic_loss_weight_per_tstamp,
+    dynamic_loss_weight_per_tstamp_constant_parameter,
+
+    push_forward,
+    push_forward_parameter_random,
+    push_forward_parameter,
+    prob_of_ar,
+
+    ):
+
+
+    train_l2_full = 0
+    
+
+    #import pdb; pdb.set_trace()
+
+    total_iter = epochs*t_iteration
+    t_sample_space = torch.arange(t_resolution)
+
+    # if args.time_prediction == "constant":
+    #     assert args.time_sampling_choice == 1  # use the right type of random time generator
+    #     assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+
+    # elif args.time_prediction == "variable":
+    #     assert args.time_sampling_choice > 1
+
+
+    for out_samp in range(len(n_tsamples)):
+        assert len(torch.tensor([t for t in range(0, (t_resolution -  (out_samp + ((out_samp -1)*(dt_step-1)) ) + 1 ))]) ) > 0 ## check that the length of the initial sample range is positvie 
+
+    
+    for s in range(t_iteration):
+        #import pdb; pdb.set_trace()
+        count_t_iter += 1
+
+        for out_samp in range(len(n_tsamples)):
+            #import pdb; pdb.set_trace()
+
+            tsamples = n_tsamples[out_samp]
+            horizon = horizons[out_samp] #(tsamples-output_time_stamps)//output_time_stamps
+
+
+            for bb, (data, u_super, x, parameters) in enumerate(train_loader):
+                #import pdb; pdb.set_trace()
+
+                #import pdb; pdb.set_trace()
+                data = data.to(device)
+                parameters = parameters[...,:args.no_parameters].to(device)
+
+                time_sampling_choice = args.time_sampling_choice
+                data_batch = batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+                
+                time_indicies = t_sample_space[data_batch.indicies]
+
+
+                xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
+                xy_t = torch.ones_like(xy)[:,0,:].to(device)
+                xy_t = xy_t*timestamps[time_indicies]
+
+                xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+  
+                xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
+                xy_tindicies = time_indicies.long()
+
+                #time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+                time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+        
+                x = xy[..., :input_time_stamps ]
+                x_t = xy_t[..., :input_time_stamps ]
+                x_tindicies = xy_tindicies[..., :input_time_stamps ]
+
+                
+                loss = 0
+                a_l = 0
+
+                #p.print(f"horizon: {horizon}")
+
+                teacher_forcing_count = 0
+
+                for t in range(horizon):
+                    #p.print("\n")
+                    #p.print(f"t: {t}")
+
+                    y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+
+
+
+                    if norm:
+                        x = normalizer(x)
+
+                    if noise and teacher_forcing_count > 0:
+                        #p.print("Adding noise to input")
+                        x = x  + torch.randn(x.shape, device=x.device) * torch.std(x)*noise_std
+
+                    if time_prediction == "constant":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                            out = model(x).to(device)
+                        elif args.dataset_name == "E2":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                        elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+                    #import pdb; pdb.set_trace()
+                    if time_prediction == "variable":
+
+                        if time_conditioning == "addition":
+                            x_x_t = x + x_t
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                        elif time_conditioning == "concatenate":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                out = model( x, x_t, y_t ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model( torch.cat((x, x_t, y_t, parameters), dim=-1 ) ).to(device)
+
+                        elif time_conditioning == "attention":
+                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                                #x.permute(0,2,1).to(device), y.permute(0,2,1).to(device),x_mask, y_mask, x_t[:, 0, :].to(device), y_t[:, 0, :].to(device)
+                                #print("x, x_t, y_t -->", x.shape, x_t.shape, y_t.shape)
+                                out = model( x, x_t, y_t ).to(device)
+                                #print("y, out", y.shape, out.shape)
+
+                                #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
+                            elif args.dataset_name == "E2":
+                                out = model(  x, x_tindicies, y_tindicies, parameters).to(device)
+                    
+                                
+                    if norm:
+                        out = normalizer.inverse(out)
+
+
+                    #args.predict_difference = True
+                    if args.predict_difference:
+                        if args.dataset_name == "KS1":
+                            out = x + 0.3*out
+                        else:
+                            out = x + out
+
+                    
+                    loss_t = criterion(out, y).to(device)                #### FOR L2
+
+
+                    loss_t = torch.sqrt(loss_t).to(device)
+
+
+                    loss += loss_t.sum()
+
+
+
+                    if bernoulli_sampling(prob_of_ar) == 1:
+                        #p.print("doing AR...........")
+                        pass
+                    else:
+                        #p.print("doing TF...........")        
+                        out = y  ##
+
+                        teacher_forcing_count = teacher_forcing_count + 1
+                        
+
+                    if output_time_stamps > input_time_stamps:
+                        x = out[...,-input_time_stamps:]
+                        x_t = y_t[...,-input_time_stamps:]
+                        x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+                    elif output_time_stamps == input_time_stamps:
+                        x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+                        x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                    
+                    elif output_time_stamps < input_time_stamps:
+                        x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
+                        x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                    
+                    a_l += 1
+
+
+                train_l2_full += loss.item()
+
+                # Backward pass
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+
+        if sheduler_change == "iteration":
+            #p.print(f"learning_rate: { optimizer.param_groups[0]['lr']}" )
+            scheduler.step()
+
+
+        #import pdb; pdb.set_trace()
+        if (count_t_iter) % 500 == 0:
+            p.print(f"t_iter: {count_t_iter}/{total_iter}")
+            p.print(f"f_pass_weights: {f_pass_weights}")
+            #p.print(f"f_pass_weights_random: {f_pass_weights_random[:3]}")
+            p.print("\n")
+            
+        
+    return train_l2_full/(t_iteration*(bb+1)), model, count_t_iter
+
+
+
+
+
+
+def scheduled_weighted_loss_curriculum(
     args,
     count_t_iter,
     proto,
@@ -909,93 +1912,559 @@ def random_time_sampling_new(
                 
 
 
-                if random_horizon:
-                    horizon_range = torch.arange(1,horizon+1)
-                    rand_horizon = horizon_range[torch.randint(horizon_range.size(0), size=(1,))].item()
-                else:
-                    rand_horizon = horizon
+                # if random_horizon:
+                #     horizon_range = torch.arange(1,horizon+1)
+                #     rand_horizon = horizon_range[torch.randint(horizon_range.size(0), size=(1,))].item()
+                # else:
+                #     rand_horizon = horizon
 
 
-                if push_forward:
-                    if push_forward_parameter_random:
-                        horizon_grad_range = torch.arange(max(1, rand_horizon-push_forward_parameter),rand_horizon+1)
-                        rand_horizon_grad = horizon_grad_range[torch.randint(horizon_grad_range.size(0), size=(1,))].item()
-                    else:
-                        rand_horizon_grad = max(1, rand_horizon-push_forward_parameter)
-                else:
-                    rand_horizon_grad = rand_horizon
+                # if push_forward:
+                #     if push_forward_parameter_random:
+                #         horizon_grad_range = torch.arange(max(1, rand_horizon-push_forward_parameter),rand_horizon+1)
+                #         rand_horizon_grad = horizon_grad_range[torch.randint(horizon_grad_range.size(0), size=(1,))].item()
+                #     else:
+                #         rand_horizon_grad = max(1, rand_horizon-push_forward_parameter)
+                # else:
+                #     rand_horizon_grad = rand_horizon
 
 
 
                 # import pdb; pdb.set_trace()
 
-                with torch.no_grad():    
-                    for t in range(rand_horizon-rand_horizon_grad):
-                        #import pdb; pdb.set_trace()
-                        #import pdb; pdb.set_trace()
+                # with torch.no_grad():    
+                #     for t in range(rand_horizon-rand_horizon_grad):
+                #         #import pdb; pdb.set_trace()
+                #         #import pdb; pdb.set_trace()
 
-                        # y = xy[..., time_stamps[t+1]:time_stamps[t+2]]
-                        # y_t = xy_t[..., time_stamps[t+1]:time_stamps[t+2]]
-                        # y_tindicies = xy_tindicies[..., time_stamps[t+1]:time_stamps[t+2]]
+                #         # y = xy[..., time_stamps[t+1]:time_stamps[t+2]]
+                #         # y_t = xy_t[..., time_stamps[t+1]:time_stamps[t+2]]
+                #         # y_tindicies = xy_tindicies[..., time_stamps[t+1]:time_stamps[t+2]]
 
-                        y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
-                        y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
-                        y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
-
-
-                        if time_prediction == "constant":
-                            if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
-                                out = model(x).to(device)
-                            elif args.dataset_name == "E2":
-                                out = model(torch.cat((x, parameters), dim=-1)).to(device)
-                            elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
-                                out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                #         y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                #         y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                #         y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
 
 
-                        if time_prediction == "variable":
+                #         if time_prediction == "constant":
+                #             if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                #                 out = model(x).to(device)
+                #             elif args.dataset_name == "E2":
+                #                 out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                #             elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                #                 out = model(torch.cat((x, parameters), dim=-1)).to(device)
 
-                            if time_conditioning == "addition":
-                                x_x_t = x + x_t
-                                if args.dataset_name == "E1" or "B1" or "A1":
-                                    out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
-                                elif args.dataset_name == "E2":
-                                    out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
 
-                            elif time_conditioning == "concatenate":
-                                if args.dataset_name == "E1" or "B1"  or "A1":
-                                    out = model( x, x_t, y_t ).to(device)
-                                elif args.dataset_name == "E2":
-                                    out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
+                #         if time_prediction == "variable":
+
+                #             if time_conditioning == "addition":
+                #                 x_x_t = x + x_t
+                #                 if args.dataset_name == "E1" or "B1" or "A1":
+                #                     out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                #                 elif args.dataset_name == "E2":
+                #                     out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                #             elif time_conditioning == "concatenate":
+                #                 if args.dataset_name == "E1" or "B1"  or "A1":
+                #                     out = model( x, x_t, y_t ).to(device)
+                #                 elif args.dataset_name == "E2":
+                #                     out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
                             
                             
-                            elif time_conditioning == "attention":
-                                if args.dataset_name == "E1" or "B1"  or "A1":
-                                    out = model( x.to(device), x_t.to(device), y_t.to(device) ).to(device)
-                                elif args.dataset_name == "E2":
-                                    out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
+                #             elif time_conditioning == "attention":
+                #                 if args.dataset_name == "E1" or "B1"  or "A1":
+                #                     out = model( x.to(device), x_t.to(device), y_t.to(device) ).to(device)
+                #                 elif args.dataset_name == "E2":
+                #                     out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
 
 
-                        train_print_time(args, ep, last_epoch_no, s, time_stamps, t, x_t, y_t, x_tindicies, y_tindicies, loss, f_pass_weights_random, a_l, rand_horizon, rand_horizon_grad, input_time_stamps  )
+                #         train_print_time(args, ep, last_epoch_no, s, time_stamps, t, x_t, y_t, x_tindicies, y_tindicies, loss, f_pass_weights_random, a_l, rand_horizon, rand_horizon_grad, input_time_stamps  )
 
-                        #import pdb; pdb.set_trace()
+                #         #import pdb; pdb.set_trace()
 
 
-                        if output_time_stamps > input_time_stamps:
-                            x = out[...,-input_time_stamps:]
-                            x_t = y_t[...,-input_time_stamps:]
-                            x_tindicies = y_tindicies[...,-input_time_stamps:]
+                #         if output_time_stamps > input_time_stamps:
+                #             x = out[...,-input_time_stamps:]
+                #             x_t = y_t[...,-input_time_stamps:]
+                #             x_tindicies = y_tindicies[...,-input_time_stamps:]
 
-                        elif output_time_stamps == input_time_stamps:
-                            x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
-                            x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
-                            x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                #         elif output_time_stamps == input_time_stamps:
+                #             x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+                #             x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                #             x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
                         
-                        elif output_time_stamps < input_time_stamps:
-                            x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
-                            x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
-                            x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                #         elif output_time_stamps < input_time_stamps:
+                #             x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
+                #             x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                #             x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
                         
-                        a_l += 1
+                #         a_l += 1
+
+                        #print("loss->", loss)
+
+
+                #import pdb; pdb.set_trace()
+                for t in range(horizon):
+                    #import pdb; pdb.set_trace()
+                    #import pdb; pdb.set_trace()
+
+                    y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                    y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                
+
+                    # if noise:
+                    #     if norm:
+                    #         x = normalizer(x)
+                    #         x = x + torch.randn(x.shape, device=x.device) * noise_std
+                    #     x = x  + torch.randn(x.shape, device=x.device) * torch.max(x)*noise_std
+
+
+                    # if norm:
+                    #     x = normalizer(x)
+
+                    # if noise:
+                    #     x = x  + torch.randn(x.shape, device=x.device) * torch.std(x)*noise_std
+
+                    if time_prediction == "constant":
+                        if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                            out = model(x).to(device)
+                        elif args.dataset_name == "E2":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                        elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                            out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+                    #import pdb; pdb.set_trace()
+                    # if time_prediction == "variable":
+
+                    #     if time_conditioning == "addition":
+                    #         x_x_t = x + x_t
+                    #         if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                    #             out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                    #         elif args.dataset_name == "E2":
+                    #             out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                    #     elif time_conditioning == "concatenate":
+                    #         if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                    #             out = model( x, x_t, y_t ).to(device)
+                    #         elif args.dataset_name == "E2":
+                    #             out = model( torch.cat((x, x_t, y_t, parameters), dim=-1 ) ).to(device)
+
+                    #     elif time_conditioning == "attention":
+                    #         if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                    #             #x.permute(0,2,1).to(device), y.permute(0,2,1).to(device),x_mask, y_mask, x_t[:, 0, :].to(device), y_t[:, 0, :].to(device)
+                    #             #print("x, x_t, y_t -->", x.shape, x_t.shape, y_t.shape)
+                    #             out = model( x, x_t, y_t ).to(device)
+                    #             #print("y, out", y.shape, out.shape)
+
+                    #             #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
+                    #         elif args.dataset_name == "E2":
+                    #             out = model(  x, x_tindicies, y_tindicies, parameters).to(device)
+                    
+                                
+                    # if norm:
+                    #     out = normalizer.inverse(out)
+
+
+                    #args.predict_difference = True
+                    # if args.predict_difference:
+                    #     if args.dataset_name == "KS1":
+                    #         out = x + 0.3*out
+                    #     else:
+                    #         out = x + out
+
+                    #import pdb; pdb.set_trace()
+
+
+                    #p.print(f"out, y: {out.shape}, {y.shape}")
+
+                    
+                    loss_t = criterion(out, y).to(device)                #### FOR L2
+                    #loss_t = criterion(out, y).sum(dim=[1]).to(device)     ########### FOR MSE
+
+
+                    
+
+                    #p.print(f"loss_t: {loss_t}")
+                    #p.print(f"loss_t: {loss_t.shape}")
+                    #p.print(f"criterion: {criterion}")
+                    # loss += loss_t
+
+
+
+                    #loss_t = criterion(out, y).sum(dim=[1]).to(device)
+
+                    loss_t = torch.sqrt(loss_t).to(device)
+
+                    #p.print(f"loss_t, t_step_weights:  {loss_t.shape}, {t_step_weights.shape}")
+                    loss_t_w = t_step_weights*loss_t
+
+                    #p.print(f"loss_t_w, t_step_weights:  {loss_t_w.shape}, {f_pass_weights_random[:,a_l].shape}")
+                    loss += (f_pass_weights_random[:,a_l]*loss_t_w.sum(dim=[1])).sum()
+
+                    
+
+                    #print("\n")
+                    #train_print_time(args, ep,last_epoch_no, s, time_stamps, t, x_t, y_t, x_tindicies, y_tindicies, loss, f_pass_weights_random, a_l, rand_horizon, rand_horizon_grad, input_time_stamps  )
+                    #import pdb; pdb.set_trace()
+
+
+
+                    # curiculum_learning = False
+                    # #print("ep, epochs, k k_transtion -->",ep, args.epochs[proto], t, k_transition(ep, args.t_resolution, args.epochs[proto]) ) 
+                    # if curiculum_learning and t >= k_transition(ep, t_resolution, epochs):
+                        
+                    #     # if s % 500 == 0:
+                    #     #     print("ep, epochs, k k_transtion -->",ep, args.epochs[proto], t, k_transition(ep, args.t_resolution, args.epochs[proto]) )
+                    #         #print("switching to true solution")
+                    #     out = y
+                    
+
+                        
+                    if output_time_stamps > input_time_stamps:
+                        x = out[...,-input_time_stamps:]
+                        x_t = y_t[...,-input_time_stamps:]
+                        x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+                    elif output_time_stamps == input_time_stamps:
+                        x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+                        x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                    
+                    elif output_time_stamps < input_time_stamps:
+                        x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
+                        x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                        x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                    
+                    a_l += 1
+
+
+                train_l2_full += loss.item()
+
+                # Backward pass
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+
+        if sheduler_change == "iteration":
+            #p.print(f"learning_rate: { optimizer.param_groups[0]['lr']}" )
+            scheduler.step()
+
+
+        #import pdb; pdb.set_trace()
+        if (count_t_iter) % 500 == 0:
+            p.print(f"t_iter: {count_t_iter}/{total_iter}")
+            p.print(f"f_pass_weights: {f_pass_weights}")
+            p.print(f"f_pass_weights_random: {f_pass_weights_random[:3]}")
+            p.print("\n")
+            
+        
+    return train_l2_full/(t_iteration*(bb+1)), model, count_t_iter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def old_for_adapting(
+    args,
+    count_t_iter,
+    proto,
+
+    ep,
+    epochs,
+    last_epoch_no,
+
+    t_iteration,
+    n_tsamples,
+    data_batchsize,
+
+    model,
+    optimizer,
+    train_loader,
+    criterion,
+
+
+    input_time_stamps,
+    output_time_stamps,
+    t_resolution, 
+
+    timestamps,
+
+    f_pass_weights,
+    t_step_weights,
+
+    time_prediction,
+    time_conditioning,
+
+    max_horizon,
+    horizons,
+    random_horizon,
+    
+
+    dt_step,
+
+    noise,
+    noise_std,
+    norm,
+
+    scheduler,
+    sheduler_change,
+
+
+    dynamic_loss_weight_per_fpass,
+    dynamic_loss_weight_per_fpass_type,
+    dynamic_loss_weight_per_fpass_reversed,
+    dynamic_loss_weight_per_fpass_constant_parameter,
+
+    dynamic_loss_weight_per_tstamp,
+    dynamic_loss_weight_per_tstamp_constant_parameter,
+
+    push_forward,
+    push_forward_parameter_random,
+    push_forward_parameter,
+
+    ):
+
+
+    train_l2_full = 0
+    
+
+    #import pdb; pdb.set_trace()
+
+    total_iter = epochs*t_iteration
+    t_sample_space = torch.arange(t_resolution)
+
+    # if args.time_prediction == "constant":
+    #     assert args.time_sampling_choice == 1  # use the right type of random time generator
+    #     assert dt_step-1 <= int( t_resolution/max(n_tsamples) )
+
+    # elif args.time_prediction == "variable":
+    #     assert args.time_sampling_choice > 1
+
+
+    for out_samp in range(len(n_tsamples)):
+        assert len(torch.tensor([t for t in range(0, (t_resolution -  (out_samp + ((out_samp -1)*(dt_step-1)) ) + 1 ))]) ) > 0 ## check that the length of the initial sample range is positvie 
+
+    #max_horizon = round(( t_resolution - input_time_stamps)//output_time_stamps)
+
+
+    
+    for s in range(t_iteration):
+        #import pdb; pdb.set_trace()
+        count_t_iter += 1
+
+        for out_samp in range(len(n_tsamples)):
+            #import pdb; pdb.set_trace()
+
+            tsamples = n_tsamples[out_samp]
+            horizon = horizons[out_samp] #(tsamples-output_time_stamps)//output_time_stamps
+
+            # p.print(f"tsample: {tsamples} ")
+            # p.print(f"horizon: {horizon}")
+            
+
+            if dynamic_loss_weight_per_fpass:
+                f_pass_weights = dynamic_weight_loss_sq(count_t_iter, total_iter, dynamic_loss_weight_per_fpass_constant_parameter, max_horizon, horizon).to(device)
+                #f_pass_weights = torch.flip(f_pass_weights, dims=[0])
+            elif dynamic_loss_weight_per_fpass == None:
+                raise TypeError("Specify dynamic_w_l_f_pass (True or False) ")
+            
+
+            # ww = dynamic_weight_loss_sq(count_t_iter, total_iter, dynamic_loss_weight_per_fpass_constant_parameter, max_horizon, horizon).to(device)
+            # ww_reversed = dynamic_weight_loss_sq(total_iter- count_t_iter + 1, total_iter,dynamic_loss_weight_per_fpass_constant_parameter, max_horizon, horizon).to(device)
+            # p.print(f"weights: {ww}")
+            # p.print(f"weights_flip: {torch.flip(ww, dims=[0])}")
+            # p.print(f"weights_reversed: {ww}")
+            # p.print(f"weights_reversed_flip: {torch.flip(ww_reversed, dims=[0])}")
+
+
+            if dynamic_loss_weight_per_fpass_reversed:
+                f_pass_weights = dynamic_weight_loss_sq(total_iter- count_t_iter + 1, total_iter,dynamic_loss_weight_per_fpass_constant_parameter, max_horizon, horizon).to(device)
+                f_pass_weights = torch.flip(f_pass_weights, dims=[0])
+            elif dynamic_loss_weight_per_fpass_reversed == None:
+                raise TypeError("Specify dynamic_w_l_f_pass_reversed (True or False) ")
+
+            if dynamic_loss_weight_per_tstamp:
+                t_step_weights = dynamic_weight_loss(count_t_iter, total_iter, dynamic_loss_weight_per_tstamp_constant_parameter,  output_time_stamps  ).to(device)
+            elif dynamic_loss_weight_per_tstamp == None:
+                raise TypeError("Specify dynamic_w_l_t_steps (True or False) ")
+
+
+            #import pdb; pdb.set_trace()
+
+            for bb, (data, u_super, x, parameters) in enumerate(train_loader):
+                #import pdb; pdb.set_trace()
+
+                #import pdb; pdb.set_trace()
+                data = data.to(device)
+                parameters = parameters[...,:args.no_parameters].to(device)
+
+                time_sampling_choice = args.time_sampling_choice
+                data_batch = batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+                
+                time_indicies = t_sample_space[data_batch.indicies]
+
+
+                xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
+                xy_t = torch.ones_like(xy)[:,0,:].to(device)
+                xy_t = xy_t*timestamps[time_indicies]
+
+
+                # p.print(f"xy_t: {xy_t.shape}")
+                # p.print(f"xy_t: {xy_t[:3,:10]}")
+                xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+                # p.print(f"xy_t: {xy_t.shape}")
+                # p.print(f"xy_t: {xy_t[:3,:10]}")
+                
+
+                xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
+                xy_tindicies = time_indicies.long()
+
+                #time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+                time_stamps = [i for i in range(0, time_indicies.shape[-1]+1, output_time_stamps)]
+        
+                x = xy[..., :input_time_stamps ]
+                x_t = xy_t[..., :input_time_stamps ]
+                x_tindicies = xy_tindicies[..., :input_time_stamps ]
+
+                # if s < 5:
+                #     print("time_stamps->", time_stamps)
+                #     print("starting_index->", x_tindicies)
+
+
+                
+                loss = 0
+                a_l = 0
+
+
+                #import pdb; pdb.set_trace()
+                f_pass_weights_random = f_pass_weights.unsqueeze(0).repeat(args.batch_size_train,1)
+
+                if dynamic_loss_weight_per_fpass:
+                    
+                    # if args.dynamic_loss_weight_per_fpass_type.startswith("global"):
+                    #     random_steps = time_indicies[:,output_time_stamps]
+                    #     f_pass_weights_random = torch.ones(args.batch_size_train,horizon).to(device)
+                    #     random_steps_dx = [ torch.div(irx, output_time_stamps, rounding_mode='floor')-1 for irx in random_steps]
+                    #     for irx in range(len(random_steps_dx)):
+                    #         f_pass_weights_random[irx,:] = torch.tensor([f_pass_weights[irx].item() for irx in range(random_steps_dx[irx],random_steps_dx[irx]+horizon)]).to(device)
+
+                    if dynamic_loss_weight_per_fpass_type.startswith("global"):
+                        random_steps = time_indicies[:,output_time_stamps:][:,::output_time_stamps]
+                        f_pass_weights_random = torch.ones(args.batch_size_train,horizon).to(device)
+                        for irx in range(args.batch_size_train):
+                            random_steps_dx = [ torch.div(irx-output_time_stamps, output_time_stamps, rounding_mode='floor').item() for irx in random_steps[irx]]
+                            f_pass_weights_random[irx,:] = torch.tensor( [f_pass_weights[irx].item() for irx in random_steps_dx] ).to(device)
+  
+
+                    elif dynamic_loss_weight_per_fpass_type.startswith("local"):
+                        f_pass_weights_random = f_pass_weights.unsqueeze(0).repeat(args.batch_size_train,1)
+                
+
+
+                # if random_horizon:
+                #     horizon_range = torch.arange(1,horizon+1)
+                #     rand_horizon = horizon_range[torch.randint(horizon_range.size(0), size=(1,))].item()
+                # else:
+                #     rand_horizon = horizon
+
+
+                # if push_forward:
+                #     if push_forward_parameter_random:
+                #         horizon_grad_range = torch.arange(max(1, rand_horizon-push_forward_parameter),rand_horizon+1)
+                #         rand_horizon_grad = horizon_grad_range[torch.randint(horizon_grad_range.size(0), size=(1,))].item()
+                #     else:
+                #         rand_horizon_grad = max(1, rand_horizon-push_forward_parameter)
+                # else:
+                #     rand_horizon_grad = rand_horizon
+
+
+
+                # import pdb; pdb.set_trace()
+
+                # with torch.no_grad():    
+                #     for t in range(rand_horizon-rand_horizon_grad):
+                #         #import pdb; pdb.set_trace()
+                #         #import pdb; pdb.set_trace()
+
+                #         # y = xy[..., time_stamps[t+1]:time_stamps[t+2]]
+                #         # y_t = xy_t[..., time_stamps[t+1]:time_stamps[t+2]]
+                #         # y_tindicies = xy_tindicies[..., time_stamps[t+1]:time_stamps[t+2]]
+
+                #         y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                #         y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+                #         y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+
+
+                #         if time_prediction == "constant":
+                #             if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+                #                 out = model(x).to(device)
+                #             elif args.dataset_name == "E2":
+                #                 out = model(torch.cat((x, parameters), dim=-1)).to(device)
+                #             elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+                #                 out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+                #         if time_prediction == "variable":
+
+                #             if time_conditioning == "addition":
+                #                 x_x_t = x + x_t
+                #                 if args.dataset_name == "E1" or "B1" or "A1":
+                #                     out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+                #                 elif args.dataset_name == "E2":
+                #                     out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+                #             elif time_conditioning == "concatenate":
+                #                 if args.dataset_name == "E1" or "B1"  or "A1":
+                #                     out = model( x, x_t, y_t ).to(device)
+                #                 elif args.dataset_name == "E2":
+                #                     out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
+                            
+                            
+                #             elif time_conditioning == "attention":
+                #                 if args.dataset_name == "E1" or "B1"  or "A1":
+                #                     out = model( x.to(device), x_t.to(device), y_t.to(device) ).to(device)
+                #                 elif args.dataset_name == "E2":
+                #                     out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
+
+
+                #         train_print_time(args, ep, last_epoch_no, s, time_stamps, t, x_t, y_t, x_tindicies, y_tindicies, loss, f_pass_weights_random, a_l, rand_horizon, rand_horizon_grad, input_time_stamps  )
+
+                #         #import pdb; pdb.set_trace()
+
+
+                #         if output_time_stamps > input_time_stamps:
+                #             x = out[...,-input_time_stamps:]
+                #             x_t = y_t[...,-input_time_stamps:]
+                #             x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+                #         elif output_time_stamps == input_time_stamps:
+                #             x = torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+                #             x_t = torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+                #             x_tindicies = torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                        
+                #         elif output_time_stamps < input_time_stamps:
+                #             x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], out), dim=-1)
+                #             x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+                #             x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                        
+                #         a_l += 1
 
                         #print("loss->", loss)
 
@@ -1159,17 +2628,6 @@ def random_time_sampling_new(
             
         
     return train_l2_full/(t_iteration*(bb+1)), model, count_t_iter
-
-
-
-
-
-
-
-
-
-
-
 
 
 

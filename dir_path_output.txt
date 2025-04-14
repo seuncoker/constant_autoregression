@@ -1,0 +1,846 @@
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_1
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_1
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'AR_curriculum' already exists!
+[2025-04-13 17:29:48] Folder 'run_1' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_3
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_3
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'AR_curriculum' already exists!
+[2025-04-13 17:29:48] Folder 'run_3' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_5
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_5
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'AR_curriculum' already exists!
+[2025-04-13 17:29:48] Folder 'run_5' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_2
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_2
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF' already exists!
+[2025-04-13 17:29:48] Folder 'run_2' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_2
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_2
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'AR_curriculum' already exists!
+[2025-04-13 17:29:48] Folder 'run_2' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_1
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_1
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF_noise' already exists!
+[2025-04-13 17:29:48] Folder 'run_1' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_4
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_4
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF' already exists!
+[2025-04-13 17:29:48] Folder 'run_4' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_2
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_2
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF_noise' already exists!
+[2025-04-13 17:29:48] Folder 'run_2' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_5
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_5
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF_noise' already exists!
+[2025-04-13 17:29:48] Folder 'run_5' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_4
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_curriculum_run_4
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_1
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_1
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'AR_curriculum' already exists!
+[2025-04-13 17:29:48] Folder 'TF' already exists!
+[2025-04-13 17:29:48] Folder 'run_4' created successfully!
+[2025-04-13 17:29:48] Folder 'run_1' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_5
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_5
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF' already exists!
+[2025-04-13 17:29:48] Folder 'run_5' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_4
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_4
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF_noise' already exists!
+[2025-04-13 17:29:48] Folder 'run_4' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_3
+[2025-04-13 17:29:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_run_3
+[2025-04-13 17:29:48] Folder 'result' already exists!
+[2025-04-13 17:29:48] Folder 'A1' already exists!
+[2025-04-13 17:29:48] Folder 'FNO' already exists!
+[2025-04-13 17:29:48] Folder 'TF' already exists!
+[2025-04-13 17:29:48] Folder 'run_3' created successfully!
+[2025-04-13 17:29:48] 
+
+[2025-04-13 17:29:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_3
+[2025-04-13 17:29:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_noise_run_3
+[2025-04-13 17:29:49] Folder 'result' already exists!
+[2025-04-13 17:29:49] Folder 'A1' already exists!
+[2025-04-13 17:29:49] Folder 'FNO' already exists!
+[2025-04-13 17:29:49] Folder 'TF_noise' already exists!
+[2025-04-13 17:29:49] Folder 'run_3' created successfully!
+[2025-04-13 17:29:49] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_1
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_1
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 17:33:26] Folder 'run_1' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_3
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_3
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 17:33:26] Folder 'run_3' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_4
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_4
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 17:33:26] Folder 'run_4' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_3
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_3
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'TF_AR_Prob' already exists!
+[2025-04-13 17:33:26] Folder 'run_3' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_5
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_5
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 17:33:26] Folder 'run_5' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_2
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_2
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 17:33:26] Folder 'run_2' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_4
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_4
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'TF_AR_Prob' already exists!
+[2025-04-13 17:33:26] Folder 'run_4' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_1
+[2025-04-13 17:33:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_1
+[2025-04-13 17:33:26] Folder 'result' already exists!
+[2025-04-13 17:33:26] Folder 'A1' already exists!
+[2025-04-13 17:33:26] Folder 'FNO' already exists!
+[2025-04-13 17:33:26] Folder 'TF_AR_Prob' already exists!
+[2025-04-13 17:33:26] Folder 'run_1' created successfully!
+[2025-04-13 17:33:26] 
+
+[2025-04-13 17:33:27] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_2
+[2025-04-13 17:33:27] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_2
+[2025-04-13 17:33:27] Folder 'result' already exists!
+[2025-04-13 17:33:27] Folder 'A1' already exists!
+[2025-04-13 17:33:27] Folder 'FNO' already exists!
+[2025-04-13 17:33:27] Folder 'TF_AR_Prob' already exists!
+[2025-04-13 17:33:27] Folder 'run_2' created successfully!
+[2025-04-13 17:33:27] 
+
+[2025-04-13 17:33:33] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_5
+[2025-04-13 17:33:33] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_5
+[2025-04-13 17:33:33] Folder 'result' already exists!
+[2025-04-13 17:33:33] Folder 'A1' already exists!
+[2025-04-13 17:33:33] Folder 'FNO' already exists!
+[2025-04-13 17:33:33] Folder 'TF_AR_Prob' already exists!
+[2025-04-13 17:33:33] Folder 'run_5' created successfully!
+[2025-04-13 17:33:33] 
+
+[2025-04-13 18:20:10] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_4
+[2025-04-13 18:20:10] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_4
+[2025-04-13 18:20:10] Folder 'result' already exists!
+[2025-04-13 18:20:10] Folder 'A1' already exists!
+[2025-04-13 18:20:10] Folder 'FNO' already exists!
+[2025-04-13 18:20:10] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 18:20:10] Folder 'run_4' already exists!
+[2025-04-13 18:20:10] 
+
+[2025-04-13 18:20:10] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_3
+[2025-04-13 18:20:10] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_3
+[2025-04-13 18:20:10] Folder 'result' already exists!
+[2025-04-13 18:20:10] Folder 'A1' already exists!
+[2025-04-13 18:20:10] Folder 'FNO' already exists!
+[2025-04-13 18:20:10] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 18:20:10] Folder 'run_3' already exists!
+[2025-04-13 18:20:10] 
+
+[2025-04-13 18:20:10] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_1
+[2025-04-13 18:20:11] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_1
+[2025-04-13 18:20:11] Folder 'result' already exists!
+[2025-04-13 18:20:11] Folder 'A1' already exists!
+[2025-04-13 18:20:11] Folder 'FNO' already exists!
+[2025-04-13 18:20:11] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 18:20:11] Folder 'run_1' already exists!
+[2025-04-13 18:20:11] 
+
+[2025-04-13 18:20:11] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_2
+[2025-04-13 18:20:11] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_2
+[2025-04-13 18:20:11] Folder 'result' already exists!
+[2025-04-13 18:20:11] Folder 'A1' already exists!
+[2025-04-13 18:20:11] Folder 'FNO' already exists!
+[2025-04-13 18:20:11] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 18:20:11] Folder 'run_2' already exists!
+[2025-04-13 18:20:11] 
+
+[2025-04-13 20:31:22] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_5
+[2025-04-13 20:31:22] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_curriculum_run_5
+[2025-04-13 20:31:22] Folder 'result' already exists!
+[2025-04-13 20:31:22] Folder 'A1' already exists!
+[2025-04-13 20:31:22] Folder 'FNO' already exists!
+[2025-04-13 20:31:22] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 20:31:22] Folder 'run_5' already exists!
+[2025-04-13 20:31:22] 
+
+[2025-04-13 20:56:06] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_Prob_run_1
+[2025-04-13 20:56:06] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_AR_TF_Prob_run_1
+[2025-04-13 20:56:06] Folder 'result' already exists!
+[2025-04-13 20:56:06] Folder 'A1' already exists!
+[2025-04-13 20:56:06] Folder 'FNO' already exists!
+[2025-04-13 20:56:06] Folder 'AR_TF_Prob' already exists!
+[2025-04-13 20:56:06] Folder 'run_1' created successfully!
+[2025-04-13 20:56:06] 
+
+[2025-04-13 20:58:33] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_1_ms_5
+[2025-04-13 20:58:33] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_A1_FNO_TF_AR_Prob_run_1_ms_5
+[2025-04-13 20:58:33] Folder 'result' already exists!
+[2025-04-13 20:58:33] Folder 'A1' already exists!
+[2025-04-13 20:58:33] Folder 'FNO' already exists!
+[2025-04-13 20:58:33] Folder 'TF_AR_Prob' already exists!
+[2025-04-13 20:58:33] Folder 'run_1_ms_5' created successfully!
+[2025-04-13 20:58:33] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_4
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_4
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' created successfully!
+[2025-04-13 21:29:23] Folder 'AR' created successfully!
+[2025-04-13 21:29:23] Folder 'run_4' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_1
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_5
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_1
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_5
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'TF' created successfully!
+[2025-04-13 21:29:23] Folder 'AR' already exists!
+[2025-04-13 21:29:23] Folder 'run_1' created successfully!
+[2025-04-13 21:29:23] Folder 'run_5' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_3
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_3
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'AR' already exists!
+[2025-04-13 21:29:23] Folder 'run_3' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_2
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_2
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'AR_curriculum' created successfully!
+[2025-04-13 21:29:23] Folder 'run_2' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_3
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_3
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'TF' already exists!
+[2025-04-13 21:29:23] Folder 'run_3' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_2
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_2
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_1
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_1
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'TF_noise' created successfully!
+[2025-04-13 21:29:23] Folder 'run_1' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'TF' already exists!
+[2025-04-13 21:29:23] Folder 'run_2' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_1
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_1
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'AR_curriculum' already exists!
+[2025-04-13 21:29:23] Folder 'run_1' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_1
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_1
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'AR' already exists!
+[2025-04-13 21:29:23] Folder 'run_1' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_5
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_5
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'AR_curriculum' already exists!
+[2025-04-13 21:29:23] Folder 'run_5' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:23] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_4
+[2025-04-13 21:29:23] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_4
+[2025-04-13 21:29:23] Folder 'result' already exists!
+[2025-04-13 21:29:23] Folder 'E1' already exists!
+[2025-04-13 21:29:23] Folder 'FNO' already exists!
+[2025-04-13 21:29:23] Folder 'TF' already exists!
+[2025-04-13 21:29:23] Folder 'run_4' created successfully!
+[2025-04-13 21:29:23] 
+
+[2025-04-13 21:29:24] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_2
+[2025-04-13 21:29:24] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_2
+[2025-04-13 21:29:24] Folder 'result' already exists!
+[2025-04-13 21:29:24] Folder 'E1' already exists!
+[2025-04-13 21:29:24] Folder 'FNO' already exists!
+[2025-04-13 21:29:24] Folder 'TF_noise' already exists!
+[2025-04-13 21:29:24] Folder 'run_2' created successfully!
+[2025-04-13 21:29:24] 
+
+[2025-04-13 21:29:24] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_2
+[2025-04-13 21:29:24] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_run_2
+[2025-04-13 21:29:24] Folder 'result' already exists!
+[2025-04-13 21:29:24] Folder 'E1' already exists!
+[2025-04-13 21:29:24] Folder 'FNO' already exists!
+[2025-04-13 21:29:24] Folder 'AR' already exists!
+[2025-04-13 21:29:24] Folder 'run_2' created successfully!
+[2025-04-13 21:29:24] 
+
+[2025-04-13 21:29:24] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_3
+[2025-04-13 21:29:24] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_3
+[2025-04-13 21:29:24] Folder 'result' already exists!
+[2025-04-13 21:29:24] Folder 'E1' already exists!
+[2025-04-13 21:29:24] Folder 'FNO' already exists!
+[2025-04-13 21:29:24] Folder 'AR_curriculum' already exists!
+[2025-04-13 21:29:24] Folder 'run_3' created successfully!
+[2025-04-13 21:29:24] 
+
+[2025-04-13 21:29:24] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_5
+[2025-04-13 21:29:24] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_run_5
+[2025-04-13 21:29:24] Folder 'result' already exists!
+[2025-04-13 21:29:24] Folder 'E1' already exists!
+[2025-04-13 21:29:24] Folder 'FNO' already exists!
+[2025-04-13 21:29:24] Folder 'TF' already exists!
+[2025-04-13 21:29:24] Folder 'run_5' created successfully!
+[2025-04-13 21:29:24] 
+
+[2025-04-13 21:29:24] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_4
+[2025-04-13 21:29:24] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_curriculum_run_4
+[2025-04-13 21:29:24] Folder 'result' already exists!
+[2025-04-13 21:29:24] Folder 'E1' already exists!
+[2025-04-13 21:29:24] Folder 'FNO' already exists!
+[2025-04-13 21:29:24] Folder 'AR_curriculum' already exists!
+[2025-04-13 21:29:24] Folder 'run_4' created successfully!
+[2025-04-13 21:29:24] 
+
+[2025-04-13 22:02:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_3
+[2025-04-13 22:02:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_3
+[2025-04-13 22:02:01] Folder 'result' already exists!
+[2025-04-13 22:02:01] Folder 'E1' already exists!
+[2025-04-13 22:02:01] Folder 'FNO' already exists!
+[2025-04-13 22:02:01] Folder 'TF_noise' already exists!
+[2025-04-13 22:02:01] Folder 'run_3' created successfully!
+[2025-04-13 22:02:01] 
+
+[2025-04-13 22:03:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_4
+[2025-04-13 22:03:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_4
+[2025-04-13 22:03:49] Folder 'result' already exists!
+[2025-04-13 22:03:49] Folder 'E1' already exists!
+[2025-04-13 22:03:49] Folder 'FNO' already exists!
+[2025-04-13 22:03:49] Folder 'TF_noise' already exists!
+[2025-04-13 22:03:49] Folder 'run_4' created successfully!
+[2025-04-13 22:03:49] 
+
+[2025-04-13 22:04:52] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_5
+[2025-04-13 22:04:52] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_noise_run_5
+[2025-04-13 22:04:52] Folder 'result' already exists!
+[2025-04-13 22:04:52] Folder 'E1' already exists!
+[2025-04-13 22:04:52] Folder 'FNO' already exists!
+[2025-04-13 22:04:52] Folder 'TF_noise' already exists!
+[2025-04-13 22:04:52] Folder 'run_5' created successfully!
+[2025-04-13 22:04:52] 
+
+[2025-04-13 22:05:02] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_1
+[2025-04-13 22:05:02] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_1
+[2025-04-13 22:05:02] Folder 'result' already exists!
+[2025-04-13 22:05:02] Folder 'E1' already exists!
+[2025-04-13 22:05:02] Folder 'FNO' already exists!
+[2025-04-13 22:05:02] Folder 'AR_TF_curriculum' created successfully!
+[2025-04-13 22:05:02] Folder 'run_1' created successfully!
+[2025-04-13 22:05:02] 
+
+[2025-04-13 23:59:59] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_2
+[2025-04-13 23:59:59] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_2
+[2025-04-13 23:59:59] Folder 'result' already exists!
+[2025-04-13 23:59:59] Folder 'E1' already exists!
+[2025-04-13 23:59:59] Folder 'FNO' already exists!
+[2025-04-13 23:59:59] Folder 'AR_TF_curriculum' already exists!
+[2025-04-13 23:59:59] Folder 'run_2' created successfully!
+[2025-04-13 23:59:59] 
+
+[2025-04-14 00:02:43] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_3
+[2025-04-14 00:02:43] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_3
+[2025-04-14 00:02:43] Folder 'result' already exists!
+[2025-04-14 00:02:43] Folder 'E1' already exists!
+[2025-04-14 00:02:43] Folder 'FNO' already exists!
+[2025-04-14 00:02:43] Folder 'AR_TF_curriculum' already exists!
+[2025-04-14 00:02:43] Folder 'run_3' created successfully!
+[2025-04-14 00:02:43] 
+
+[2025-04-14 00:03:30] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_4
+[2025-04-14 00:03:30] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_4
+[2025-04-14 00:03:30] Folder 'result' already exists!
+[2025-04-14 00:03:30] Folder 'E1' already exists!
+[2025-04-14 00:03:30] Folder 'FNO' already exists!
+[2025-04-14 00:03:30] Folder 'AR_TF_curriculum' already exists!
+[2025-04-14 00:03:30] Folder 'run_4' created successfully!
+[2025-04-14 00:03:30] 
+
+[2025-04-14 00:04:02] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_5
+[2025-04-14 00:04:02] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_curriculum_run_5
+[2025-04-14 00:04:02] Folder 'result' already exists!
+[2025-04-14 00:04:02] Folder 'E1' already exists!
+[2025-04-14 00:04:02] Folder 'FNO' already exists!
+[2025-04-14 00:04:02] Folder 'AR_TF_curriculum' already exists!
+[2025-04-14 00:04:02] Folder 'run_5' created successfully!
+[2025-04-14 00:04:02] 
+
+[2025-04-14 00:04:11] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_1
+[2025-04-14 00:04:11] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_1
+[2025-04-14 00:04:11] Folder 'result' already exists!
+[2025-04-14 00:04:11] Folder 'E1' already exists!
+[2025-04-14 00:04:11] Folder 'FNO' already exists!
+[2025-04-14 00:04:11] Folder 'AR_TF_noise_curriculum' created successfully!
+[2025-04-14 00:04:11] Folder 'run_1' created successfully!
+[2025-04-14 00:04:11] 
+
+[2025-04-14 00:17:44] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_2
+[2025-04-14 00:17:44] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_2
+[2025-04-14 00:17:44] Folder 'result' already exists!
+[2025-04-14 00:17:44] Folder 'E1' already exists!
+[2025-04-14 00:17:44] Folder 'FNO' already exists!
+[2025-04-14 00:17:44] Folder 'AR_TF_noise_curriculum' already exists!
+[2025-04-14 00:17:44] Folder 'run_2' created successfully!
+[2025-04-14 00:17:44] 
+
+[2025-04-14 00:30:56] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_3
+[2025-04-14 00:30:56] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_3
+[2025-04-14 00:30:56] Folder 'result' already exists!
+[2025-04-14 00:30:56] Folder 'E1' already exists!
+[2025-04-14 00:30:56] Folder 'FNO' already exists!
+[2025-04-14 00:30:56] Folder 'AR_TF_noise_curriculum' already exists!
+[2025-04-14 00:30:56] Folder 'run_3' created successfully!
+[2025-04-14 00:30:56] 
+
+[2025-04-14 00:31:12] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_4
+[2025-04-14 00:31:12] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_4
+[2025-04-14 00:31:12] Folder 'result' already exists!
+[2025-04-14 00:31:12] Folder 'E1' already exists!
+[2025-04-14 00:31:12] Folder 'FNO' already exists!
+[2025-04-14 00:31:12] Folder 'AR_TF_noise_curriculum' already exists!
+[2025-04-14 00:31:12] Folder 'run_4' created successfully!
+[2025-04-14 00:31:12] 
+
+[2025-04-14 00:31:40] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_5
+[2025-04-14 00:31:40] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_noise_curriculum_run_5
+[2025-04-14 00:31:40] Folder 'result' already exists!
+[2025-04-14 00:31:40] Folder 'E1' already exists!
+[2025-04-14 00:31:40] Folder 'FNO' already exists!
+[2025-04-14 00:31:40] Folder 'AR_TF_noise_curriculum' already exists!
+[2025-04-14 00:31:40] Folder 'run_5' created successfully!
+[2025-04-14 00:31:40] 
+
+[2025-04-14 00:32:04] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_1
+[2025-04-14 00:32:04] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_1
+[2025-04-14 00:32:04] Folder 'result' already exists!
+[2025-04-14 00:32:04] Folder 'E1' already exists!
+[2025-04-14 00:32:04] Folder 'FNO' already exists!
+[2025-04-14 00:32:04] Folder 'TF_AR_Prob' created successfully!
+[2025-04-14 00:32:04] Folder 'run_1' created successfully!
+[2025-04-14 00:32:04] 
+
+[2025-04-14 00:32:13] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_2
+[2025-04-14 00:32:13] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_2
+[2025-04-14 00:32:13] Folder 'result' already exists!
+[2025-04-14 00:32:13] Folder 'E1' already exists!
+[2025-04-14 00:32:13] Folder 'FNO' already exists!
+[2025-04-14 00:32:13] Folder 'TF_AR_Prob' already exists!
+[2025-04-14 00:32:13] Folder 'run_2' created successfully!
+[2025-04-14 00:32:13] 
+
+[2025-04-14 00:33:55] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_3
+[2025-04-14 00:33:55] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_3
+[2025-04-14 00:33:55] Folder 'result' already exists!
+[2025-04-14 00:33:55] Folder 'E1' already exists!
+[2025-04-14 00:33:55] Folder 'FNO' already exists!
+[2025-04-14 00:33:55] Folder 'TF_AR_Prob' already exists!
+[2025-04-14 00:33:55] Folder 'run_3' created successfully!
+[2025-04-14 00:33:55] 
+
+[2025-04-14 00:34:27] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_4
+[2025-04-14 00:34:27] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_4
+[2025-04-14 00:34:27] Folder 'result' already exists!
+[2025-04-14 00:34:27] Folder 'E1' already exists!
+[2025-04-14 00:34:27] Folder 'FNO' already exists!
+[2025-04-14 00:34:27] Folder 'TF_AR_Prob' already exists!
+[2025-04-14 00:34:27] Folder 'run_4' created successfully!
+[2025-04-14 00:34:27] 
+
+[2025-04-14 00:34:33] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_5
+[2025-04-14 00:34:33] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_TF_AR_Prob_run_5
+[2025-04-14 00:34:33] Folder 'result' already exists!
+[2025-04-14 00:34:33] Folder 'E1' already exists!
+[2025-04-14 00:34:33] Folder 'FNO' already exists!
+[2025-04-14 00:34:33] Folder 'TF_AR_Prob' already exists!
+[2025-04-14 00:34:33] Folder 'run_5' created successfully!
+[2025-04-14 00:34:33] 
+
+[2025-04-14 00:34:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_1
+[2025-04-14 00:34:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_1
+[2025-04-14 00:34:57] Folder 'result' already exists!
+[2025-04-14 00:34:57] Folder 'E1' already exists!
+[2025-04-14 00:34:57] Folder 'FNO' already exists!
+[2025-04-14 00:34:57] Folder 'AR_TF_Prob' created successfully!
+[2025-04-14 00:34:57] Folder 'run_1' created successfully!
+[2025-04-14 00:34:57] 
+
+[2025-04-14 00:36:27] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_2
+[2025-04-14 00:36:27] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_2
+[2025-04-14 00:36:27] Folder 'result' already exists!
+[2025-04-14 00:36:27] Folder 'E1' already exists!
+[2025-04-14 00:36:27] Folder 'FNO' already exists!
+[2025-04-14 00:36:27] Folder 'AR_TF_Prob' already exists!
+[2025-04-14 00:36:27] Folder 'run_2' created successfully!
+[2025-04-14 00:36:27] 
+
+[2025-04-14 00:38:48] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_3
+[2025-04-14 00:38:48] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_3
+[2025-04-14 00:38:48] Folder 'result' already exists!
+[2025-04-14 00:38:48] Folder 'E1' already exists!
+[2025-04-14 00:38:48] Folder 'FNO' already exists!
+[2025-04-14 00:38:48] Folder 'AR_TF_Prob' already exists!
+[2025-04-14 00:38:48] Folder 'run_3' created successfully!
+[2025-04-14 00:38:48] 
+
+[2025-04-14 00:39:42] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_4
+[2025-04-14 00:39:42] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_4
+[2025-04-14 00:39:42] Folder 'result' already exists!
+[2025-04-14 00:39:42] Folder 'E1' already exists!
+[2025-04-14 00:39:42] Folder 'FNO' already exists!
+[2025-04-14 00:39:42] Folder 'AR_TF_Prob' already exists!
+[2025-04-14 00:39:42] Folder 'run_4' created successfully!
+[2025-04-14 00:39:42] 
+
+[2025-04-14 00:40:02] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_5
+[2025-04-14 00:40:02] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_AR_TF_Prob_run_5
+[2025-04-14 00:40:02] Folder 'result' already exists!
+[2025-04-14 00:40:02] Folder 'E1' already exists!
+[2025-04-14 00:40:02] Folder 'FNO' already exists!
+[2025-04-14 00:40:02] Folder 'AR_TF_Prob' already exists!
+[2025-04-14 00:40:02] Folder 'run_5' created successfully!
+[2025-04-14 00:40:02] 
+
+[2025-04-14 00:42:28] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_1
+[2025-04-14 00:42:28] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_1
+[2025-04-14 00:42:28] Folder 'result' already exists!
+[2025-04-14 00:42:28] Folder 'E1' already exists!
+[2025-04-14 00:42:28] Folder 'FNO' already exists!
+[2025-04-14 00:42:28] Folder 'STWL_curriculum' created successfully!
+[2025-04-14 00:42:28] Folder 'run_1' created successfully!
+[2025-04-14 00:42:28] 
+
+[2025-04-14 01:07:37] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_2
+[2025-04-14 01:07:37] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_2
+[2025-04-14 01:07:37] Folder 'result' already exists!
+[2025-04-14 01:07:37] Folder 'E1' already exists!
+[2025-04-14 01:07:37] Folder 'FNO' already exists!
+[2025-04-14 01:07:37] Folder 'STWL_curriculum' already exists!
+[2025-04-14 01:07:37] Folder 'run_2' created successfully!
+[2025-04-14 01:07:37] 
+
+[2025-04-14 01:08:18] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_3
+[2025-04-14 01:08:18] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_3
+[2025-04-14 01:08:18] Folder 'result' already exists!
+[2025-04-14 01:08:18] Folder 'E1' already exists!
+[2025-04-14 01:08:18] Folder 'FNO' already exists!
+[2025-04-14 01:08:18] Folder 'STWL_curriculum' already exists!
+[2025-04-14 01:08:18] Folder 'run_3' created successfully!
+[2025-04-14 01:08:18] 
+
+[2025-04-14 01:10:25] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_4
+[2025-04-14 01:10:25] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_4
+[2025-04-14 01:10:25] Folder 'result' already exists!
+[2025-04-14 01:10:25] Folder 'E1' already exists!
+[2025-04-14 01:10:25] Folder 'FNO' already exists!
+[2025-04-14 01:10:25] Folder 'STWL_curriculum' already exists!
+[2025-04-14 01:10:25] Folder 'run_4' created successfully!
+[2025-04-14 01:10:25] 
+
+[2025-04-14 01:10:33] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_5
+[2025-04-14 01:10:33] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_E1_FNO_STWL_curriculum_run_5
+[2025-04-14 01:10:33] Folder 'result' already exists!
+[2025-04-14 01:10:33] Folder 'E1' already exists!
+[2025-04-14 01:10:33] Folder 'FNO' already exists!
+[2025-04-14 01:10:33] Folder 'STWL_curriculum' already exists!
+[2025-04-14 01:10:33] Folder 'run_5' created successfully!
+[2025-04-14 01:10:33] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_1
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_5
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_2
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_3
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_1
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_5
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_2
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_3
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_noise_run_2
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_2
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_noise_run_2
+[2025-04-14 10:56:46] Folder 'FNO' created successfully!
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_2
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'AR_curriculum' created successfully!
+[2025-04-14 10:56:46] Folder 'AR' created successfully!
+[2025-04-14 10:56:46] Folder 'AR_curriculum' already exists!
+[2025-04-14 10:56:46] Folder 'AR' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'run_1' created successfully!
+[2025-04-14 10:56:46] Folder 'run_5' created successfully!
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'run_2' created successfully!
+[2025-04-14 10:56:46] Folder 'run_3' created successfully!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] Folder 'TF_noise' created successfully!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'run_2' created successfully!
+[2025-04-14 10:56:46] Folder 'AR' already exists!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] Folder 'run_2' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_1
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_1
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'TF' created successfully!
+[2025-04-14 10:56:46] Folder 'run_1' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_5
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_5
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_5
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_5
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'TF' already exists!
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'run_5' created successfully!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'AR_curriculum' already exists!
+[2025-04-14 10:56:46] Folder 'run_5' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_1
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_1
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'AR' already exists!
+[2025-04-14 10:56:46] Folder 'run_1' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_4
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_run_4
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'AR' already exists!
+[2025-04-14 10:56:46] Folder 'run_4' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_2
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_2
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'TF' already exists!
+[2025-04-14 10:56:46] Folder 'run_2' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_3
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_3
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_noise_run_1
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_noise_run_1
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'TF_noise' already exists!
+[2025-04-14 10:56:46] Folder 'run_1' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'AR_curriculum' already exists!
+[2025-04-14 10:56:46] Folder 'run_3' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_3
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_3
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'TF' already exists!
+[2025-04-14 10:56:46] Folder 'run_3' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_4
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_AR_curriculum_run_4
+[2025-04-14 10:56:46] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_4
+[2025-04-14 10:56:46] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_FNO_TF_run_4
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'AR_curriculum' already exists!
+[2025-04-14 10:56:46] Folder 'run_4' created successfully!
+[2025-04-14 10:56:46] 
+
+[2025-04-14 10:56:46] Folder 'result' already exists!
+[2025-04-14 10:56:46] Folder 'KdV' already exists!
+[2025-04-14 10:56:46] Folder 'FNO' already exists!
+[2025-04-14 10:56:46] Folder 'TF' already exists!
+[2025-04-14 10:56:46] Folder 'run_4' created successfully!
+[2025-04-14 10:56:46] 
+

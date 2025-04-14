@@ -15,7 +15,12 @@ p = Printer(n_digits=6)
 
 
 args = arg_parse()
-args = load_auguments(args, "arguments")
+
+arg_name = args.argument_file
+#dir_name = args.dir_name
+p.print(f"arg_nameeee: {arg_name}")
+#p.print(f"dir_nameeee: {dir_name}")
+args = load_auguments(args, arg_name)
 
 
 
@@ -69,8 +74,7 @@ try:
     p.print(f"Folder '{experiment_name}' created successfully!")
 except FileExistsError:
     p.print(f"Folder '{experiment_name}' already exists!")
-
-
+p.print("\n")
 
 # result_name = "result"
 # folder_path =  args.current_dir_path
@@ -130,14 +134,9 @@ except FileExistsError:
 
 
 
-
-
-
-
-
 #import pdb; pdb.set_trace()
 
-with open("dir_path.txt", "w") as f:
+with open(arg_name+".txt", "w") as f:
   f.write(args.current_result_save_path)
 
 #create_current_results_folder(args)

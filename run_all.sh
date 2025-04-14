@@ -2,7 +2,7 @@
 
 
 #SBATCH --job-name=test_job   # Job name
-#SBATCH --time=00:10:00         # Request runtime (hh:mm:ss)
+#SBATCH --time=06:00:00         # Request runtime (hh:mm:ss)
 #SBATCH --partition=gpu     # Request the GPU partition
 #SBATCH --gres=gpu:1        # Request a single GPU
 #SBATCH --cpus-per-task=8          # Request 4 CPU cores
@@ -20,10 +20,15 @@ source activate env_phd
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/env_phd/lib/
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/home02/scoc/.conda/envs/le_pde/lib/
 
-python /mnt/scratch/scoc/constant_autoregression/create_dir.py > dir_path__.txt
-dir_path=$(cat dir_path.txt)
+echo "argument name: $1"
+
+python /mnt/scratch/scoc/constant_autoregression/create_dir.py --argument_file="$1" >> dir_path_output.txt
+
+dir_path=$(cat "$1".txt)
+
 last_element=$(basename "$dir_path")
 
+echo "dir_path: $dir_path"
+echo "last_element: $last_element"
 
-python /mnt/scratch/scoc/constant_autoregression/main.py --argument_file=arguments >& "$dir_path/$last_element.txt"
-
+python /mnt/scratch/scoc/constant_autoregression/main.py --argument_file="$1" >& "$dir_path/$last_element.txt"

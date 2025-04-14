@@ -295,13 +295,13 @@ def save_config_file(args):
 def load_auguments(args, filename):
     #import pdb; pdb.set_trace()
     p.print(f"filename: {filename}")
-    if filename == "arguments":
-        filename_json = filename+".json"
-    elif filename.endswith("config"):
+
+    if filename.endswith("config"):
         filename_json = filename
     elif filename.endswith("arguments_test"):
         filename_json = filename+".json"
-    
+    else:
+        filename_json = filename+".json"
     #filename_json = filename + ".json"
     #import pdb; pdb.set_trace()
     try:
@@ -858,3 +858,27 @@ def normalized_rmse(predictions, true_values):
   nrmse = rmse / torch.sqrt(torch.mean((true_values) ** 2, dim = 1) )    
   
   return torch.mean(nrmse)
+
+
+
+def bernoulli_sampling(p):
+  """
+  Samples from a Bernoulli distribution with probability p.
+
+  Args:
+    p: The probability of success (getting a 1). Must be between 0 and 1.
+
+  Returns:
+    1 with probability p, and 0 with probability 1-p.
+  """
+  if not 0 <= p <= 1:
+    raise ValueError("Probability p must be between 0 and 1.")
+
+  # Generate a random float between 0 and 1
+  random_number = random.random()
+
+  # If the random number is less than p, consider it a "success" (1)
+  if random_number < p:
+    return 1
+  else:
+    return 0

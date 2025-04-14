@@ -1,1 +1,1 @@
-/mnt/scratch/scoc/constant_autoregression/result/B1/constant_time/training_epoch_b1_reverse_l/seq_curriculum2_
+/mnt/scratch/scoc/constant_autoregression/result/A1/FNO/TF_AR_Prob/run_1
