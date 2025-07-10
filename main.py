@@ -222,7 +222,8 @@ if mode.startswith("test"):
 
 
 
-
+def torch_sqrt(x):
+    return torch.sqrt(x).to(device)
 
 
 ################################################################
@@ -298,7 +299,9 @@ if mode.startswith("train"):
             optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate[proto], weight_decay=args.weight_decay[proto])
         elif args.optimiser_type[proto] == "adamw":
             optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate[proto], weight_decay=args.weight_decay[proto])
-        
+        elif args.optimiser_type[proto] == "sgd":
+            optimizer = torch.optim.SGD(model.parameters(), lr=args.learning_rate[proto])
+
         if args.sheduler_type[proto] == "steplr":
             scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=args.sheduler_step[proto], gamma=args.sheduler_gamma[proto])
         elif args.sheduler_type[proto] == "cosine_annealing":
@@ -306,7 +309,14 @@ if mode.startswith("train"):
                 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=int(args.cos_anneal_T_max[proto]), eta_min=args.min_learning_rate[proto])
             elif args.sheduler_change[proto] == "iteration":
                 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=int(args.cos_anneal_T_max[proto]), eta_min=args.min_learning_rate[proto])
-        
+        elif args.sheduler_type[proto] == "onecylcelr":
+            scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,
+                                                max_lr=args.learning_rate[proto],
+                                                pct_start=0.2,
+                                                div_factor=1e3,
+                                                final_div_factor=1e4,
+                                                total_steps=args.epochs[proto] * len(train_loader))
+
         if args.new_training == False and args.initialise_optimiser[proto] == False:
             p.print("Loading optimizer last state")
             optimizer.load_state_dict(saved_epochs[-1]["optimizer"])
@@ -315,10 +325,12 @@ if mode.startswith("train"):
 
 
         if args.loss_train_type.startswith("l2"):
-            criterion = LpLoss(size_average=False, reduction=False)
+            #criterion = torch_sqrt( LpLoss(size_average=False, reduction=False) )
+            criterion =  LpLoss(size_average=False, reduction=False) 
             #criterion = LpLoss(size_average=False, reduction=True)
         elif args.loss_train_type.startswith("mse"):
             criterion = torch.nn.MSELoss(reduction="none")
+            #criterion = torch.nn.MSELoss(reduction="mean")
         else:
             pass
         
@@ -339,7 +351,7 @@ if mode.startswith("train"):
         if args.dynamic_loss_weight_per_fpass[proto]:
             ## E1 B1
 
-            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.45 #5.0056*(max_horizon**(-0.723))
+            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] =   0.70 #6.49*(max_horizon**(-0.743)) #0.6 # 0.16 # 0.30 #0.45 #5.0056*(max_horizon**(-0.723))
 
             # if max_horizon == 9 or max_horizon == 10 or max_horizon == 8:   #for output stamps = 25
             #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.95 

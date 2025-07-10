@@ -36,6 +36,8 @@ except FileExistsError:
 
 dataset_name =  args.dataset_name
 folder_path =  args.result_save_path
+print("folder_path: ", folder_path)
+print("dataset_name: ", dataset_name)
 path_dataset_name = os.path.join(folder_path, dataset_name)
 args.result_save_path = path_dataset_name
 try:

@@ -4,6 +4,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 
+
+# import sys, os
+
+# sys.path.append(os.path.join(os.path.dirname("__file__"), '..'))
+# sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..'))
+
+
 from constant_autoregression.util import Printer, initialize_weights_xavier_uniform
 from constant_autoregression.model.FNO_1d import FNO_standard_1D, FNO_standard_1D_KS1, FNO1d_t_concat, FNO1d_t_attention, FNO_standard_1D_decompose
 from constant_autoregression.model.FFNO_1d import F_FNO_1D
@@ -11,6 +18,7 @@ from constant_autoregression.model.UNO import UNO_1D
 from constant_autoregression.model.LSM import LSM_1D
 from constant_autoregression.model.U_NET import U_NET_1D
 from constant_autoregression.model.modern_UNET import modern_UNET_1D
+from constant_autoregression.model.vcnef_1d import VCNeFModel
 
 from constant_autoregression.model.fourier_transformer import MultiHeadedAttention, PositionwiseFeedForward, SpectralConv1d_wave, Embedding, Lifting, Projecting, Generator, Encoder_wave, EncoderDecoder_wave, EncoderLayer
 
@@ -138,7 +146,7 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
     elif args.model_type ==  "LSM_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1") or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1"):
-                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
+                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "32"}
                 #model_hyperparameters = {"in_dim": 1, "out_dim": 1, "d_model": 32, "num_token": 4, "num_basis": 24, "patch_size": "8", "padding": "14"}
             if args.dataset_name.endswith("KdV"):
                 model_hyperparameters = {"in_dim": args.input_time_stamps + 2, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
@@ -156,7 +164,7 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
     elif args.model_type ==  "U_NET_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1") or args.dataset_name.endswith("KdV"):
-                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 8}
+                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
         model = U_NET_1D(
                 model_hyperparameters["n_input_scalar_components"],
                 model_hyperparameters["n_input_vector_components"],
@@ -224,6 +232,26 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
 
             ).to(device)
 
+
+    elif args.model_type == "vcnef_1d":
+        #assert args.time_prediction.startswith("variable") 
+
+        #model_hyperparameters = {"modes": args.fno_modes, "width": args.fno_hidden_dim, "input_size": args.input_time_stamps, "output_size": args.output_time_stamps, "t_res": args.t_resolution, "x_res": args.x_resolution, "nhead": 1 }
+        model_hyperparameters = {"num_channels": args.input_time_stamps, "condition_on_pde_param": False, "pde_param_dim": 1, "d_model": args.fno_hidden_dim, "n_heads": 8, "n_transformer_blocks": 3, "n_modulation_blocks": 3}
+                
+        model = VCNeFModel(
+            num_channels = model_hyperparameters["num_channels"],
+            condition_on_pde_param = model_hyperparameters["condition_on_pde_param"],
+            pde_param_dim = model_hyperparameters["pde_param_dim"],
+            d_model = model_hyperparameters["d_model"],
+            n_heads = model_hyperparameters["n_heads"],
+            n_transformer_blocks = model_hyperparameters["n_transformer_blocks"],
+            n_modulation_blocks = model_hyperparameters["n_modulation_blocks"]
+
+            ).to(device)
+        
+
+        
     elif args.model_type == "Fourier_transformer":
         assert args.time_prediction.startswith("variable")
         modes_in = model_hyperparameters["modes"]
@@ -382,7 +410,7 @@ def get_model(args, device, **kwargs):
     elif args.model_type ==  "LSM_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1") or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1"):
-                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
+                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "32"}
                 #model_hyperparameters = {"in_dim": 1, "out_dim": 1, "d_model": 32, "num_token": 4, "num_basis": 24, "patch_size": "8", "padding": "14"}
             if args.dataset_name.endswith("KdV"):
                 model_hyperparameters = {"in_dim": args.input_time_stamps + 2, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
@@ -401,7 +429,7 @@ def get_model(args, device, **kwargs):
     elif args.model_type ==  "U_NET_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1") or args.dataset_name.endswith("KdV"):
-                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 8}
+                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
         
         model = U_NET_1D(
                 model_hyperparameters["n_input_scalar_components"],
@@ -502,6 +530,27 @@ def get_model(args, device, **kwargs):
             Projecting(d_model),
 
     ).to(device)
+
+
+
+
+    elif args.model_type == "vcnef_1d":
+        #assert args.time_prediction.startswith("variable") 
+
+        #model_hyperparameters = {"modes": args.fno_modes, "width": args.fno_hidden_dim, "input_size": args.input_time_stamps, "output_size": args.output_time_stamps, "t_res": args.t_resolution, "x_res": args.x_resolution, "nhead": 1 }
+        #model_hyperparameters = {"num_channels": args.input_time_stamps, "condition_on_pde_param": False, "pde_param_dim": 1, "d_model": args.fno_hidden_dim, "n_heads": 4, "n_transformer_blocks": 3, "n_modulation_blocks": 3}
+        model_hyperparameters = {"num_channels": args.input_time_stamps, "condition_on_pde_param": False, "pde_param_dim": 1, "d_model": args.fno_hidden_dim, "n_heads": 8, "n_transformer_blocks": 3, "n_modulation_blocks": 3}      
+        model = VCNeFModel(
+            num_channels = model_hyperparameters["num_channels"],
+            condition_on_pde_param = model_hyperparameters["condition_on_pde_param"],
+            pde_param_dim = model_hyperparameters["pde_param_dim"],
+            d_model = model_hyperparameters["d_model"],
+            n_heads = model_hyperparameters["n_heads"],
+            n_transformer_blocks = model_hyperparameters["n_transformer_blocks"],
+            n_modulation_blocks = model_hyperparameters["n_modulation_blocks"]
+
+            ).to(device)
+        
         
     else:
         raise TypeError(f"model type: {args.model_type} does not exist") 

@@ -23,10 +23,11 @@ import h5py
 # sys.path.append(os.path.join(os.path.dirname("__file__"), '..', '..', '..'))
 
 from constant_autoregression.argparser import arg_parse
-from constant_autoregression.training_loop.random_sampling import random_time_sampling, autoregressive_rollout, scheduled_weighted_loss_curriculum, teacher_forcing, autoregressive_rollout_to_teacher_forcing, probabilistic_autoregressive_rollout_and_teacher_forcing, random_time_sampling_new_new, random_time_sampling_splits, random_time_sampling_one_sample, sequential_time_sampling
+from constant_autoregression.training_loop.random_sampling import random_time_sampling, autoregressive_rollout, scheduled_weighted_loss_curriculum, teacher_forcing, autoregressive_rollout_to_teacher_forcing, probabilistic_autoregressive_rollout_and_teacher_forcing, one_step_rollout,random_time_sampling_new_new, random_time_sampling_splits, random_time_sampling_one_sample, sequential_time_sampling
+from constant_autoregression.training_loop.vcnef_loop import run_training
 from constant_autoregression.training_loop.transformer_loop import run_epoch
 from constant_autoregression.util import LpLoss, Printer, get_time, count_params, set_seed, return_checkpoint, dynamic_weight_loss, dynamic_weight_loss_sq, create_current_results_folder, load_auguments, save_config_file, create_data, create_next_data, k_transition
-from constant_autoregression.test import constant_rollout_test, constant_one_to_one_test, variable_rollout_test, variable_one_to_one_test, constant_one_to_one_test_splits
+from constant_autoregression.test import constant_rollout_test, constant_one_to_one_test, constant_one_step_test, variable_rollout_test, variable_one_to_one_test, constant_one_to_one_test_splits
 
 
 
@@ -212,7 +213,7 @@ def training_protocol(
     last_epoch_no = 0
     results = []
     last_result = []
-    error = torch.zeros(epochs,10).to(device)
+    error = torch.zeros(epochs,13).to(device)
 
 
     if saved_epochs != None:
@@ -692,7 +693,7 @@ def training_protocol(
         elif args.training_loop == "probabilistic_teacher_forcing_to_autoregressive_rollout":
 
 
-            end_epoch = int(epochs*1.0)
+            end_epoch = int(epochs*0.5)
 
             if ep <= end_epoch:
                 x1,y1 = 1,0
@@ -769,7 +770,7 @@ def training_protocol(
         elif args.training_loop == "probabilistic_autoregressive_rollout_to_teacher_forcing":
 
 
-            end_epoch = int(epochs*1.0)
+            end_epoch = int(epochs*0.5)
 
             if ep <= end_epoch:
                 x1,y1 = 1, 1.0
@@ -904,6 +905,149 @@ def training_protocol(
 
             )
 
+
+
+
+
+        # elif args.training_loop == "one_step_rollout":
+            
+        #     horizon = [1]
+        #     input_time_stamps = 1
+        #     n_tsamples = [input_time_stamps+(i*output_time_stamps) for i in horizon]
+
+
+        #     train_l2_full, model, count_t_iter = one_step_rollout(
+
+        #                     args,
+        #                     count_t_iter,
+        #                     proto,
+
+        #                     ep,
+        #                     epochs,
+        #                     last_epoch_no,
+                            
+        #                     t_iteration = t_iteration,
+        #                     n_tsamples = n_tsamples,
+
+        #                     data_batchsize = args.batch_size_train,
+
+        #                     model = model,
+        #                     optimizer = optimizer,
+        #                     train_loader = train_loader,
+        #                     criterion = criterion,
+
+
+        #                     input_time_stamps = 1,
+        #                     output_time_stamps = output_time_stamps,
+        #                     t_resolution = t_resolution,
+        #                     timestamps = timestamps,
+
+        #                     f_pass_weights = f_pass_weights,
+        #                     t_step_weights = t_step_weights,
+
+        #                     time_prediction = args.time_prediction,
+        #                     time_conditioning = args.time_conditioning,
+
+        #                     max_horizon = max_horizon,
+        #                     horizons = horizon,
+        #                     random_horizon = random_horizon,
+
+        #                     dt_step = dt_step,
+
+        #                     noise = noise,
+        #                     noise_std = noise_std,
+        #                     norm = norm,
+
+        #                     scheduler = scheduler,
+        #                     sheduler_change = sheduler_change,
+
+        #                     dynamic_loss_weight_per_fpass = dynamic_loss_weight_per_fpass,
+        #                     dynamic_loss_weight_per_fpass_type = dynamic_loss_weight_per_fpass_type,
+        #                     dynamic_loss_weight_per_fpass_reversed = dynamic_loss_weight_per_fpass_reversed,
+        #                     dynamic_loss_weight_per_fpass_constant_parameter = dynamic_loss_weight_per_fpass_constant_parameter,
+
+        #                     dynamic_loss_weight_per_tstamp= dynamic_loss_weight_per_tstamp,
+        #                     dynamic_loss_weight_per_tstamp_constant_parameter = dynamic_loss_weight_per_tstamp_constant_parameter,
+
+        #                     push_forward = push_forward,
+        #                     push_forward_parameter_random = push_forward_parameter_random,
+        #                     push_forward_parameter = push_forward_parameter,
+
+
+        #     )
+
+
+
+        elif args.training_loop == "one_step_rollout":
+            
+            #horizon = [1]
+            input_time_stamps = 1
+            #n_tsamples = [input_time_stamps+(i*output_time_stamps) for i in horizon]
+
+
+            train_l2_full, model, count_t_iter = run_training(
+
+                            args,
+                            # count_t_iter,
+                            # proto,
+
+                            # ep,
+                            # epochs,
+                            # last_epoch_no,
+                            
+                            # t_iteration = t_iteration,
+                            # n_tsamples = n_tsamples,
+
+                            #data_batchsize = args.batch_size_train,
+
+                            model = model,
+                            optimizer = optimizer,
+                            train_loader = train_loader,
+                            #criterion = criterion,
+
+
+                            input_time_stamps = 1,
+                            output_time_stamps = output_time_stamps,
+                            #t_resolution = t_resolution,
+                            #timestamps = timestamps,
+
+                            #f_pass_weights = f_pass_weights,
+                            #t_step_weights = t_step_weights,
+
+                            #time_prediction = args.time_prediction,
+                            #time_conditioning = args.time_conditioning,
+
+                            #max_horizon = max_horizon,
+                            # horizons = horizon,
+                            # random_horizon = random_horizon,
+
+                            dt_step = dt_step,
+
+                            # noise = noise,
+                            # noise_std = noise_std,
+                            # norm = norm,
+
+                            scheduler = scheduler,
+                            # sheduler_change = sheduler_change,
+
+                            # dynamic_loss_weight_per_fpass = dynamic_loss_weight_per_fpass,
+                            # dynamic_loss_weight_per_fpass_type = dynamic_loss_weight_per_fpass_type,
+                            # dynamic_loss_weight_per_fpass_reversed = dynamic_loss_weight_per_fpass_reversed,
+                            # dynamic_loss_weight_per_fpass_constant_parameter = dynamic_loss_weight_per_fpass_constant_parameter,
+
+                            # dynamic_loss_weight_per_tstamp= dynamic_loss_weight_per_tstamp,
+                            # dynamic_loss_weight_per_tstamp_constant_parameter = dynamic_loss_weight_per_tstamp_constant_parameter,
+
+                            # push_forward = push_forward,
+                            # push_forward_parameter_random = push_forward_parameter_random,
+                            # push_forward_parameter = push_forward_parameter,
+
+
+            )
+
+
+
+
         elif args.training_loop == "sequential_time_sampling":
 
             # x1,y1 = 1,1
@@ -1021,11 +1165,17 @@ def training_protocol(
         valid_cons_oto_250 = [0,0,0]
 
 
+        test_cons_os_250 = [0,0,0]
+        valid_cons_os_250 = [0,0,0]
+        train_cons_os_250 = [0,0,0]
+
+
         #import pdb; pdb.set_trace()
         if (ep) % args.epoch_print_interval == 0:
             train_cons_ro_250 = constant_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]  )
             train_cons_oto_250 = constant_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]   )
-
+            #train_cons_os_250 = constant_one_step_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]   )
+            
             # train_var_ro_250 = variable_rollout_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]  )
             # train_var_oto_250 = variable_one_to_one_test( args, model, train_loader, timestamps_train, dt_step = args.dt_step, t_resolution=args.t_resolution_train, norm = args.norm[proto]   )
 
@@ -1033,6 +1183,7 @@ def training_protocol(
 
             test_cons_ro_250 = constant_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]  )
             test_cons_oto_250 = constant_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
+            #test_cons_os_250 = constant_one_step_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
 
             # test_var_ro_250 = variable_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]  )
             # test_var_oto_250 = variable_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
@@ -1040,7 +1191,8 @@ def training_protocol(
 
             valid_cons_ro_250 = constant_rollout_test( args, model, valid_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm = args.norm[proto]  )
             valid_cons_oto_250 = constant_one_to_one_test( args, model, valid_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm = args.norm[proto]   )
-
+            #valid_cons_os_250 = constant_one_step_test( args, model, valid_loader, timestamps_valid, dt_step = args.dt_step, t_resolution=args.t_resolution_valid, norm = args.norm[proto]   )
+            
             # test_var_ro_250 = variable_rollout_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]  )
             # test_var_oto_250 = variable_one_to_one_test( args, model, test_loader, timestamps_test, dt_step = args.dt_step, t_resolution=args.t_resolution_test, norm = args.norm[proto]   )
 
@@ -1069,27 +1221,41 @@ def training_protocol(
 
         #p.print(f"TRAIN: ep: {ep}, time: {(t2-t1):.4f}, lr: {current_lr}, TRAIN_CONST_OTO_250: {train_cons_oto_250[0]:.4f}, TRAIN_CONST_RO_250: {train_cons_ro_250[0]:.4f}, TEST_CONST_OTO_250: {test_cons_oto_250[0]:.4f}, TEST_CONST_RO_250: {test_cons_ro_250[0]:.4f}, VALID_CONST_OTO_250: {valid_cons_oto_250[0]:.4f}, VALID_CONST_RO_250: {valid_cons_ro_250[0]:.4f}")
         #p.print(f"TRAIN: ep: {ep}, time: {(t2-t1):.4f}, lr: {current_lr}, TRAIN_CONST_OTO_250: {train_cons_oto_250[0]:.4f}, TRAIN_CONST_RO_250: {train_cons_ro_250[0]:.4f}, TRAIN_VAR_OTO_250: {train_var_oto_250[0]:.4f}, TRAIN_VAR_RO_250: {train_var_ro_250[0]:.4f}, TEST_VAR_OTO_250: {test_var_oto_250[0]:.4f}, TEST_VAR_RO_250: {test_var_ro_250[0]:.4f}")
+        
+        
         p.print(f"TRAINING - Ep: {ep}, time: {(t2-t1):.4f}, lr: {current_lr}, TRAIN_OTO: {train_cons_oto_250[0]:.4f}, TRAIN_RO: {train_cons_ro_250[0]:.4f}, VALID_OTO: {valid_cons_oto_250[0]:.4f}, VALID_RO: {valid_cons_ro_250[0]:.4f}, TEST_OTO: {test_cons_oto_250[0]:.4f}, TEST_RO: {test_cons_ro_250[0]:.4f}")
+        #p.print(f"TRAINING - Ep: {ep}, time: {(t2-t1):.4f}, lr: {current_lr}, TRAIN_OS: {train_cons_os_250[0]:.4f},  VALID_OS: {valid_cons_os_250[0]:.4f}, TEST_OS: {test_cons_os_250[0]:.4f}")
 
 
         # var_ro_250 = 0.00000 # variable_rollout_test(  args, model, train_loader, timestamps, tsamples = 250 )
         # var_oto_250 = 0.000000 #variable_one_to_one_test(  args, model, train_loader, timestamps, tsamples = 250 )
         # p.print(f"TRAIN: ep: {ep}, time: {(t2-t1):.4f}, lr: {current_lr}, CONST_OTO_250: {cons_oto_250[0]:.4f}, CONST_RO_250: {cons_ro_250[0]:.4f}, VAR_OTO_250: {var_oto_250[0]:.4f}, VAR_RO_250: {var_ro_250[0]:.4f}")
 
-        ep_error = torch.tensor([ep, t2-t1, current_lr, train_cons_oto_250[0], train_cons_ro_250[0], valid_cons_oto_250[0], valid_cons_ro_250[0], test_cons_oto_250[0], test_cons_ro_250[0] ]).to(device)
+        ep_error = torch.tensor([ep, t2-t1, current_lr, train_cons_oto_250[0], train_cons_ro_250[0], valid_cons_oto_250[0], valid_cons_ro_250[0], test_cons_oto_250[0], train_cons_ro_250[0] ]).to(device)
+        #ep_error = torch.tensor([ep, t2-t1, current_lr, train_cons_oto_250[0], train_cons_ro_250[0], valid_cons_oto_250[0], valid_cons_ro_250[0], test_cons_oto_250[0], train_cons_ro_250[0] , valid_cons_os_250[0], test_cons_os_250[0], test_cons_os_250[0] ]).to(device)
         error[ep-1,:ep_error.shape[0]] = ep_error
 
         #epoch_info = {"train_oto_250":train_cons_oto_250, "train_ro_250": train_cons_ro_250, "test_oto_250":test_cons_oto_250, "test_ro_250":test_cons_ro_250 }
-        epoch_info = {"train_oto":train_cons_oto_250, "train_ro": train_cons_ro_250, "valid_oto":valid_cons_oto_250, "valid_ro":valid_cons_ro_250, "test_oto":test_cons_oto_250, "test_ro":test_cons_ro_250 }
+
+
+        epoch_info = {"train_oto":train_cons_oto_250, "train_ro": train_cons_ro_250, "valid_oto":valid_cons_oto_250, "valid_ro":valid_cons_ro_250, "test_oto":test_cons_oto_250, "test_ro":test_cons_ro_250  }
+        #epoch_info = {"train_oto":train_cons_oto_250, "train_ro": train_cons_ro_250, "valid_oto":valid_cons_oto_250, "valid_ro":valid_cons_ro_250, "test_oto":test_cons_oto_250, "test_ro":test_cons_ro_250, "train_os":train_cons_os_250, "valid_os":valid_cons_os_250, "test_os":test_cons_os_250  }
         
         if (ep) % args.epoch_save_interval == 0:
             results.append(return_checkpoint(ep, t2-t1,current_lr, epoch_info, model, optimizer))
 
 
         if valid_cons_ro_250[0] < best_val_loss:
+
             best_val_loss = valid_cons_ro_250[0]
+            #best_val_loss = valid_cons_os_250[0]
+
             test_loss = test_cons_ro_250[0]
+            #test_os_loss = test_cons_os_250[0]
+
             train_loss = train_cons_ro_250[0]
+            #train_os_loss = train_cons_os_250[0]
+
             best_ep = ep
             best_t2_t1 = t2-t1
             best_lr = current_lr
@@ -1106,7 +1272,8 @@ def training_protocol(
                 break
 
 
-    p.print(f"BEST - Ep: {best_ep}, time: {(best_t2_t1):.4f}, lr: {best_lr}, TRAIN_RO: {train_loss:.4f}, BEST_VALID_RO: {best_val_loss:.4f}, TEST_RO: {test_loss:.4f}")
+    p.print(f"BEST - Ep: {best_ep}, time: {(best_t2_t1):.4f}, lr: {best_lr}, TRAIN_RO: {train_loss:.4f}, BEST_VALID_RO: {best_val_loss:.4f}, TEST_RO: {test_loss:.4f} ")
+    #p.print(f"BEST - Ep: {best_ep}, time: {(best_t2_t1):.4f}, lr: {best_lr}, TRAIN_RO: {train_loss:.4f}, TRAIN_OS: {train_os_loss:.4f}, BEST_VALID_RO: {best_val_loss:.4f}, TEST_RO: {test_loss:.4f}, TEST_OS: {test_os_loss:.4f} ")
 
     best_result = return_checkpoint(best_ep, best_t2_t1, best_lr, best_epoch_info, best_model, best_optimizer)
     results.append(best_result)
@@ -1115,8 +1282,14 @@ def training_protocol(
                          
     #files =  os.path.join(args.current_result_save_path, "protocol_"+str(proto+1)+".pt")
     #p.print(f"protocol: {files}")
-    torch.save({"saved_epoch": results, "all_error":error }, os.path.join(args.current_result_save_path, f"protocol_{proto+1}.pt"))
+
+
     
+
+    #torch.save({"saved_epoch": results, "all_error":error }, os.path.join(args.current_result_save_path, f"protocol_{proto+1}.pt"))
+    
+
+
     #result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "cons_oto_250":test_cons_oto_250, "cons_ro_250": test_cons_ro_250, "valid_cons_oto_250":valid_cons_oto_250, "valid_cons_ro_250": valid_cons_ro_250}
     #result = {"train_cons_oto_250":train_cons_oto_250, "train_cons_ro_250":train_cons_ro_250, "train_var_oto_250":train_var_oto_250, "train_var_ro_250": train_var_ro_250, "test_var_oto_250":test_var_oto_250, "test_var_ro_250": test_var_ro_250}
     #best_result = best_epoch_info #{"train_oto":train_cons_oto_250, "train_ro": train_cons_ro_250, "valid_oto":valid_cons_oto_250, "valid_ro":valid_cons_ro_250, "test_oto":test_cons_oto_250, "test_ro":test_cons_ro_250 }

@@ -160,7 +160,10 @@ class U_NET_1D(nn.Module):
 
         #print("x ->", x.shape)
         x = self.final(x)
+        #print("x ->", x.shape)
 
-        return x.reshape(
-            orig_shape[0], -1, (self.n_output_scalar_components + self.n_output_vector_components * 2), *orig_shape[3:]
-        )
+        x = x.permute(0,2,1)
+        # x = x.reshape(
+        #     orig_shape[0], -1, (self.n_output_scalar_components + self.n_output_vector_components * 2), *orig_shape[3:])
+        #print("x ->", x.shape)
+        return x

@@ -7,29 +7,35 @@ json_file_path = "/mnt/scratch/scoc/constant_autoregression/arguments.json"  # R
 job_script_path = "/mnt/scratch/scoc/constant_autoregression/run_all.sh"    # Replace with the actual path to your job.sh file
 output_dir = "/mnt/scratch/scoc/constant_autoregression/jobs_arugments"   # Replace with where you want to save modified JSON files (optional)
 
-dataset_names = ["KdV",]
+result_dir = "/mnt/scratch/scoc/constant_autoregression/result"   # Replace with where you want to save modified JSON files (optional)
 
-analysis_types = ["FNO", ]  # Your list of analysis types
-model_types = ["FNO_standard_1D"]
+dataset_names = ["A1",]
 
-subanalysis_types = ["AR",
-                    "AR_curriculum",
-                    "TF",
-                    "TF_noise",
-                    "AR_TF_curriculum",
-                    "AR_TF_noise_curriculum",
-                    "TF_AR_Prob",
-                    "AR_TF_Prob",
+#analysis_types = ["FNO", ]  # Your list of analysis types
+analysis_types = ["model_types", ]  # Your list of analysis types
+
+model_types = ["FNO_standard_1D", ]
+
+subanalysis_types = [
+                    # "AR",
+                    # "AR_curriculum",
+                    # "TF",
+                    # "TF_noise",
+                    # "AR_TF_curriculum",
+                    # "AR_TF_noise_curriculum",
+                    # "TF_AR_Prob",
+                    # "AR_TF_Prob",
                     "STWL_curriculum"
                       ]  # Your list of subanalysis types
-training_loops = ["fixed_autoregressive_rollout",
-                    "autoregressive_rollout_curriculum",
-                    "teacher_forcing",
-                    "teacher_forcing_with_noise",
-                    "autoregressive_rollout_to_teacher_forcing",
-                    "autoregressive_rollout_to_teacher_forcing_with_noise",
-                    "probabilistic_teacher_forcing_to_autoregressive_rollout",
-                    "probabilistic_autoregressive_rollout_to_teacher_forcing",
+training_loops = [
+                    # "fixed_autoregressive_rollout",
+                    # "autoregressive_rollout_curriculum",
+                    # "teacher_forcing",
+                    # "teacher_forcing_with_noise",
+                    # "autoregressive_rollout_to_teacher_forcing",
+                    # "autoregressive_rollout_to_teacher_forcing_with_noise",
+                    # "probabilistic_teacher_forcing_to_autoregressive_rollout",
+                    # "probabilistic_autoregressive_rollout_to_teacher_forcing",
                     "scheduled_weighted_loss_curriculum"
                       ]  # Your list of subanalysis types
 
@@ -51,16 +57,28 @@ training_loops = ["fixed_autoregressive_rollout",
 #                     #"probabilistic_autoregressive_rollout_to_teacher_forcing",
 #                       ]  # Your list of subanalysis types
 
-experiments = ["run_1", "run_2", "run_3", "run_4", "run_5"]  # Your list of experiments
+
+
+
+
+
+#experiments = ["run_1", "run_2", "run_3", "run_4", "run_5"]  # Your list of experiments
 #experiments = ["run_1", ]  # Your list of experiments
-#experiments = ["run_1",]  # Your list of experiments
+
+
+experiments = ["runnnn_1",]  # Your list of experiments
+
 seeds = [128, 256, 512, 1024, 2048]
 
+models_list = ["U_NET_1D", "LSM_1D", "UNO_1D"]
 
 
 # --- Main Logic ---
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+
+print("output_dir", output_dir)
+
 
 for dataset_name in dataset_names:
     for analysis_type in analysis_types:
@@ -90,6 +108,22 @@ for dataset_name in dataset_names:
                 arguments["experiment"] = experiment
                 arguments["seed"] = seeds[experiments.index(experiment)]
 
+
+#########################################################################################
+                arguments["model_type"] = models_list[analysis_types.index(analysis_type)]
+                arguments["batch_size_train"] = 16
+
+                arguments["training_protocols"][0]["epochs"] = 2
+                arguments["training_protocols"][0]["iter_per_epochs"] = 64
+                arguments["training_protocols"][0]["horizon"] = [4,]
+
+
+                arguments["training_protocols"][0]["sheduler_gamma"] = 0.98
+                arguments["training_protocols"][0]["sheduler_step"] = 1
+
+#########################################################################################
+
+
                 # 3. Save the modified JSON file (optional)
                 output_json_filename = f"argument_{dataset_name}_{analysis_type}_{subanalysis_type}_{experiment}"
                 output_json_path = os.path.join(output_dir, output_json_filename)
@@ -99,6 +133,15 @@ for dataset_name in dataset_names:
                     print(f"Modified JSON saved to: {output_json_path}")
                 except Exception as e:
                     print(f"Error saving modified JSON: {e}")
+                    continue
+                
+                result_loc = os.path.join(result_dir, dataset_name, analysis_type, subanalysis_type, experiment)
+                try:
+                    with open(output_json_path +".txt", 'w') as f:
+                        f.write(result_loc)  # indent for readability
+                    print(f" result location saved to: {output_json_path}")
+                except Exception as e:
+                    print(f"Error saving result location txt: {e}")
                     continue
 
                 # 4. Submit the job using sbatch

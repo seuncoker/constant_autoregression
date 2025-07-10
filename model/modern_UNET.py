@@ -447,5 +447,6 @@ class modern_UNET_1D(nn.Module):
         # x = x.reshape(
         #     orig_shape[0], -1, (self.n_output_scalar_components + self.n_output_vector_components * 2), *orig_shape[3:]
         # )
+        #p.print(f"x_final --> {x.shape}")
         
         return x

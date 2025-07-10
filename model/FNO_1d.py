@@ -10,11 +10,11 @@ import math
 
 
 
-
 p = Printer(n_digits=6)
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 
@@ -86,7 +86,7 @@ class Normalizer_1D(nn.Module):
         mean = self.running_mean 
         std = self.running_std
         return x_hat * std + mean
-    
+
 
 
 class SpectralConv1d(nn.Module):
@@ -121,7 +121,6 @@ class SpectralConv1d(nn.Module):
         #Return to physical space
         x = torch.fft.irfft(out_ft, n=x.size(-1))
         return x
-
 
 
 

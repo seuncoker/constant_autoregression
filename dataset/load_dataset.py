@@ -754,9 +754,14 @@ def load_dataset_KS1(args):
                 args.t_resolution_valid = x_valid.shape[2]
 
 
-        args.timestamps = [i for i in range(args.t_resolution)]
-        args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
-        args.timestamps_test = [i for i in range(args.t_resolution_test)]
+        # args.timestamps = [i for i in range(args.t_resolution)]
+        # args.timestamps_valid = [i for i in range(args.t_resolution_valid)]
+        # args.timestamps_test = [i for i in range(args.t_resolution_test)]
+
+
+        args.timestamps_valid = [i*0.01 for i in range(args.t_resolution_valid)]
+        args.timestamps_test = [i*0.01 for i in range(args.t_resolution_test)]
+        args.timestamps_train = [i*0.01 for i in range(args.t_resolution_train)]
 
         res = x_train.shape[1]
 

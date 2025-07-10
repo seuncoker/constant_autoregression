@@ -284,7 +284,7 @@ class LSM_1D(nn.Module):
         #print("x ->", x.shape)
 
         if not all(item == 0 for item in self.padding):
-            print(self.padding)
+            #print(self.padding)
             x = F.pad(x, [self.padding[0], self.padding[0] ])
 
         #print("x_pad ->", x.shape )
@@ -305,14 +305,14 @@ class LSM_1D(nn.Module):
         #print("x5 ->", x5.shape)
 
         #print("processing x4")
-        #x4_p = self.process4(x4)
+        x4_p = self.process4(x4)
         #print("self.process4(x4) -->", x4_p.shape)
 
         #print("processing x5")
-        #x5_p = self.process5(x5)
+        x5_p = self.process5(x5)
         #print("self.process5(x5) -->", x5_p.shape)
 
-        # x = self.up1(x5_p, x4_p)
+        x = self.up1(x5_p, x4_p)
         
         x = self.up1(self.process5(x5), self.process4(x4))
         x = self.up2(x, self.process3(x3))

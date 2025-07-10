@@ -63,8 +63,8 @@
 
 
     "10": "MULITSTEP",
-    "input_time_stamps": 10,
-    "output_time_stamps": 10,
+    "input_time_stamps": 5,
+    "output_time_stamps": 5,
 
 
     "11": "TRAINING PROTOCOLS",
@@ -80,7 +80,7 @@
 
 
     "13": "SAVE",
-    "epoch_save_interval": 99,
+    "epoch_save_interval": 150,
     "epoch_print_interval": 1,
 
 

@@ -40,14 +40,16 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
     model.eval()
     #input_time_stamps = args.input_time_stamps
     #t_resolution = args.t_resolution
-    data_batchsize = args.batch_size_train
+    data_batchsize = args.batch_size_test
     input_time_stamps = args.input_time_stamps
     output_time_stamps = args.output_time_stamps
     time_sampling_choice = int(1)
     t_sample_space = torch.arange(t_resolution).to(device)
 
     #timestamps = torch.tensor(timestamps).to(device)
+    #p.print(f"t_sample_space: {len(t_sample_space)}")
     tsamples = len(t_sample_space[::int(dt_step)])
+    #p.print(f"tsamples: {tsamples}")
 
     #horizon = int((tsamples-input_time_stamps)/output_time_stamps)
     if (tsamples-input_time_stamps)%output_time_stamps  == 0:
@@ -56,7 +58,8 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
         horizon = int((tsamples-input_time_stamps)/output_time_stamps) + 1
 
     #import pdb; pdb.set_trace()
-    #p.print(f"horizon_test: {horizon}")
+    # p.print(f"dt_step: {dt_step}")
+    # p.print(f"horizon_test: {horizon}")
 
 
     with torch.no_grad():
@@ -65,12 +68,13 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
         for b, (data, u_super, x, parameters) in enumerate(loader):
 
             data = data.to(device)
+            current_batch_size = data.size(0)
             parameters = parameters[...,:args.no_parameters].to(device)
             
-            data_batch = test_batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+            data_batch = test_batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(current_batch_size, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
             time_indicies = t_sample_space[data_batch.indicies]
-            #print("data: ", data.shape)
-            #print("time_indicies: ", time_indicies.shape)
+            #p.print(f"data_batch: {data_batch.shape}")
+            #p.print(f"time_indicies: {time_indicies.shape}")
             #print("\n")
             xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
             xy_t = torch.ones_like(xy)[:,0,:].to(device)
@@ -211,7 +215,7 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
 
                 if args.predict_difference:
                     if args.dataset_name == "KS1":
-                        out = x + 0.3*out
+                        out = x + (1/0.3)*out
                     else:
                         out = x + out
 
@@ -249,7 +253,7 @@ def constant_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
     #test_l2_full = torch.mean((train_prediction-train_actual)**2, dim=[0,1] ).sum()
     #print("train_prediction, train_actual -->", train_prediction.shape, train_actual.shape)
     #test_l2_full = torch.mean((train_prediction[...,:train_actual.shape[-1]] - train_actual)**2 )
-    
+    #p.print(f"train_actual: {train_actual.shape}")
     test_l2_full = normalized_rmse(train_prediction[...,:train_actual.shape[-1]], train_actual)
     result = [test_l2_full, train_prediction[...,:train_actual.shape[-1]], train_actual, xy_tindicies]
     #p.print(f"train_actual: {train_actual.shape}")
@@ -264,7 +268,7 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
     model.eval()
     #next_input_time_stamps = args.next_input_time_stamps
     #t_resolution = args.t_resolution
-    data_batchsize = args.batch_size_train
+    #data_batchsize = args.batch_size_test
     input_time_stamps = args.input_time_stamps
     output_time_stamps = args.output_time_stamps
     time_sampling_choice = int(1)
@@ -287,9 +291,10 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
         for b, (data, u_super, x, parameters) in enumerate(loader):
 
             data = data.to(device)
+            current_batch_size = data.size(0)
             parameters = parameters[...,:args.no_parameters].to(device)
             
-            data_batch = test_batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(data_batchsize, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+            data_batch = test_batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(current_batch_size, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
             time_indicies = t_sample_space[data_batch.indicies]
             xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
             xy_t = torch.ones_like(xy)[:,0,:].to(device)
@@ -395,7 +400,7 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
                 if args.predict_difference:
                     
                     if args.dataset_name == "KS1":
-                        out = x + 0.3*out
+                        out = x + (1/0.3)*out
                     else:
                         out = x + out
 
@@ -442,6 +447,327 @@ def constant_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
     
     test_l2_full = normalized_rmse(train_prediction[...,:train_actual.shape[-1]], train_actual)
     result = [test_l2_full, train_prediction, train_actual, xy_tindicies]
+    return result
+
+
+
+
+
+
+
+
+# def constant_one_step_test( args, model, loader, timestamps, dt_step, t_resolution, norm ):
+#     model.eval()
+#     #next_input_time_stamps = args.next_input_time_stamps
+#     #t_resolution = args.t_resolution
+#     #data_batchsize = args.batch_size_test
+#     input_time_stamps = args.input_time_stamps
+#     output_time_stamps = args.output_time_stamps
+#     time_sampling_choice = int(1)
+#     t_sample_space = torch.arange(t_resolution).to(device)
+#     tsamples = len(t_sample_space[::dt_step])
+
+#     #horizon = int( (tsamples-output_time_stamps)/output_time_stamps)
+#     if (tsamples-input_time_stamps)%output_time_stamps  == 0:
+#         horizon = int((tsamples-input_time_stamps)/output_time_stamps)
+#     else:
+#         horizon = int((tsamples-input_time_stamps)/output_time_stamps) + 1
+
+#     #horizon = round( (tsamples-input_time_stamps)/output_time_stamps) + 1
+
+#     #import pdb; pdb.set_trace()
+#     # p.print("Testing...............")
+#     # p.print(f"horizon_test: {horizon}")
+#     with torch.no_grad():
+        
+
+#         for b, (data, u_super, x, parameters) in enumerate(loader):
+
+#             data = data.to(device)
+#             current_batch_size = data.size(0)
+#             parameters = parameters[...,:args.no_parameters].to(device)
+
+#             size_x = data.shape[1]
+#             batch_size = data.shape[0]
+#             grid = torch.tensor(np.linspace(0, 1, size_x), dtype=torch.float).reshape(1, size_x, 1).repeat([batch_size, 1, 1]).to(device)
+
+#             data_batch = test_batch_time_sampling(choice=time_sampling_choice, total_range = t_resolution,  no_of_samp=(current_batch_size, tsamples), t_pred_steps= output_time_stamps, dt=dt_step)
+#             time_indicies = t_sample_space[data_batch.indicies]
+#             xy = torch.gather(data, -1, time_indicies.unsqueeze(1).repeat((1,data.shape[1],1)).to(device) )
+#             xy_t = torch.ones_like(xy)[:,0,:].to(device)
+#             xy_t = xy_t*timestamps[time_indicies]
+
+
+#             # p.print(f"xy_t: {xy_t.shape}")
+#             # p.print(f"xy_t: {xy_t[:3,:10]}")
+
+
+#             ###########################################
+#             ######################
+#             # Time Difference
+#             #xy_t = torch.cat((torch.diff(xy_t, dim=-1), torch.zeros(xy_t.shape[0], 1).to(device)), dim=-1)
+#             ###########################################
+#             ##########################  
+#             # p.print(f"xy_t: {xy_t.shape}")
+#             # p.print(f"xy_t: {xy_t[:3,:10]}")
+
+
+#             xy_t = xy_t.unsqueeze(1).repeat(1,data.shape[1],1)
+#             xy_tindicies = time_indicies.long()
+#             time_stamps = [i for i in range(0, time_indicies.shape[-1]+output_time_stamps, output_time_stamps)]
+            
+#             # x = xy[..., :input_time_stamps ]
+#             # x_t = xy_t[..., :input_time_stamps ]
+#             # x_tindicies = xy_tindicies[..., :input_time_stamps ]
+
+#             if b == 0:
+#                 train_actual = xy[..., input_time_stamps:].clone()
+#             else:
+#                 train_actual = torch.cat((train_actual, xy[..., input_time_stamps:]), dim=0)
+
+#             # input:
+#             x = xy[..., : input_time_stamps]
+#             x_t = xy_t[..., :input_time_stamps]
+#             x_tindicies = xy_tindicies[..., :input_time_stamps ]
+            
+
+#             for t in range(horizon):
+
+#                 # y = xy[..., time_stamps[t+1]:time_stamps[t+2]]
+#                 # y_t = xy_t[..., time_stamps[t+1]:time_stamps[t+2]]
+#                 # y_tindicies = xy_tindicies[..., time_stamps[t+1]:time_stamps[t+2]]
+
+#                 y = xy[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+#                 y_t = xy_t[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+#                 y_tindicies = xy_tindicies[..., input_time_stamps+time_stamps[t]:input_time_stamps+time_stamps[t+1]]
+
+#                 # p.print(f"x_t: {x_t.shape}")
+#                 # p.print(f"x_t: {x_t[:5,1,::4]}")
+
+#                 # p.print(f"y_t: {y_t.shape}")
+#                 # p.print(f"y_t: {y_t[:5,1,::4]}")
+
+#                 y_t = y_t - x_t
+
+#                 # p.print(f"y_t: {y_t.shape}")
+#                 # p.print(f"y_t: {y_t[:5,1,::4]}")
+
+                
+#                 # if norm:
+#                 #     x = normalizer(x)  
+
+
+#                 if args.time_prediction == "constant":
+#                     if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+#                         #print(x.shape, grid.shape, y_t.shape)
+#                         out = model(x, grid, grid[:,0,:], y_t[:,0,:]).squeeze(-1).to(device)
+#                         #print(out.shape)
+#                     elif args.dataset_name == "E2":
+#                         out = model(torch.cat((x, parameters), dim=-1)).to(device)
+#                     elif args.dataset_name == "KS1" or args.dataset_name == "KdV":
+#                         out = model(torch.cat((x, parameters), dim=-1)).to(device)
+
+
+#                 if args.time_prediction == "variable":
+
+#                     if args.time_conditioning == "addition":
+#                         x_x_t = x + x_t
+#                         if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+#                             out = model(torch.cat( (x_x_t,y_t), dim=-1)).to(device)
+
+#                         elif args.dataset_name == "E2":
+#                             out = model(torch.cat((x_x_t, y_t, parameters), dim=-1)).to(device)
+
+
+#                     elif args.time_conditioning == "concatenate":
+#                         if args.dataset_name == "E1" or "B1" or "A1":
+
+#                             if y_t.shape[-1] != output_time_stamps:
+#                                 y_t = y_t.repeat(1,1,output_time_stamps)
+
+#                             out = model( x, x_t, y_t ).to(device)
+
+#                         elif args.dataset_name == "E2":
+#                             out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
+                    
+                    
+#                     elif args.time_conditioning == "attention":
+#                         if args.dataset_name == "E1" or args.dataset_name =="B1"  or args.dataset_name == "A1":
+#                             #out = model( x.to(device), x_tindicies.to(device), y_tindicies.to(device) ).to(device)
+#                             #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+#                             if y_t.shape[-1] != output_time_stamps:
+#                                 y_t = y_t.repeat(1,1,output_time_stamps)
+#                                 #p.print(f"x, x_t, y_t: {x.shape, x_t.shape, y_t.shape}")
+
+#                             out = model( x, x_t, y_t ).to(device)
+#                             # x_mask = torch.ones((1, 1, 1, input_time_stamps) ).to(device)
+#                             # y_mask = subsequent_mask(input_time_stamps).to(device)
+#                             # out = model( x.permute(0,2,1).to(device), y.permute(0,2,1).to(device),x_mask, y_mask, x_t[:, 0, :].to(device), y_t[:, 0, :].to(device), 100, 100 ).to(device)
+#                             # out = out.permute(0,2,1)
+
+#                         elif args.dataset_name == "E2":
+#                             out = model(torch.cat(( torch.cat((x, x_t, y_t, parameters), dim=-1 ), parameters), dim=-1)).to(device)
+
+
+#                 # if norm:
+#                 #     out = normalizer.inverse(out)
+
+
+#                 #predict_difference = True
+#                 # if args.predict_difference:
+                    
+#                 #     if args.dataset_name == "KS1":
+#                 #         out = x + (1/0.3)*out
+#                 #     else:
+#                 #         out = x + out
+
+
+#                 #test_print_time(args,b, time_stamps, t, x_t, y_t, x_tindicies, y_tindicies, input_time_stamps )
+
+
+#                 if t == 0:
+#                     pred = out.clone()
+#                 else:
+#                     pred = torch.cat((pred, out.clone()), -1)
+
+
+#                 #import pdb; pdb.set_trace()
+#                 if output_time_stamps > input_time_stamps:
+#                     x = y[...,-input_time_stamps:]
+#                     x_t = y_t[...,-input_time_stamps:]
+#                     x_tindicies = y_tindicies[...,-input_time_stamps:]
+
+#                 elif output_time_stamps == input_time_stamps:
+#                     x = y #torch.cat((x[..., input_time_stamps:], out[...,:input_time_stamps]), dim=-1)
+#                     x_t = y_t #torch.cat((x_t[..., input_time_stamps:], y_t[...,:input_time_stamps]), dim=-1)
+#                     x_tindicies = y_tindicies #torch.cat((x_tindicies[..., input_time_stamps:], y_tindicies[...,:input_time_stamps]), dim=-1)
+                
+#                 elif output_time_stamps < input_time_stamps:
+#                     x = torch.cat((x[..., -(input_time_stamps-output_time_stamps):], y), dim=-1)
+#                     x_t = torch.cat((x_t[..., -(input_time_stamps-output_time_stamps):], y_t), dim=-1)
+#                     x_tindicies = torch.cat((x_tindicies[..., -(input_time_stamps-output_time_stamps):], y_tindicies), dim=-1)
+                
+#                 # x = torch.cat((x[..., next_input_time_stamps:], y[...,:next_input_time_stamps]), dim=-1)
+#                 # x_t = torch.cat((x_t[..., next_input_time_stamps:], y_t[..., :next_input_time_stamps]), dim=-1)
+#                 # x_tindicies = torch.cat((x_tindicies[..., next_input_time_stamps:], y_tindicies[...,:next_input_time_stamps]), dim=-1)
+                
+
+                
+#             if b == 0:
+#                 train_prediction = pred.clone()
+#             else:
+#                 train_prediction = torch.cat((train_prediction,pred), dim=0)
+
+#     #test_l2_full = torch.mean((train_prediction-train_actual)**2, dim=[0,1] ).sum()
+#     #test_l2_full = torch.mean((train_prediction-train_actual)**2)
+#     #test_l2_full = torch.mean((train_prediction[...,:train_actual.shape[-1]] - train_actual)**2 )
+    
+#     test_l2_full = normalized_rmse(train_prediction[...,:train_actual.shape[-1]], train_actual)
+#     result = [test_l2_full, train_prediction, train_actual, xy_tindicies]
+#     return result
+
+
+
+
+
+
+
+
+
+
+def constant_one_step_test( args, model, loader, timestamps, dt_step, t_resolution, norm ):
+    model.eval()
+    #next_input_time_stamps = args.next_input_time_stamps
+    #t_resolution = args.t_resolution
+    #data_batchsize = args.batch_size_test
+    input_time_stamps = args.input_time_stamps
+    output_time_stamps = args.output_time_stamps
+    time_sampling_choice = int(1)
+    t_sample_space = torch.arange(t_resolution).to(device)
+    tsamples = len(t_sample_space[::dt_step])
+
+    #horizon = int( (tsamples-output_time_stamps)/output_time_stamps)
+    # if (tsamples-input_time_stamps)%output_time_stamps  == 0:
+    #     horizon = int((tsamples-input_time_stamps)/output_time_stamps)
+    # else:
+    #     horizon = int((tsamples-input_time_stamps)/output_time_stamps) + 1
+
+    #horizon = round( (tsamples-input_time_stamps)/output_time_stamps) + 1
+    initial_step = input_time_stamps
+    t_train = output_time_stamps + 1
+    criterion = torch.nn.MSELoss(reduction="none")
+    criterion_1 = torch.nn.MSELoss(reduction="mean")
+    #import pdb; pdb.set_trace()
+    #p.print("Testing...............")
+    # p.print(f"horizon_test: {horizon}")
+    val_l2_step = 0
+    val_l2_full = 0
+    val_l2_full_mean = 0
+
+    with torch.no_grad():
+
+        for b, (x, u_super, yyz, pde_param) in enumerate(loader):
+
+            loss = 0
+            xx = x[...,::dt_step][..., :initial_step].to(device)
+            yy = x[...,::dt_step][..., initial_step:t_train].to(device)
+
+            size_x = xx.shape[1]
+            batch_size = xx.shape[0]
+            grid = torch.tensor(np.linspace(0, 1, size_x), dtype=torch.float).reshape(1, size_x, 1).repeat([batch_size, 1, 1]).to(device)
+
+            pde_param = pde_param.to(device)
+
+            #yy = yy[..., 0:t_train, :]
+
+            # Prepare queried times t in [0..1]
+            t = torch.arange(initial_step, t_train, device=xx.device) * 1 / (t_train-1)
+            t = t.repeat((xx.size(0), 1))
+            # Prepare queried times t in [0..1]
+            #t = torch.arange(initial_step, yy.shape[-2], device=xx.device) * 1 / (t_train-1)
+            #t = t.repeat((xx.size(0), 1))
+
+            # Forward pass
+            #print("input: ", xx.shape, grid.shape, pde_param.shape, t.shape)
+            pred = model(xx, grid, pde_param, t)
+            #print("output: ", pred.shape)
+            #pred = torch.cat((xx, pred), dim=-2)
+
+            # Loss calculation
+            _batch = yy.size(0)
+            #print("pred and y: ", pred.squeeze(-1).shape, yy.shape)
+            loss = torch.sum(torch.mean(criterion(pred.squeeze(-1), yy), dim=(0, 1)))
+            #print("loss: ", loss)
+            #print("pred and y reshape: ", pred.reshape(_batch, -1).shape, yy.reshape(_batch, -1).shape)
+            l2_full = criterion_1(pred.reshape(_batch, -1), yy.reshape(_batch, -1)).item()
+            #print("l2_full: ", l2_full)
+
+            val_l2_step += loss.item()
+            val_l2_full += l2_full
+            val_l2_full_mean += l2_full * _batch
+
+        # Calculate mean of l2 full loss
+        val_l2_full_mean = val_l2_full_mean / len(loader)
+
+
+                # if norm:
+                #     out = normalizer.inverse(out)
+
+
+                #predict_difference = True
+                # if args.predict_difference:
+                    
+                #     if args.dataset_name == "KS1":
+                #         out = x + (1/0.3)*out
+                #     else:
+                #         out = x + out
+
+
+                #test_print_time(args,b, time_stamps, t, x_t, y_t, x_tindicies, y_tindicies, input_time_stamps )
+
+    xy_tindicies = 0
+    test_l2_full = normalized_rmse(pred.squeeze(-1), yy)
+    result = [test_l2_full, pred, yy, xy_tindicies]
     return result
 
 
@@ -651,7 +977,7 @@ def variable_rollout_test( args, model, loader, timestamps, dt_step, t_resolutio
 
                 if args.predict_difference:
                     if args.dataset_name == "KS1":
-                        out = x + 0.3*out
+                        out = x + (1/0.3)*out
                     else:
                         out = x + out
 
@@ -856,7 +1182,7 @@ def variable_one_to_one_test( args, model, loader, timestamps, dt_step, t_resolu
                 if args.predict_difference:
                     
                     if args.dataset_name == "KS1":
-                        out = x + 0.3*out
+                        out = x + (1/0.3)*out
                     else:
                         out = x + out
 

@@ -1,0 +1,1 @@
+/mnt/scratch/scoc/constant_autoregression/result/A1/FNO_/TF_AR_Prob/run_1

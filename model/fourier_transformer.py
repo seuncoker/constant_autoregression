@@ -556,6 +556,8 @@ class Embedding(nn.Module):
 
 
 
+
+
 ######################################################################
 ######################################################################
 ######################################################################
@@ -900,7 +902,7 @@ class EncoderLayer(nn.Module):
         super(EncoderLayer, self).__init__()
         self.self_attn = self_attn
         #self.feed_forward = feed_forward
-        self.spectral_conv = spectral_conv
+        self.spectral_conv = spectral_conv 
         self.sublayer = clones(SublayerConnection(dropout), 2)
 
     def forward(self, q, k, v, mask, connection_type):

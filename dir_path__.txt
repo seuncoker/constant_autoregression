@@ -1,0 +1,9 @@
+[2025-06-17 09:39:16] arg_nameeee: arguments
+[2025-06-17 09:39:16] filename: arguments
+[2025-06-17 09:39:16] Folder 'result' already exists!
+[2025-06-17 09:39:16] Folder 'A1' already exists!
+[2025-06-17 09:39:16] Folder 'FNO_' already exists!
+[2025-06-17 09:39:16] Folder 'TF_AR_Prob' already exists!
+[2025-06-17 09:39:16] Folder 'run_1' already exists!
+[2025-06-17 09:39:16] 
+
