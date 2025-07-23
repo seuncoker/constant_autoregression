@@ -9,7 +9,7 @@ output_dir = "/mnt/scratch/scoc/constant_autoregression/jobs_arugments"   # Repl
 
 result_dir = "/mnt/scratch/scoc/constant_autoregression/result"   # Replace with where you want to save modified JSON files (optional)
 
-dataset_names = ["A1",]
+dataset_names = ["B1",]
 
 #analysis_types = ["FNO", ]  # Your list of analysis types
 analysis_types = ["model_types", ]  # Your list of analysis types
@@ -17,8 +17,8 @@ analysis_types = ["model_types", ]  # Your list of analysis types
 model_types = ["FNO_standard_1D", ]
 
 subanalysis_types = [
-                    # "AR",
-                    # "AR_curriculum",
+                    "AR",
+                    "AR_curriculum",
                     # "TF",
                     # "TF_noise",
                     # "AR_TF_curriculum",
@@ -28,8 +28,8 @@ subanalysis_types = [
                     "STWL_curriculum"
                       ]  # Your list of subanalysis types
 training_loops = [
-                    # "fixed_autoregressive_rollout",
-                    # "autoregressive_rollout_curriculum",
+                    "fixed_autoregressive_rollout",
+                    "autoregressive_rollout_curriculum",
                     # "teacher_forcing",
                     # "teacher_forcing_with_noise",
                     # "autoregressive_rollout_to_teacher_forcing",
@@ -66,12 +66,13 @@ training_loops = [
 #experiments = ["run_1", ]  # Your list of experiments
 
 
-experiments = ["runnnn_1",]  # Your list of experiments
+#experiments = ["run_B_128_H_1_I_256_UNO_1D",]  # Your list of experiments
 
-seeds = [128, 256, 512, 1024, 2048]
+seeds = [128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128]
 
-models_list = ["U_NET_1D", "LSM_1D", "UNO_1D"]
+models_list = ["U_NET_1D"]
 
+experiments = ["run_B_128_H_32_I_8_" + i +"_small" for i in models_list]  # Your list of experiments
 
 # --- Main Logic ---
 if not os.path.exists(output_dir):
@@ -110,12 +111,12 @@ for dataset_name in dataset_names:
 
 
 #########################################################################################
-                arguments["model_type"] = models_list[analysis_types.index(analysis_type)]
-                arguments["batch_size_train"] = 16
+                arguments["model_type"] = models_list[experiments.index(experiment)]
+                arguments["batch_size_train"] = 128
 
-                arguments["training_protocols"][0]["epochs"] = 2
-                arguments["training_protocols"][0]["iter_per_epochs"] = 64
-                arguments["training_protocols"][0]["horizon"] = [4,]
+                arguments["training_protocols"][0]["epochs"] = 200
+                arguments["training_protocols"][0]["iter_per_epochs"] = 8
+                arguments["training_protocols"][0]["horizon"] = [32,]
 
 
                 arguments["training_protocols"][0]["sheduler_gamma"] = 0.98

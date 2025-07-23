@@ -82,7 +82,7 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
         
     elif args.model_type == "F_FNO_1D":
         if args.time_prediction.startswith("constant"):
-            if args.dataset_name.endswith("E1"):        
+            if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") :        
                 model_hyperparameters = {
                     "modes": args.fno_modes,
                     "width": args.fno_hidden_dim,
@@ -146,10 +146,10 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
     elif args.model_type ==  "LSM_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1") or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1"):
-                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "32"}
+                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": 16, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "32"}
                 #model_hyperparameters = {"in_dim": 1, "out_dim": 1, "d_model": 32, "num_token": 4, "num_basis": 24, "patch_size": "8", "padding": "14"}
             if args.dataset_name.endswith("KdV"):
-                model_hyperparameters = {"in_dim": args.input_time_stamps + 2, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
+                model_hyperparameters = {"in_dim": args.input_time_stamps + 2, "out_dim": args.output_time_stamps, "d_model": 16, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
         model = LSM_1D(
             model_hyperparameters["in_dim"],
             model_hyperparameters["out_dim"],
@@ -164,7 +164,11 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
     elif args.model_type ==  "U_NET_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1") or args.dataset_name.endswith("KdV"):
-                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
+                #model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
+                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": 16 , "padding": 32}
+            elif args.dataset_name.endswith("KdV"):
+                #model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps + 2, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
+                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps + 2, "time_future": args.output_time_stamps, "hidden_channels": 16, "padding": 32}
         model = U_NET_1D(
                 model_hyperparameters["n_input_scalar_components"],
                 model_hyperparameters["n_input_vector_components"],
@@ -181,6 +185,7 @@ def load_model(args, model_dict, device, multi_gpu=False, **kwargs):
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1") or args.dataset_name.endswith("KdV"):
                 model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history":   args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "activation": nn.GELU(), "norm": False, "ch_mults": (1,2,3,4), "is_attn":(False, False, False, False), "mid_attn": False, "n_blocks": 1, "use1x1": True, "padding": 8}
+
         model = modern_UNET_1D(
                 model_hyperparameters["n_input_scalar_components"],
                 model_hyperparameters["n_input_vector_components"],
@@ -346,7 +351,7 @@ def get_model(args, device, **kwargs):
 
     elif args.model_type == "F_FNO_1D":
         if args.time_prediction.startswith("constant"):
-            if args.dataset_name.endswith("E1"):        
+            if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") :        
                 model_hyperparameters = {
                     "modes": args.fno_modes,
                     "width": args.fno_hidden_dim,
@@ -410,10 +415,10 @@ def get_model(args, device, **kwargs):
     elif args.model_type ==  "LSM_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1") or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1"):
-                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "32"}
+                model_hyperparameters = {"in_dim": args.input_time_stamps, "out_dim": args.output_time_stamps, "d_model": 16, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "32"}
                 #model_hyperparameters = {"in_dim": 1, "out_dim": 1, "d_model": 32, "num_token": 4, "num_basis": 24, "patch_size": "8", "padding": "14"}
             if args.dataset_name.endswith("KdV"):
-                model_hyperparameters = {"in_dim": args.input_time_stamps + 2, "out_dim": args.output_time_stamps, "d_model": args.fno_hidden_dim, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
+                model_hyperparameters = {"in_dim": args.input_time_stamps + 2, "out_dim": args.output_time_stamps, "d_model": 16, "num_token": 4, "num_basis": 12, "patch_size": "4", "padding": "28"}
         model = LSM_1D(
             model_hyperparameters["in_dim"],
             model_hyperparameters["out_dim"],
@@ -429,8 +434,11 @@ def get_model(args, device, **kwargs):
     elif args.model_type ==  "U_NET_1D":
         if args.time_prediction.startswith("constant"):
             if args.dataset_name.endswith("E1")  or args.dataset_name.endswith("B1") or args.dataset_name.endswith("A1") or args.dataset_name.endswith("KdV"):
-                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
-        
+                #model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
+                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps, "time_future": args.output_time_stamps, "hidden_channels": 16 , "padding": 32}
+            elif args.dataset_name.endswith("KdV"):
+                #model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps + 2, "time_future": args.output_time_stamps, "hidden_channels": args.fno_hidden_dim, "padding": 32}
+                model_hyperparameters = {"n_input_scalar_components": 1, "n_input_vector_components": 0, "n_output_scalar_components": 1, "n_output_vector_components": 0, "time_history": args.input_time_stamps + 2, "time_future": args.output_time_stamps, "hidden_channels": 16, "padding": 32}
         model = U_NET_1D(
                 model_hyperparameters["n_input_scalar_components"],
                 model_hyperparameters["n_input_vector_components"],

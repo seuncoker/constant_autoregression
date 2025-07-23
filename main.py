@@ -351,7 +351,7 @@ if mode.startswith("train"):
         if args.dynamic_loss_weight_per_fpass[proto]:
             ## E1 B1
 
-            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] =   0.70 #6.49*(max_horizon**(-0.743)) #0.6 # 0.16 # 0.30 #0.45 #5.0056*(max_horizon**(-0.723))
+            args.dynamic_loss_weight_per_fpass_constant_parameter[proto] =  0.5 #6.49*(max_horizon**(-0.743)) #0.6 # 0.16 # 0.30 #0.45 #5.0056*(max_horizon**(-0.723))
 
             # if max_horizon == 9 or max_horizon == 10 or max_horizon == 8:   #for output stamps = 25
             #     args.dynamic_loss_weight_per_fpass_constant_parameter[proto] = 0.95 

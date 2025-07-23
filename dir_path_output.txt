@@ -9488,3 +9488,839 @@ dataset_name:  A1
 [2025-07-10 12:02:03] Folder 'runnnn_1' already exists!
 [2025-07-10 12:02:03] 
 
+[2025-07-11 15:14:25] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_UNO_1D
+[2025-07-11 15:14:25] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_UNO_1D
+[2025-07-11 15:14:25] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-11 15:14:25] Folder 'B1' already exists!
+[2025-07-11 15:14:25] Folder 'model_types' already exists!
+[2025-07-11 15:14:25] Folder 'AR_curriculum' already exists!
+[2025-07-11 15:14:25] Folder 'run_B_128_H_1_I_256_UNO_1D' created successfully!
+[2025-07-11 15:14:25] 
+
+[2025-07-11 15:14:25] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_UNO_1D
+[2025-07-11 15:14:25] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_UNO_1D
+[2025-07-11 15:14:25] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-11 15:14:25] Folder 'B1' already exists!
+[2025-07-11 15:14:25] Folder 'model_types' already exists!
+[2025-07-11 15:14:25] Folder 'AR' already exists!
+[2025-07-11 15:14:25] Folder 'run_B_128_H_1_I_256_UNO_1D' created successfully!
+[2025-07-11 15:14:25] 
+
+[2025-07-12 19:19:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-12 19:19:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-12 19:19:57] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-12 19:19:57] Folder 'B1' already exists!
+[2025-07-12 19:19:57] Folder 'model_types' already exists!
+[2025-07-12 19:19:57] Folder 'STWL_curriculum' already exists!
+[2025-07-12 19:19:57] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-12 19:19:57] 
+
+[2025-07-12 19:20:10] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_LSM_1D
+[2025-07-12 19:20:10] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_LSM_1D
+[2025-07-12 19:20:10] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-12 19:20:10] Folder 'B1' already exists!
+[2025-07-12 19:20:10] Folder 'model_types' already exists!
+[2025-07-12 19:20:10] Folder 'STWL_curriculum' already exists!
+[2025-07-12 19:20:10] Folder 'run_B_128_H_1_I_256_LSM_1D' created successfully!
+[2025-07-12 19:20:10] 
+
+[2025-07-14 09:45:44] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.7_LSM_1D
+[2025-07-14 09:45:44] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.7_LSM_1D
+[2025-07-14 09:45:44] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-14 09:45:44] Folder 'B1' already exists!
+[2025-07-14 09:45:44] Folder 'model_types' already exists!
+[2025-07-14 09:45:44] Folder 'STWL_curriculum' already exists!
+[2025-07-14 09:45:44] Folder 'run_B_128_H_1_I_256_w_0.7_LSM_1D' created successfully!
+[2025-07-14 09:45:44] 
+
+[2025-07-14 09:45:44] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.7_U_NET_1D
+[2025-07-14 09:45:44] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.7_U_NET_1D
+[2025-07-14 09:45:44] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-14 09:45:44] Folder 'B1' already exists!
+[2025-07-14 09:45:44] Folder 'model_types' already exists!
+[2025-07-14 09:45:44] Folder 'STWL_curriculum' already exists!
+[2025-07-14 09:45:44] Folder 'run_B_128_H_1_I_256_w_0.7_U_NET_1D' created successfully!
+[2025-07-14 09:45:44] 
+
+[2025-07-14 09:46:19] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.8_LSM_1D
+[2025-07-14 09:46:19] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.8_LSM_1D
+[2025-07-14 09:46:19] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-14 09:46:19] Folder 'B1' already exists!
+[2025-07-14 09:46:19] Folder 'model_types' already exists!
+[2025-07-14 09:46:19] Folder 'STWL_curriculum' already exists!
+[2025-07-14 09:46:19] Folder 'run_B_128_H_1_I_256_w_0.8_LSM_1D' created successfully!
+[2025-07-14 09:46:19] 
+
+[2025-07-14 09:46:19] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.8_U_NET_1D
+[2025-07-14 09:46:19] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.8_U_NET_1D
+[2025-07-14 09:46:19] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-14 09:46:19] Folder 'B1' already exists!
+[2025-07-14 09:46:19] Folder 'model_types' already exists!
+[2025-07-14 09:46:19] Folder 'STWL_curriculum' already exists!
+[2025-07-14 09:46:19] Folder 'run_B_128_H_1_I_256_w_0.8_U_NET_1D' created successfully!
+[2025-07-14 09:46:19] 
+
+[2025-07-14 15:19:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.9_LSM_1D
+[2025-07-14 15:19:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.9_LSM_1D
+[2025-07-14 15:19:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-14 15:19:49] Folder 'B1' already exists!
+[2025-07-14 15:19:49] Folder 'model_types' already exists!
+[2025-07-14 15:19:49] Folder 'STWL_curriculum' already exists!
+[2025-07-14 15:19:49] Folder 'run_B_128_H_1_I_256_w_0.9_LSM_1D' created successfully!
+[2025-07-14 15:19:49] 
+
+[2025-07-14 15:19:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.9_U_NET_1D
+[2025-07-14 15:19:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_w_0.9_U_NET_1D
+[2025-07-14 15:19:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-14 15:19:49] Folder 'B1' already exists!
+[2025-07-14 15:19:49] Folder 'model_types' already exists!
+[2025-07-14 15:19:49] Folder 'STWL_curriculum' already exists!
+[2025-07-14 15:19:49] Folder 'run_B_128_H_1_I_256_w_0.9_U_NET_1D' created successfully!
+[2025-07-14 15:19:49] 
+
+[2025-07-15 09:41:08] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-15 09:41:08] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-15 09:41:08] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 09:41:08] Folder 'B1' already exists!
+[2025-07-15 09:41:08] Folder 'model_types' already exists!
+[2025-07-15 09:41:08] Folder 'AR_curriculum' already exists!
+[2025-07-15 09:41:08] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-15 09:41:08] 
+
+[2025-07-15 09:41:08] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_LSM_1D
+[2025-07-15 09:41:09] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_LSM_1D
+[2025-07-15 09:41:09] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 09:41:09] Folder 'B1' already exists!
+[2025-07-15 09:41:09] Folder 'model_types' already exists!
+[2025-07-15 09:41:09] Folder 'AR_curriculum' already exists!
+[2025-07-15 09:41:09] Folder 'run_B_128_H_1_I_256_LSM_1D' created successfully!
+[2025-07-15 09:41:09] 
+
+[2025-07-15 09:41:09] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_LSM_1D
+[2025-07-15 09:41:09] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_LSM_1D
+[2025-07-15 09:41:09] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 09:41:09] Folder 'B1' already exists!
+[2025-07-15 09:41:09] Folder 'model_types' already exists!
+[2025-07-15 09:41:09] Folder 'AR' already exists!
+[2025-07-15 09:41:09] Folder 'run_B_128_H_1_I_256_LSM_1D' created successfully!
+[2025-07-15 09:41:09] 
+
+[2025-07-15 09:41:09] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-15 09:41:09] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-15 09:41:09] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 09:41:09] Folder 'B1' already exists!
+[2025-07-15 09:41:09] Folder 'model_types' already exists!
+[2025-07-15 09:41:09] Folder 'AR' already exists!
+[2025-07-15 09:41:09] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-15 09:41:09] 
+
+[2025-07-15 15:26:31] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_F_FNO_1D
+[2025-07-15 15:26:31] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_1_I_256_F_FNO_1D
+[2025-07-15 15:26:31] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 15:26:31] Folder 'B1' already exists!
+[2025-07-15 15:26:31] Folder 'model_types' already exists!
+[2025-07-15 15:26:31] Folder 'AR' already exists!
+[2025-07-15 15:26:31] Folder 'run_B_128_H_1_I_256_F_FNO_1D' created successfully!
+[2025-07-15 15:26:31] 
+
+[2025-07-15 16:00:54] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_F_FNO_1D
+[2025-07-15 16:00:54] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_1_I_256_F_FNO_1D
+[2025-07-15 16:00:54] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 16:00:54] Folder 'B1' already exists!
+[2025-07-15 16:00:54] Folder 'model_types' already exists!
+[2025-07-15 16:00:54] Folder 'AR_curriculum' already exists!
+[2025-07-15 16:00:54] Folder 'run_B_128_H_1_I_256_F_FNO_1D' created successfully!
+[2025-07-15 16:00:54] 
+
+[2025-07-15 16:01:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_F_FNO_1D
+[2025-07-15 16:01:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_1_I_256_F_FNO_1D
+[2025-07-15 16:01:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-15 16:01:49] Folder 'B1' already exists!
+[2025-07-15 16:01:49] Folder 'model_types' already exists!
+[2025-07-15 16:01:49] Folder 'STWL_curriculum' already exists!
+[2025-07-15 16:01:49] Folder 'run_B_128_H_1_I_256_F_FNO_1D' created successfully!
+[2025-07-15 16:01:49] 
+
+[2025-07-16 11:06:17] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:06:17] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:06:17] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:06:17] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:06:17] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:06:17] Folder 'KdV' already exists!
+[2025-07-16 11:06:17] Folder 'model_types' created successfully!
+[2025-07-16 11:06:17] Folder 'STWL_curriculum' created successfully!
+[2025-07-16 11:06:17] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-16 11:06:17] 
+
+[2025-07-16 11:06:17] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:06:17] Folder 'KdV' already exists!
+[2025-07-16 11:06:17] Folder 'model_types' already exists!
+[2025-07-16 11:06:17] Folder 'AR_curriculum' created successfully!
+[2025-07-16 11:06:17] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-16 11:06:17] 
+
+[2025-07-16 11:06:17] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:06:17] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:06:17] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:06:17] Folder 'KdV' already exists!
+[2025-07-16 11:06:17] Folder 'model_types' already exists!
+[2025-07-16 11:06:17] Folder 'AR' created successfully!
+[2025-07-16 11:06:17] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-16 11:06:17] 
+
+[2025-07-16 11:17:28] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:17:28] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:17:28] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 11:17:28] Folder 'B1' already exists!
+[2025-07-16 11:17:28] Folder 'model_types_tests' created successfully!
+[2025-07-16 11:17:28] Folder 'AR' created successfully!
+[2025-07-16 11:17:28] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-16 11:17:28] 
+
+[2025-07-16 11:17:28] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:17:28] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:17:28] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:17:28] Folder 'KdV' already exists!
+[2025-07-16 11:17:28] Folder 'model_types_tests' created successfully!
+[2025-07-16 11:17:28] Folder 'AR' created successfully!
+[2025-07-16 11:17:28] Folder 'run_B_128_H_1_I_256_U_NET_1D' created successfully!
+[2025-07-16 11:17:28] 
+
+[2025-07-16 11:18:38] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:18:38] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:18:38] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 11:18:38] Folder 'B1' already exists!
+[2025-07-16 11:18:38] Folder 'model_types_tests' already exists!
+[2025-07-16 11:18:38] Folder 'AR' already exists!
+[2025-07-16 11:18:38] Folder 'run_B_128_H_1_I_256_U_NET_1D' already exists!
+[2025-07-16 11:18:38] 
+
+[2025-07-16 11:18:38] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:18:38] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_tests_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:18:38] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:18:38] Folder 'KdV' already exists!
+[2025-07-16 11:18:38] Folder 'model_types_tests' already exists!
+[2025-07-16 11:18:38] Folder 'AR' already exists!
+[2025-07-16 11:18:38] Folder 'run_B_128_H_1_I_256_U_NET_1D' already exists!
+[2025-07-16 11:18:38] 
+
+[2025-07-16 11:28:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:28:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:28:57] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:28:57] Folder 'KdV' already exists!
+[2025-07-16 11:28:57] Folder 'model_types' already exists!
+[2025-07-16 11:28:57] Folder 'STWL_curriculum' already exists!
+[2025-07-16 11:28:57] Folder 'run_B_128_H_1_I_256_U_NET_1D' already exists!
+[2025-07-16 11:28:57] 
+
+[2025-07-16 11:28:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:28:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:28:57] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:28:57] Folder 'KdV' already exists!
+[2025-07-16 11:28:57] Folder 'model_types' already exists!
+[2025-07-16 11:28:57] Folder 'AR' already exists!
+[2025-07-16 11:28:57] Folder 'run_B_128_H_1_I_256_U_NET_1D' already exists!
+[2025-07-16 11:28:57] 
+
+[2025-07-16 11:28:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:28:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 11:28:57] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 11:28:57] Folder 'KdV' already exists!
+[2025-07-16 11:28:57] Folder 'model_types' already exists!
+[2025-07-16 11:28:57] Folder 'AR_curriculum' already exists!
+[2025-07-16 11:28:57] Folder 'run_B_128_H_1_I_256_U_NET_1D' already exists!
+[2025-07-16 11:28:57] 
+
+[2025-07-16 14:57:21] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 14:57:21] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_U_NET_1D
+[2025-07-16 14:57:21] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 14:57:21] Folder 'KdV' already exists!
+[2025-07-16 14:57:21] Folder 'model_types' already exists!
+[2025-07-16 14:57:21] Folder 'STWL_curriculum' already exists!
+[2025-07-16 14:57:21] Folder 'run_B_128_H_1_I_256_U_NET_1D' already exists!
+[2025-07-16 14:57:21] 
+
+[2025-07-16 15:50:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:50:57] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:50:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:50:57] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:50:57] Folder 'result' already exists!
+[2025-07-16 15:50:57] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 15:50:57] Folder 'KdV' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 15:50:57] Folder 'KdV' already exists!
+[2025-07-16 15:50:57] Folder 'model_types' already exists!
+[2025-07-16 15:50:57] Folder 'model_types' already exists!
+[2025-07-16 15:50:57] Folder 'AR' already exists!
+[2025-07-16 15:50:57] Folder 'AR_curriculum' already exists!
+[2025-07-16 15:50:57] Folder 'run_B_128_H_32_I_8_U_NET_1D' created successfully!
+[2025-07-16 15:50:57] Folder 'run_B_128_H_32_I_8_U_NET_1D' created successfully!
+[2025-07-16 15:50:57] 
+
+[2025-07-16 15:50:57] 
+
+[2025-07-16 15:50:59] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:50:59] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:50:59] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 15:50:59] Folder 'KdV' already exists!
+[2025-07-16 15:50:59] Folder 'model_types' already exists!
+[2025-07-16 15:50:59] Folder 'STWL_curriculum' already exists!
+[2025-07-16 15:50:59] Folder 'run_B_128_H_32_I_8_U_NET_1D' created successfully!
+[2025-07-16 15:50:59] 
+
+[2025-07-16 15:58:15] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_UNO_1D
+[2025-07-16 15:58:15] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_UNO_1D
+[2025-07-16 15:58:15] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 15:58:15] Folder 'B1' already exists!
+[2025-07-16 15:58:15] Folder 'model_types' already exists!
+[2025-07-16 15:58:15] Folder 'AR' already exists!
+[2025-07-16 15:58:15] Folder 'run_B_128_H_32_I_8_UNO_1D' created successfully!
+[2025-07-16 15:58:15] 
+
+[2025-07-16 15:58:15] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:58:15] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 15:58:15] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 15:58:15] Folder 'B1' already exists!
+[2025-07-16 15:58:15] Folder 'model_types' already exists!
+[2025-07-16 15:58:15] Folder 'AR' already exists!
+[2025-07-16 15:58:15] Folder 'run_B_128_H_32_I_8_U_NET_1D' created successfully!
+[2025-07-16 15:58:15] 
+
+[2025-07-16 16:00:18] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_LSM_1D
+[2025-07-16 16:00:18] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_LSM_1D
+[2025-07-16 16:00:18] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:00:18] Folder 'B1' already exists!
+[2025-07-16 16:00:18] Folder 'model_types' already exists!
+[2025-07-16 16:00:18] Folder 'AR' already exists!
+[2025-07-16 16:00:18] Folder 'run_B_128_H_32_I_8_LSM_1D' created successfully!
+[2025-07-16 16:00:18] 
+
+[2025-07-16 16:04:26] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 16:04:26] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 16:04:26] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:04:26] Folder 'B1' already exists!
+[2025-07-16 16:04:26] Folder 'model_types' already exists!
+[2025-07-16 16:04:26] Folder 'AR_curriculum' already exists!
+[2025-07-16 16:04:26] Folder 'run_B_128_H_32_I_8_U_NET_1D' created successfully!
+[2025-07-16 16:04:26] 
+
+[2025-07-16 16:06:27] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-16 16:06:27] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-16 16:06:27] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:06:27] Folder 'B1' already exists!
+[2025-07-16 16:06:27] Folder 'model_types' already exists!
+[2025-07-16 16:06:27] Folder 'AR_curriculum' already exists!
+[2025-07-16 16:06:27] Folder 'run_B_128_H_32_I_8_UNO_1D' created successfully!
+[2025-07-16 16:06:27] 
+
+[2025-07-16 16:28:50] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-16 16:28:50] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-16 16:28:50] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:28:50] Folder 'B1' already exists!
+[2025-07-16 16:28:50] Folder 'model_types' already exists!
+[2025-07-16 16:28:50] Folder 'AR_curriculum' already exists!
+[2025-07-16 16:28:50] Folder 'run_B_128_H_32_I_8_LSM_1D' created successfully!
+[2025-07-16 16:28:50] 
+
+[2025-07-16 16:29:22] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 16:29:22] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_U_NET_1D
+[2025-07-16 16:29:22] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:29:22] Folder 'B1' already exists!
+[2025-07-16 16:29:22] Folder 'model_types' already exists!
+[2025-07-16 16:29:22] Folder 'STWL_curriculum' already exists!
+[2025-07-16 16:29:22] Folder 'run_B_128_H_32_I_8_U_NET_1D' created successfully!
+[2025-07-16 16:29:22] 
+
+[2025-07-16 16:30:55] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-16 16:30:55] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-16 16:30:55] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:30:55] Folder 'B1' already exists!
+[2025-07-16 16:30:55] Folder 'model_types' already exists!
+[2025-07-16 16:30:55] Folder 'STWL_curriculum' already exists!
+[2025-07-16 16:30:55] Folder 'run_B_128_H_32_I_8_UNO_1D' created successfully!
+[2025-07-16 16:30:55] 
+
+[2025-07-16 16:39:47] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-16 16:39:47] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-16 16:39:47] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-16 16:39:47] Folder 'B1' already exists!
+[2025-07-16 16:39:47] Folder 'model_types' already exists!
+[2025-07-16 16:39:47] Folder 'STWL_curriculum' already exists!
+[2025-07-16 16:39:47] Folder 'run_B_128_H_32_I_8_LSM_1D' created successfully!
+[2025-07-16 16:39:47] 
+
+[2025-07-16 21:33:20] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_U_NET_1D
+[2025-07-16 21:33:20] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_U_NET_1D
+[2025-07-16 21:33:20] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-16 21:33:20] Folder 'KdV' already exists!
+[2025-07-16 21:33:20] Folder 'model_types' already exists!
+[2025-07-16 21:33:20] Folder 'STWL_curriculum' already exists!
+[2025-07-16 21:33:20] Folder 'run_B_128_H_32_I_8_rr_U_NET_1D' created successfully!
+[2025-07-16 21:33:20] 
+
+[2025-07-17 10:02:52] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_FNO_standard_1D
+[2025-07-17 10:02:52] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_LSM_1D
+[2025-07-17 10:02:52] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_FNO_standard_1D
+[2025-07-17 10:02:52] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_LSM_1D
+[2025-07-17 10:02:52] Folder 'result' already exists!
+[2025-07-17 10:02:52] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:52] Folder 'KdV' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:52] Folder 'KdV' already exists!
+[2025-07-17 10:02:52] Folder 'model_types' already exists!
+[2025-07-17 10:02:52] Folder 'model_types' already exists!
+[2025-07-17 10:02:52] Folder 'AR' already exists!
+[2025-07-17 10:02:52] Folder 'AR_curriculum' already exists!
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_FNO_standard_1D' created successfully!
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_LSM_1D' created successfully!
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:52] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-17 10:02:53] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-17 10:02:52] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-17 10:02:53] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-17 10:02:52] Folder 'result' already exists!
+[2025-07-17 10:02:53] Folder 'result' already exists!
+[2025-07-17 10:02:53] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_UNO_1D
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:52] Folder 'KdV' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:53] Folder 'KdV' already exists!
+[2025-07-17 10:02:53] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_UNO_1D
+[2025-07-17 10:02:52] Folder 'model_types' already exists!
+[2025-07-17 10:02:53] Folder 'model_types' already exists!
+[2025-07-17 10:02:53] Folder 'result' already exists!
+[2025-07-17 10:02:52] Folder 'STWL_curriculum' already exists!
+[2025-07-17 10:02:53] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_FNO_standard_1D
+[2025-07-17 10:02:53] Folder 'STWL_curriculum' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:53] Folder 'KdV' already exists!
+[2025-07-17 10:02:52] Folder 'run_B_128_H_32_I_8_UNO_1D' created successfully!
+[2025-07-17 10:02:53] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_FNO_standard_1D
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_LSM_1D' created successfully!
+[2025-07-17 10:02:53] Folder 'model_types' already exists!
+[2025-07-17 10:02:52] 
+
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:53] Folder 'result' already exists!
+[2025-07-17 10:02:53] Folder 'AR' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:53] Folder 'KdV' already exists!
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_UNO_1D' created successfully!
+[2025-07-17 10:02:53] Folder 'model_types' already exists!
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:53] Folder 'STWL_curriculum' already exists!
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_FNO_standard_1D' created successfully!
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:53] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_FNO_standard_1D
+[2025-07-17 10:02:53] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_FNO_standard_1D
+[2025-07-17 10:02:53] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:53] Folder 'KdV' already exists!
+[2025-07-17 10:02:53] Folder 'model_types' already exists!
+[2025-07-17 10:02:53] Folder 'AR' already exists!
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_FNO_standard_1D' created successfully!
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:53] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-17 10:02:53] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_LSM_1D
+[2025-07-17 10:02:53] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:53] Folder 'KdV' already exists!
+[2025-07-17 10:02:53] Folder 'model_types' already exists!
+[2025-07-17 10:02:53] Folder 'AR_curriculum' already exists!
+[2025-07-17 10:02:53] Folder 'run_B_128_H_32_I_8_LSM_1D' created successfully!
+[2025-07-17 10:02:53] 
+
+[2025-07-17 10:02:55] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-17 10:02:55] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_UNO_1D
+[2025-07-17 10:02:55] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:02:55] Folder 'KdV' already exists!
+[2025-07-17 10:02:55] Folder 'model_types' already exists!
+[2025-07-17 10:02:55] Folder 'AR_curriculum' already exists!
+[2025-07-17 10:02:55] Folder 'run_B_128_H_32_I_8_UNO_1D' created successfully!
+[2025-07-17 10:02:55] 
+
+[2025-07-17 10:41:53] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_rr_U_NET_1D
+[2025-07-17 10:41:53] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_1_I_256_rr_U_NET_1D
+[2025-07-17 10:41:53] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 10:41:53] Folder 'KdV' already exists!
+[2025-07-17 10:41:53] Folder 'model_types' already exists!
+[2025-07-17 10:41:53] Folder 'STWL_curriculum' already exists!
+[2025-07-17 10:41:53] Folder 'run_B_128_H_1_I_256_rr_U_NET_1D' created successfully!
+[2025-07-17 10:41:53] 
+
+[2025-07-17 16:36:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:36:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:36:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 16:36:49] Folder 'KdV' already exists!
+[2025-07-17 16:36:49] Folder 'model_types' already exists!
+[2025-07-17 16:36:49] Folder 'AR' already exists!
+[2025-07-17 16:36:49] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' created successfully!
+[2025-07-17 16:36:49] 
+
+[2025-07-17 16:36:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:36:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:36:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 16:36:49] Folder 'KdV' already exists!
+[2025-07-17 16:36:49] Folder 'model_types' already exists!
+[2025-07-17 16:36:49] Folder 'AR' already exists!
+[2025-07-17 16:36:49] Folder 'run_B_128_H_32_I_8_rr_UNO_1D' created successfully!
+[2025-07-17 16:36:49] 
+
+[2025-07-17 16:36:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:36:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:36:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 16:36:49] Folder 'KdV' already exists!
+[2025-07-17 16:36:49] Folder 'model_types' already exists!
+[2025-07-17 16:36:49] Folder 'STWL_curriculum' already exists!
+[2025-07-17 16:36:49] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' created successfully!
+[2025-07-17 16:36:49] 
+
+[2025-07-17 16:36:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:36:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:36:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 16:36:49] Folder 'KdV' already exists!
+[2025-07-17 16:36:49] Folder 'model_types' already exists!
+[2025-07-17 16:36:49] Folder 'AR_curriculum' already exists!
+[2025-07-17 16:36:49] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' created successfully!
+[2025-07-17 16:36:49] 
+
+[2025-07-17 16:36:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:36:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:36:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 16:36:49] Folder 'KdV' already exists!
+[2025-07-17 16:36:49] Folder 'model_types' already exists!
+[2025-07-17 16:36:49] Folder 'STWL_curriculum' already exists!
+[2025-07-17 16:36:49] Folder 'run_B_128_H_32_I_8_rr_UNO_1D' created successfully!
+[2025-07-17 16:36:49] 
+
+[2025-07-17 16:36:49] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:36:49] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_KdV_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:36:49] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  KdV
+[2025-07-17 16:36:49] Folder 'KdV' already exists!
+[2025-07-17 16:36:49] Folder 'model_types' already exists!
+[2025-07-17 16:36:49] Folder 'AR_curriculum' already exists!
+[2025-07-17 16:36:49] Folder 'run_B_128_H_32_I_8_rr_UNO_1D' created successfully!
+[2025-07-17 16:36:49] 
+
+[2025-07-17 16:51:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:51:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:51:01] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-17 16:51:01] Folder 'B1' already exists!
+[2025-07-17 16:51:01] Folder 'model_types' already exists!
+[2025-07-17 16:51:01] Folder 'STWL_curriculum' already exists!
+[2025-07-17 16:51:01] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' created successfully!
+[2025-07-17 16:51:01] 
+
+[2025-07-17 16:51:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:51:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:51:01] Folder 'result' already exists!
+[2025-07-17 16:51:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-17 16:51:01] Folder 'B1' already exists!
+[2025-07-17 16:51:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:51:01] Folder 'model_types' already exists!
+[2025-07-17 16:51:01] Folder 'result' already exists!
+[2025-07-17 16:51:01] Folder 'AR' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-17 16:51:01] Folder 'B1' already exists!
+[2025-07-17 16:51:01] Folder 'run_B_128_H_32_I_8_rr_UNO_1D' created successfully!
+[2025-07-17 16:51:01] Folder 'model_types' already exists!
+[2025-07-17 16:51:01] 
+
+[2025-07-17 16:51:01] Folder 'AR' already exists!
+[2025-07-17 16:51:01] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' created successfully!
+[2025-07-17 16:51:01] 
+
+[2025-07-17 16:51:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:51:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:51:01] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-17 16:51:01] Folder 'B1' already exists!
+[2025-07-17 16:51:01] Folder 'model_types' already exists!
+[2025-07-17 16:51:01] Folder 'AR_curriculum' already exists!
+[2025-07-17 16:51:01] Folder 'run_B_128_H_32_I_8_rr_UNO_1D' created successfully!
+[2025-07-17 16:51:01] 
+
+[2025-07-17 16:51:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:51:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-17 16:51:01] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-17 16:51:01] Folder 'B1' already exists!
+[2025-07-17 16:51:01] Folder 'model_types' already exists!
+[2025-07-17 16:51:01] Folder 'AR_curriculum' already exists!
+[2025-07-17 16:51:01] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' created successfully!
+[2025-07-17 16:51:01] 
+
+[2025-07-17 16:51:01] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:51:01] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_UNO_1D
+[2025-07-17 16:51:01] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-17 16:51:01] Folder 'B1' already exists!
+[2025-07-17 16:51:01] Folder 'model_types' already exists!
+[2025-07-17 16:51:01] Folder 'STWL_curriculum' already exists!
+[2025-07-17 16:51:01] Folder 'run_B_128_H_32_I_8_rr_UNO_1D' created successfully!
+[2025-07-17 16:51:01] 
+
+[2025-07-18 14:03:38] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:03:38] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:03:38] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-18 14:03:38] Folder 'B1' already exists!
+[2025-07-18 14:03:38] Folder 'model_types' already exists!
+[2025-07-18 14:03:38] Folder 'AR' already exists!
+[2025-07-18 14:03:38] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-18 14:03:38] 
+
+[2025-07-18 14:03:40] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:03:40] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:03:40] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-18 14:03:40] Folder 'B1' already exists!
+[2025-07-18 14:03:40] Folder 'model_types' already exists!
+[2025-07-18 14:03:40] Folder 'AR_curriculum' already exists!
+[2025-07-18 14:03:40] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-18 14:03:40] 
+
+[2025-07-18 14:03:41] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:03:41] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:03:41] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-18 14:03:41] Folder 'B1' already exists!
+[2025-07-18 14:03:41] Folder 'model_types' already exists!
+[2025-07-18 14:03:41] Folder 'STWL_curriculum' already exists!
+[2025-07-18 14:03:41] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-18 14:03:41] 
+
+[2025-07-18 14:08:42] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:08:42] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:08:42] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-18 14:08:42] Folder 'B1' already exists!
+[2025-07-18 14:08:42] Folder 'model_types' already exists!
+[2025-07-18 14:08:42] Folder 'STWL_curriculum' already exists!
+[2025-07-18 14:08:42] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-18 14:08:42] 
+
+[2025-07-18 14:08:43] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:08:43] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:08:43] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-18 14:08:43] Folder 'B1' already exists!
+[2025-07-18 14:08:43] Folder 'model_types' already exists!
+[2025-07-18 14:08:43] Folder 'AR_curriculum' already exists!
+[2025-07-18 14:08:43] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-18 14:08:43] 
+
+[2025-07-18 14:08:43] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:08:43] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-18 14:08:43] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-18 14:08:43] Folder 'B1' already exists!
+[2025-07-18 14:08:43] Folder 'model_types' already exists!
+[2025-07-18 14:08:43] Folder 'AR' already exists!
+[2025-07-18 14:08:43] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-18 14:08:43] 
+
+[2025-07-22 09:18:39] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-22 09:18:39] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-22 09:18:39] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-22 09:18:39] Folder 'B1' already exists!
+[2025-07-22 09:18:39] Folder 'model_types' already exists!
+[2025-07-22 09:18:39] Folder 'STWL_curriculum' already exists!
+[2025-07-22 09:18:39] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-22 09:18:39] 
+
+[2025-07-22 09:18:41] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-22 09:18:41] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-22 09:18:41] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-22 09:18:41] Folder 'B1' already exists!
+[2025-07-22 09:18:41] Folder 'model_types' already exists!
+[2025-07-22 09:18:41] Folder 'AR' already exists!
+[2025-07-22 09:18:41] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-22 09:18:41] 
+
+[2025-07-22 09:18:41] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-22 09:18:41] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_rr_LSM_1D
+[2025-07-22 09:18:41] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-22 09:18:41] Folder 'B1' already exists!
+[2025-07-22 09:18:41] Folder 'model_types' already exists!
+[2025-07-22 09:18:41] Folder 'AR_curriculum' already exists!
+[2025-07-22 09:18:41] Folder 'run_B_128_H_32_I_8_rr_LSM_1D' already exists!
+[2025-07-22 09:18:41] 
+
+[2025-07-23 10:25:56] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rrr_LSM_1D
+[2025-07-23 10:25:56] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_rrr_LSM_1D
+[2025-07-23 10:25:56] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-23 10:25:56] Folder 'B1' already exists!
+[2025-07-23 10:25:56] Folder 'model_types' already exists!
+[2025-07-23 10:25:56] Folder 'STWL_curriculum' already exists!
+[2025-07-23 10:25:56] Folder 'run_B_128_H_32_I_8_rrr_LSM_1D' created successfully!
+[2025-07-23 10:25:56] 
+
+[2025-07-23 10:38:28] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_U_NET_1D_small
+[2025-07-23 10:38:28] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_STWL_curriculum_run_B_128_H_32_I_8_U_NET_1D_small
+[2025-07-23 10:38:28] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-23 10:38:28] Folder 'B1' already exists!
+[2025-07-23 10:38:28] Folder 'model_types' already exists!
+[2025-07-23 10:38:28] Folder 'STWL_curriculum' already exists!
+[2025-07-23 10:38:28] Folder 'run_B_128_H_32_I_8_U_NET_1D_small' created successfully!
+[2025-07-23 10:38:28] 
+
+[2025-07-23 10:38:28] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_U_NET_1D_small
+[2025-07-23 10:38:29] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_curriculum_run_B_128_H_32_I_8_U_NET_1D_small
+[2025-07-23 10:38:29] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-23 10:38:29] Folder 'B1' already exists!
+[2025-07-23 10:38:29] Folder 'model_types' already exists!
+[2025-07-23 10:38:29] Folder 'AR_curriculum' already exists!
+[2025-07-23 10:38:29] Folder 'run_B_128_H_32_I_8_U_NET_1D_small' created successfully!
+[2025-07-23 10:38:29] 
+
+[2025-07-23 10:38:30] arg_nameeee: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_U_NET_1D_small
+[2025-07-23 10:38:30] filename: /mnt/scratch/scoc/constant_autoregression/jobs_arugments/argument_B1_model_types_AR_run_B_128_H_32_I_8_U_NET_1D_small
+[2025-07-23 10:38:30] Folder 'result' already exists!
+folder_path:  /mnt/scratch/scoc/constant_autoregression/result
+dataset_name:  B1
+[2025-07-23 10:38:30] Folder 'B1' already exists!
+[2025-07-23 10:38:30] Folder 'model_types' already exists!
+[2025-07-23 10:38:30] Folder 'AR' already exists!
+[2025-07-23 10:38:30] Folder 'run_B_128_H_32_I_8_U_NET_1D_small' created successfully!
+[2025-07-23 10:38:30] 
+
